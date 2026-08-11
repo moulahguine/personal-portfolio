@@ -1,0 +1,55 @@
+@use "../../../assets/styles" as *;
+
+.popover {
+  z-index: $z-dropdown;
+  min-width: rem(190);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  background-color: var(--surface-elevated);
+  box-shadow: 0 20px 45px var(--shadow-color);
+  outline: none;
+}
+
+.menu {
+  display: flex;
+  outline: none;
+  margin: 0;
+  padding: $space-8;
+  gap: $space-8;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.item {
+  @include rac-touch;
+  display: flex;
+  gap: $space-10;
+  padding: $space-8 $space-10;
+  border-radius: $radius-sm;
+  color: var(--text-secondary);
+  font-family: $font-secondary;
+  font-size: clamp($font-size-14, 1.4vw, $font-size-16);
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background-color $duration-fast $ease-default,
+    color $duration-fast $ease-default;
+
+  @include button-hover {
+    background-color: var(--surface-muted);
+    color: var(--text-primary);
+  }
+
+  &[data-pressed] {
+    background-color: var(--surface);
+  }
+}

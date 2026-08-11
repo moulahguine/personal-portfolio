@@ -1,0 +1,49 @@
+// ---- reset ----
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // outline: 1px solid red;
+}
+
+// ---- button ----
+button {
+  all: unset;
+  outline: revert;
+}
+
+// ---- lists ----
+:where(ul, ol) {
+  list-style: none;
+}
+
+// ---- links ----
+:where(a) {
+  text-decoration: none;
+  color: inherit;
+}
+
+// ---- addresses ----
+:where(address) {
+  font-style: normal;
+}
+
+// ---- images, iframes, figures ----
+:where(img, iframe, figure) {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+}
+
+// ---- figcaptions ----
+:where(figcaption) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}

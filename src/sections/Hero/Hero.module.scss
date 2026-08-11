@@ -1,0 +1,193 @@
+@use "../../assets/styles" as *;
+
+// ---- hero ----
+.hero {
+  @include section;
+
+  // ---- content container ----
+  &__container {
+    @include container;
+    padding: 0;
+  }
+
+  // ---- map banner wrapper ----
+  &__banner {
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    // border-radius: $radius-lg $radius-lg 0 0;
+    box-shadow: 0px -0.5px 1px 0 var(--shadow-color);
+    background-color: var(--image-background);
+    @include fade-edges-mask(to top, 10% 100%);
+  }
+
+  &__map {
+    width: 100%;
+  }
+
+  // ---- content ----
+  &__content {
+    @include flex-between;
+    gap: clamp($space-10, 1.8vw, $space-16);
+    transform: translateY(-50px);
+    padding-inline: clamp($space-8, 2vw, $space-16);
+
+    @include down(md) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  // ---- avatar ----
+  &__avatar {
+    // ---- image ----
+    &-image {
+      all: unset;
+      border-radius: 50%;
+      width: clamp(88px, 18vw, 200px);
+      aspect-ratio: 1;
+      overflow: hidden;
+      background-color: var(--image-background);
+      border: 2px solid var(--primary-soft);
+      cursor: pointer;
+
+      @include down(md) {
+        width: clamp(88px, 30vw, 200px);
+      }
+
+      &[data-pressed] {
+        transform: none;
+      }
+
+      &--small,
+      &--large {
+        object-fit: cover;
+      }
+    }
+
+    &-modal {
+      width: clamp(220px, 80vw, 500px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  // ---- profile information ----
+  &__info {
+    flex: 1 1 auto;
+    @include flex-column;
+    gap: $space-8;
+
+    @include down(md) {
+      align-items: center;
+      width: fit-content;
+    }
+
+    // ---- name ----
+    &-name {
+      font-family: $font-secondary;
+      font-size: clamp($font-size-18, 3vw, $font-size-28);
+      font-weight: $fw-bold;
+      display: flex;
+      align-items: center;
+      gap: $space-8;
+      color: var(--text-primary);
+
+      @include down(md) {
+        font-size: clamp($font-size-18, 5vw, $font-size-28);
+      }
+    }
+
+    // ---- icon ----
+    &-icon {
+      @include flex-center;
+      width: clamp(16px, 2vw, 20px);
+      height: clamp(16px, 2vw, 20px);
+      overflow: hidden;
+    }
+
+    // ---- badge ----
+    &-icon__badge {
+      font-size: clamp($font-size-16, 1.6vw, $font-size-18);
+      color: var(--primary-on);
+    }
+
+    // ---- role ----
+    &-role {
+      font-family: $font-secondary;
+      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      color: var(--text-secondary);
+
+      @include down(md) {
+        text-align: center;
+      }
+    }
+
+    // ---- separator ----
+    &-separator {
+      margin-inline: $space-4;
+    }
+
+    // ---- location ----
+    &-location {
+      @include flex-center;
+      justify-content: flex-start;
+      gap: $space-4;
+      font-family: $font-primary;
+      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
+      font-weight: $fw-regular;
+      color: var(--text-secondary);
+
+      .hero__info-icon {
+        width: fit-content;
+        height: fit-content;
+      }
+    }
+
+    // ---- location icon ----
+    &-icon__location {
+      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
+      color: var(--primary);
+      filter: drop-shadow(1px 0px 0px var(--shadow-color));
+    }
+  }
+
+  // ---- actions ----
+  &__actions {
+    @include flex-center;
+    gap: $space-12;
+    flex-shrink: 0;
+
+    @include down(md) {
+      margin-top: $space-20;
+      width: 100%;
+    }
+  }
+
+  &__resume-link {
+    @include down(md) {
+      flex-grow: 1;
+    }
+  }
+
+  &__share-menu {
+    width: clamp(180px, 20vw, 250px);
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 5px 0 var(--shadow-color);
+    border: none;
+    border-radius: 0;
+
+    &-item {
+      justify-content: center;
+      gap: $space-4;
+      padding: $space-12;
+      background-color: var(--background);
+      color: var(--text-secondary);
+      font-size: clamp($font-size-16, 1.7vw, $font-size-18);
+      border-radius: 0;
+    }
+  }
+}

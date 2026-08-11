@@ -1,0 +1,31 @@
+@use "../../../assets/styles" as *;
+
+// ---- navigation ----
+.navigation {
+  display: block;
+
+  // ---- list ----
+  &__list {
+    @include flex-center;
+    gap: clamp($space-4, 1.5vw, $space-8);
+
+    // ---- vertical ----
+    &--vertical {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $space-8;
+      width: 100%;
+    }
+  }
+
+  // ---- link ----
+  &__link {
+    width: 100%;
+    justify-self: center;
+
+    &--active {
+      color: var(--primary);
+      background-color: var(--primary-on);
+    }
+  }
+}

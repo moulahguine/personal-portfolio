@@ -1,0 +1,33 @@
+@use "sass:math";
+@use "sass:meta";
+@use "./tokens/typography" as *;
+
+@function rem($value) {
+  @if meta.type-of($value) != "number" {
+    @error "rem(): expected a number, got `#{$value}`.";
+  }
+
+  $px: $value;
+
+  @if math.is-unitless($value) {
+    $px: $value * 1px;
+  } @else if math.unit($value) != "px" {
+    @error "rem(): expected px or a unitless number, got `#{$value}`.";
+  }
+
+  @return math.div($px, $base-font-size) * 1rem;
+}
+
+@function alpha($color, $percent) {
+  $message: "alpha(): $percent must be a unitless multiple of 5 between 5 and 95, got `#{$percent}`.";
+
+  @if meta.type-of($percent) != "number" or not math.is-unitless($percent) {
+    @error $message;
+  }
+
+  @if $percent % 5 != 0 or $percent < 5 or $percent > 95 {
+    @error $message;
+  }
+
+  @return rgb(from #{$color} r g b / #{math.div($percent, 100)});
+}

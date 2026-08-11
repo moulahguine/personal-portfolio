@@ -1,0 +1,273 @@
+@use "sass:map";
+@use "../tokens/bundle" as *;
+@use "../tokens/breakpoints" as *;
+
+// ---- motion reduced ----
+@mixin motion-reduced {
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    scale: none !important;
+    rotate: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  @media (scripting: none) {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    scale: none !important;
+    rotate: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+// ---- reveal transition ----
+@mixin reveal-transition($duration: $motion-duration, $ease: $ease-out-expo) {
+  transition:
+    opacity $duration $ease,
+    translate $duration $ease,
+    scale $duration $ease,
+    rotate $duration $ease,
+    filter $duration $ease;
+  transition-delay: var(--reveal-delay, 0s);
+
+  @include motion-reduced;
+}
+
+// ---- reveal visible ----
+@mixin reveal-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: blur(0);
+}
+
+// ---- reveal hidden up ----
+@mixin reveal-hidden-up($lift: $motion-lift, $blur: $motion-blur) {
+  opacity: 0;
+  translate: 0 $lift;
+  filter: blur($blur);
+}
+
+// ---- reveal ----
+@mixin reveal(
+  $direction: up,
+  $variant: null,
+  $trigger: view,
+  $duration: $motion-duration,
+  $ease: $ease-out-expo,
+  $view-range: null,
+  $stagger-index: null,
+  $stagger-step: $motion-stagger-step,
+  $stagger-delay: $motion-stagger-delay-children
+) {
+  --reveal-active: 1;
+
+  @if $trigger == eager {
+    --reveal-eager: 1;
+  }
+
+  @include reveal-transition($duration: $duration, $ease: $ease);
+
+  @if $variant == spring {
+    opacity: 0;
+    scale: $motion-scale-spring-from;
+    filter: blur($motion-blur);
+
+    @include reveal-transition($duration: $duration, $ease: $ease-spring);
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  } @else if $variant == rotate {
+    rotate: $motion-rotate-from;
+    scale: $motion-scale-rotate-from;
+    transition:
+      rotate $duration $ease-spring,
+      scale $duration $ease-spring;
+    transition-delay: var(--reveal-delay, 0s);
+
+    &[data-in-view="true"] {
+      rotate: $motion-rotate-to;
+      scale: 1;
+    }
+
+    @include motion-reduced;
+  } @else if $variant == up-medium {
+    @include reveal-hidden-up(
+      $lift: $motion-lift-medium,
+      $blur: $motion-blur-strong
+    );
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  } @else if $variant == up-large {
+    @include reveal-hidden-up($lift: $motion-lift-large, $blur: 0);
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  } @else if $direction == left {
+    @include reveal-hidden-up;
+
+    @include up(md) {
+      translate: calc(-1 * $motion-slide-x) 0;
+    }
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  } @else if $direction == right {
+    @include reveal-hidden-up;
+
+    @include up(md) {
+      translate: $motion-slide-x 0;
+    }
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  } @else {
+    @include reveal-hidden-up;
+
+    &[data-in-view="true"] {
+      @include reveal-visible;
+    }
+  }
+}
+
+// ---- reveal group ----
+@mixin reveal-group(
+  $step: $motion-stagger-step,
+  $delay-children: $motion-stagger-delay-children,
+  $trigger: view,
+  $duration: $motion-duration,
+  $ease: $ease-out-expo,
+  $variant: null,
+  $direction: up,
+  $view-range: null,
+  $max-children: 24
+) {
+  @for $i from 0 through $max-children {
+    > :nth-child(#{$i + 1}) {
+      @include reveal(
+        $direction: $direction,
+        $variant: $variant,
+        $trigger: $trigger,
+        $duration: $duration,
+        $ease: $ease
+      );
+      --reveal-delay: calc(#{$delay-children} + #{$i} * #{$step});
+    }
+  }
+}
+
+// ---- reveal eager ----
+@mixin reveal-eager($direction: up, $variant: null) {
+  @include reveal($direction: $direction, $variant: $variant, $trigger: eager);
+}
+
+// ---- reveal from top ----
+@mixin reveal-from-top(
+  $offset: $motion-bar-offset,
+  $duration: $motion-duration-bar,
+  $ease: $ease-out-expo,
+  $hidden-class: "--hidden"
+) {
+  transform: translateY($offset);
+  transition: transform $duration $ease;
+
+  // Stay off-screen until the page transition overlay finishes
+  html[data-page-transition="done"] &:not(&#{$hidden-class}) {
+    transform: translateY(0);
+  }
+
+  &#{$hidden-class} {
+    transform: translateY($offset);
+  }
+
+  @include motion-reduced;
+}
+
+// ---- page header reveal ----
+@mixin page-header-surface-reveal(
+  $duration: $motion-duration-page-header-surface,
+  $ease: $ease-out-expo
+) {
+  &::before {
+    transform: translateY(-100%);
+    transition: transform $duration $ease;
+
+    html[data-page-transition="done"] & {
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transform: none;
+      transition: none;
+    }
+
+    @media (scripting: none) {
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+// ---- view range ----
+@mixin motion-view-range($property: animation-range, $prefix: entry 0% cover) {
+  #{$property}: #{$prefix} map.get($motion-view-threshold, mobile);
+
+  @include up(md) {
+    #{$property}: #{$prefix} map.get($motion-view-threshold, desktop);
+  }
+}
+
+// ---- view scroll keyframes ----
+@mixin view-scroll-keyframes {
+  @keyframes view-scroll-width {
+    from {
+      width: var(--view-width-from);
+    }
+
+    to {
+      width: var(--view-width-to);
+    }
+  }
+}
+
+// ---- view scroll width ----
+@mixin view-scroll-width(
+  $from: $motion-view-width-from,
+  $to: $motion-view-width-to,
+  $fallback: null,
+  $narrow-breakpoint: lg,
+  $to-narrow: $motion-view-width-to-narrow
+) {
+  $resolved-fallback: if($fallback, $fallback, $to);
+
+  width: $resolved-fallback;
+  --view-width-from: #{$from};
+  --view-width-to: #{$to};
+
+  @include down($narrow-breakpoint) {
+    --view-width-to: #{$to-narrow};
+  }
+
+  @supports (animation-timeline: view()) {
+    width: $resolved-fallback;
+    animation: view-scroll-width linear forwards;
+    animation-timeline: view();
+    @include motion-view-range;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    width: $resolved-fallback;
+  }
+}

@@ -1,0 +1,31 @@
+@use "../../../assets/styles" as *;
+
+// ---- header ----
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+
+  // ---- container ----
+  &__container {
+    @include container;
+    @include flex-between;
+    background-color: var(--primary);
+    padding: clamp($space-4, 1vw, $space-8);
+    margin-top: clamp($space-8, 1.5vw, $space-12);
+    overflow: hidden;
+    box-shadow: 0px 0 1px 0 var(--shadow-color);
+
+    @include down(sm) {
+      padding-inline: $space-12;
+    }
+  }
+
+  // ---- desktop navigation ----
+  &__navigation {
+    @include down(sm) {
+      display: none !important;
+    }
+  }
+}

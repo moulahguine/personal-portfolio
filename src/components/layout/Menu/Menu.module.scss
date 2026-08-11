@@ -1,0 +1,102 @@
+@use "../../../assets/styles" as *;
+
+// ---- mobile menu trigger ----
+.menu {
+  &__trigger {
+    @include rac-touch;
+    @include flex-center;
+    flex-direction: column;
+    align-items: end;
+    gap: rem(7);
+    padding: $space-4;
+    width: 30px;
+    aspect-ratio: 1;
+    background-color: transparent !important;
+    cursor: pointer;
+
+    @include up(sm) {
+      display: none;
+    }
+
+    &__line {
+      height: 1.5px;
+      background-color: var(--primary-on);
+      transition:
+        transform $duration-fast $ease-default,
+        opacity $duration-fast $ease-default;
+
+      &:nth-child(1) {
+        width: 100%;
+      }
+
+      &:nth-child(2) {
+        width: 70%;
+      }
+
+      &:nth-child(3) {
+        width: 50%;
+      }
+    }
+
+    &--active {
+      .menu__trigger__line {
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translate(7.5px, -7.5px);
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // ---- overlay ----
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: alpha(var(--surface-overlay), 50);
+    backdrop-filter: blur(10px);
+
+    @include up(sm) {
+      display: none;
+    }
+  }
+
+  &__dropdown {
+    width: calc(100svw - clamp($space-10, 2vw, $space-12) * 2);
+    padding: $space-10;
+    background-color: var(--background);
+    border-radius: 0;
+    border: solid 1px var(--primary-border);
+
+    @include up(sm) {
+      display: none;
+    }
+  }
+
+  &__item {
+    @include rac-touch;
+    justify-content: center;
+    width: 100%;
+    padding-block: $space-16;
+    color: var(--text-primary);
+    font-size: $font-size-16;
+    font-weight: $fw-bold;
+
+    &--active {
+      background-color: var(--primary-on);
+      color: var(--text-inverse);
+    }
+
+    &:not(&--active)[data-focus-visible] {
+      background-color: var(--surface-muted);
+    }
+  }
+}

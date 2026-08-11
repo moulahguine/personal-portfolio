@@ -1,0 +1,174 @@
+@use "../../../assets/styles" as *;
+
+.shell {
+  @include rac-touch;
+  @include flex-center;
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: $font-secondary;
+  font-weight: $fw-semibold;
+  // border-radius: $radius-xl;
+  white-space: nowrap;
+  transition:
+    background-color $duration-fast $ease-default,
+    border-color $duration-fast $ease-default,
+    color $duration-fast $ease-default,
+    opacity $duration-fast $ease-default,
+    transform $duration-fast $ease-default;
+
+  &[data-pressed] {
+    transform: translateY(1.5px);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &[data-pending] {
+    cursor: progress;
+  }
+
+  &--link {
+    text-decoration: none;
+
+    &[data-disabled] {
+      pointer-events: none;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // ---- size ----
+  &--size {
+    &-sm {
+      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      padding: clamp($space-8, 1.5vw, $space-10)
+        clamp($space-12, 1.5vw, $space-14);
+    }
+
+    &-md {
+      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      padding: clamp($space-10, 1.5vw, $space-12)
+        clamp($space-16, 1.5vw, $space-18);
+    }
+
+    &-lg {
+      font-size: clamp($font-size-16, 1.5vw, $font-size-18);
+      padding: clamp($space-12, 1.5vw, $space-14)
+        clamp($space-20, 1.5vw, $space-24);
+    }
+  }
+
+  &--kind-icon {
+    &.shell--size {
+      &-sm {
+        padding-inline: clamp($space-8, 1.5vw, $space-10);
+        font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      }
+
+      &-md {
+        padding-inline: clamp($space-10, 1.5vw, $space-12);
+        font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      }
+
+      &-lg {
+        padding-inline: clamp($space-14, 1.5vw, $space-16);
+        font-size: clamp($font-size-18, 2vw, $font-size-20);
+      }
+    }
+  }
+
+  &--variant {
+    &-plain {
+      color: inherit;
+      font-weight: $fw-medium;
+
+      @include button-hover {
+        color: var(--primary);
+      }
+
+      &[aria-current="page"] {
+        color: var(--primary);
+        font-weight: $fw-semibold;
+      }
+    }
+
+    &-primary {
+      background-color: var(--primary);
+      border: 1px solid var(--primary);
+      color: var(--primary-on);
+
+      @include button-hover {
+        background-color: var(--primary-hover);
+        border-color: var(--primary-hover);
+      }
+
+      &[data-pressed] {
+        background-color: var(--primary-active);
+        border-color: var(--primary-active);
+      }
+
+      &[data-disabled] {
+        background-color: var(--primary-disabled);
+        border-color: var(--primary-disabled);
+      }
+    }
+
+    &-secondary {
+      background-color: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+
+      @include button-hover {
+        background-color: var(--surface);
+        border-color: var(--primary);
+      }
+
+      &[data-pressed] {
+        background-color: var(--surface);
+      }
+    }
+
+    &-ghost {
+      background-color: transparent;
+      border: 1px solid transparent;
+      color: var(--text-primary);
+
+      @include button-hover {
+        background-color: var(--surface-muted);
+      }
+
+      &[data-pressed] {
+        background-color: var(--surface-muted);
+      }
+    }
+  }
+}
+
+.actions {
+  @include flex-center;
+  gap: $space-8;
+  color: inherit;
+  line-height: $line-height-tight;
+
+  &--kind-both {
+    justify-content: flex-start;
+  }
+
+  &__icon {
+    @include flex-center;
+    flex-shrink: 0;
+    color: inherit;
+    line-height: 1;
+  }
+
+  &__label {
+    color: inherit;
+  }
+}

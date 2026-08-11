@@ -1,0 +1,149 @@
+@use "../../../assets/styles" as *;
+
+// ---- overlay ----
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  @include flex-center;
+  padding: clamp($space-16, 5vw, $space-32);
+  background-color: var(--background-overlay);
+  backdrop-filter: blur(10px);
+
+  &[data-entering] {
+    animation: modal-fade $duration-quick $ease-default;
+  }
+
+  &[data-exiting] {
+    animation: modal-fade $duration-quick $ease-default reverse;
+  }
+}
+
+// ---- modal shell ----
+.modal__shell {
+  position: relative;
+  z-index: $z-modal-content;
+  width: auto;
+  max-width: 100%;
+  flex: 0 1 auto;
+  outline: none;
+
+  &[data-entering] {
+    animation: modal-scale-in $duration-quick $ease-out-expo;
+  }
+}
+
+// ---- dialog panel ----
+.modal__dialog {
+  @include flex-column;
+  width: 100%;
+  max-height: min(85svh, rem(720));
+  border-radius: $radius-lg;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  outline: none;
+  overflow: hidden;
+
+  &--size-sm {
+    max-width: rem(400);
+  }
+
+  &--size-md {
+    max-width: rem(560);
+  }
+
+  &--size-lg {
+    max-width: rem(720);
+  }
+
+  &--size-fit {
+    width: fit-content;
+    max-width: min(calc(100vw - #{$space-32}), rem(720));
+  }
+}
+
+// ---- header ----
+.modal__header {
+  @include flex-between;
+  gap: $space-16;
+  flex-shrink: 0;
+  padding: clamp($space-16, 3vw, $space-20) clamp($space-16, 3vw, $space-24);
+  border-bottom: 1px solid var(--border);
+
+  &-content {
+    @include flex-column;
+    gap: $space-4;
+    min-width: 0;
+    width: fit-content;
+
+    &--title {
+      font-family: $font-primary;
+      font-size: clamp($font-size-18, 3vw, $font-size-24);
+      font-weight: $fw-bold;
+      color: var(--text-primary);
+    }
+
+    &--description {
+      font-family: $font-secondary;
+      font-size: clamp($font-size-14, 1.6vw, $font-size-14);
+      color: var(--text-secondary);
+    }
+  }
+
+  &-close {
+    padding: $space-8;
+    border-radius: 50%;
+
+    @include button-hover {
+      background-color: var(--primary);
+      color: var(--primary-on);
+    }
+
+    &[data-pressed] {
+      background-color: var(--primary-active);
+    }
+
+    &--icon {
+      font-size: clamp($font-size-18, 2vw, $font-size-24);
+    }
+  }
+}
+
+// ---- body ----
+.modal__body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: clamp($space-16, 3vw, $space-24);
+
+  .modal__dialog:not(:has(.modal__header)) & {
+    padding: 0;
+  }
+
+  .modal__dialog:has(.modal__header) & {
+    padding-block-start: clamp($space-12, 2vw, $space-16);
+  }
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

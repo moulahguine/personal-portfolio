@@ -1,0 +1,48 @@
+@use "sass:map";
+
+$breakpoints: (
+  sm: 500px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1279px,
+  xxl: 1536px,
+);
+
+@function breakpoint($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error "Unknown breakpoint `#{$name}`. Available: #{map.keys($breakpoints)}.";
+  }
+
+  @return map.get($breakpoints, $name);
+}
+
+$breakpoint-sm: breakpoint(sm);
+$breakpoint-md: breakpoint(md);
+$breakpoint-lg: breakpoint(lg);
+$breakpoint-xl: breakpoint(xl);
+$breakpoint-xxl: breakpoint(xxl);
+
+// Viewport is $name or narrower.
+@mixin down($name) {
+  @media (width <= #{breakpoint($name)}) {
+    @content;
+  }
+}
+
+// Viewport is strictly wider than $name.
+@mixin up($name) {
+  @media (width > #{breakpoint($name)}) {
+    @content;
+  }
+}
+
+// Viewport is wider than $min and at most $max.
+@mixin between($min, $max) {
+  @if breakpoint($min) >= breakpoint($max) {
+    @error "between(#{$min}, #{$max}): `#{$min}` must be narrower than `#{$max}`.";
+  }
+
+  @media (#{breakpoint($min)} < width <= #{breakpoint($max)}) {
+    @content;
+  }
+}

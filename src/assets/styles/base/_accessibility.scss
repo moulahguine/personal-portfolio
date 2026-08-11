@@ -1,0 +1,30 @@
+@use "../tokens/bundle" as *;
+@use "../utilities" as *;
+
+button,
+a,
+[role="button"],
+[role="link"],
+[role="menuitem"],
+.react-aria-Button,
+.react-aria-Link,
+.react-aria-MenuItem {
+  @include rac-touch;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+abbr:focus-visible,
+[role="region"]:focus-visible,
+[role="tab"]:focus-visible,
+[data-state="tap"]:focus-visible,
+.skip-link:focus-visible {
+  @include focus-ring;
+}
+
+.sr-only {
+  @include sr-only;
+}

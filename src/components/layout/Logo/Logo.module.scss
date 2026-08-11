@@ -1,0 +1,18 @@
+@use "../../../assets/styles" as *;
+
+// ---- logo ----
+.logo {
+  flex-shrink: 0;
+  max-width: 70px;
+  overflow: hidden;
+  margin-inline: $space-12;
+
+  &__image {
+    display: block;
+    object-fit: contain;
+  }
+
+  &[data-pressed] {
+    transform: none;
+  }
+}

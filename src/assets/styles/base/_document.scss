@@ -1,0 +1,53 @@
+@use "../tokens/bundle" as *;
+@use "../functions" as *;
+
+// ---- html ----
+html {
+  font-family: $font-primary;
+  font-size: $base-font-size;
+  font-weight: $fw-medium;
+  scrollbar-gutter: stable;
+}
+
+// ---- body ----
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ---- html and body ----
+html,
+body {
+  overflow-x: clip;
+  background-color: var(--background);
+  color: var(--text-primary);
+  -webkit-overflow-scrolling: touch;
+}
+
+// ---- headings ----
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: $font-accent;
+  font-weight: $fw-medium;
+  color: var(--text-primary);
+}
+
+// ---- selection ----
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+// ---- section performance ----
+// Skip `.hero` — `transform` on an ancestor breaks MapLibre WebGL tile rendering.
+@include down(md) {
+  section:not(.contact):not(.hero) {
+    will-change: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
