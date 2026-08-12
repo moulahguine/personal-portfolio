@@ -16,10 +16,8 @@
     position: relative;
     z-index: 0;
     overflow: hidden;
-    // border-radius: $radius-lg $radius-lg 0 0;
-    box-shadow: 0px -0.5px 1px 0 var(--shadow-color);
     background-color: var(--image-background);
-    @include fade-edges-mask(to top, 10% 100%);
+    mask-image: linear-gradient(to bottom, black 10%, black 80%, transparent);
   }
 
   &__map {

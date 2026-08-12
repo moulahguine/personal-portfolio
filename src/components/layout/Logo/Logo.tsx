@@ -9,7 +9,8 @@ export default function Logo({ className }: ClassNameProps) {
   return (
     <Link
       href="/"
-      variant="plain"
+      variant="ghost"
+      size="md"
       className={`${styles.logo} ${className ?? ""}`.trim()}
       aria-label="Home"
     >
@@ -17,9 +18,11 @@ export default function Logo({ className }: ClassNameProps) {
         src={logoSrc}
         alt="logo"
         width={100}
-        height={70}
-        sizes="(max-width: 768px) 50px, 70px"
-        priority
+        height={50}
+        sizes="(max-width: 768px) 50px, 50px"
+        preload
+        loading="eager"
+        fetchPriority="high"
         className={styles.logo__image}
       />
     </Link>
