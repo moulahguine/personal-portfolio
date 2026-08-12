@@ -1,4 +1,6 @@
 export { default as Header } from "./Header/Header";
+export { default as HeaderSection } from "./HeaderSection/HeaderSection";
+export { default as HeaderPage } from "./HeaderPage/HeaderPage";
 export { default as Logo } from "./Logo/Logo";
 export { default as Navigation } from "./Navigation/Navigation";
 export { default as Menu } from "./Menu/Menu";

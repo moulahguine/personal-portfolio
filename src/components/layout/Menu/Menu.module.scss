@@ -14,7 +14,7 @@
     background-color: transparent !important;
     cursor: pointer;
 
-    @include up(sm) {
+    @include up(md) {
       display: none;
     }
 

@@ -1,5 +1,11 @@
-import { Hero } from "@/sections";
+import { About, Hero, Skills } from "@/sections";
 
 export default function Home() {
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <About />
+      <Skills />
+    </>
+  );
 }

@@ -9,7 +9,7 @@ export default function Logo({ className }: ClassNameProps) {
   return (
     <Link
       href="/"
-      variant="ghost"
+      variant="plain"
       size="md"
       className={`${styles.logo} ${className ?? ""}`.trim()}
       aria-label="Home"

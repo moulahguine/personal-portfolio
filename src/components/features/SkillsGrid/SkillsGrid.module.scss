@@ -1,0 +1,82 @@
+@use "../../../assets/styles" as *;
+
+.skills__grid {
+  @include responsive-grid(repeat(4, 1fr), clamp($space-8, 2vw, $space-12));
+}
+
+.skills__item {
+  all: unset;
+  @include flex-center;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 1.5;
+  background-color: var(--background-muted);
+  gap: clamp($space-8, 1.5vw, $space-12);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform $duration-base ease-in,
+    background-color $duration-base ease-in;
+
+  @include down(md) {
+    aspect-ratio: 1.2;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-pressed] {
+      background-color: var(--background-elevated) !important;
+
+      .skills__icon {
+        color: var(--skill-color);
+        filter: drop-shadow(9px 9px 0px alpha(var(--skill-color), 50));
+        transform: translateY(-10px) scale(1.3) rotate(5deg);
+        transform-origin: center center;
+      }
+    }
+  }
+}
+
+.skills__icon {
+  font-size: clamp($font-size-24, 3vw, $font-size-32);
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  filter: drop-shadow(1px 1px 0px alpha(var(--text-secondary), 50));
+  transition:
+    color $duration-base ease,
+    filter $duration-base ease-in,
+    transform $duration-base ease;
+}
+
+.skills__name {
+  text-transform: capitalize;
+  font-family: $font-secondary;
+  font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+  font-weight: $fw-regular;
+  color: var(--text-tertiary);
+  line-height: $line-height-tight;
+}
+
+.skills__item--more {
+  border: 2px dashed var(--primary-hover);
+  background-color: var(--primary);
+  color: var(--text-primary);
+  font-size: clamp($font-size-16, 2vw, $font-size-18);
+  font-weight: $fw-bold;
+  text-transform: capitalize;
+  transition:
+    border-color $duration-base ease-in,
+    background-color $duration-base ease-in;
+
+  @include button-hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary);
+  }
+}
+
+.skills__iconLink {
+  font-size: clamp($font-size-24, 3vw, $font-size-32);
+  flex-shrink: 0;
+  color: var(--text-primary);
+}

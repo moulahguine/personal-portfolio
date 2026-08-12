@@ -7,7 +7,7 @@
   // ---- content container ----
   &__container {
     @include container;
-    padding: 0;
+    padding-bottom: 0;
   }
 
   // ---- map banner wrapper ----
@@ -43,16 +43,12 @@
     &-image {
       all: unset;
       border-radius: 50%;
-      width: clamp(88px, 18vw, 200px);
+      width: clamp(150px, 18vw, 200px);
       aspect-ratio: 1;
       overflow: hidden;
       background-color: var(--image-background);
       border: 2px solid var(--primary-soft);
       cursor: pointer;
-
-      @include down(md) {
-        width: clamp(88px, 30vw, 200px);
-      }
 
       &[data-pressed] {
         transform: none;

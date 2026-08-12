@@ -1,0 +1,24 @@
+@use "../../../assets/styles" as *;
+
+.headerPage {
+  @include flex-column;
+  align-items: center;
+  gap: clamp($space-10, 2vw, $space-16);
+  margin-block: clamp($space-16, 3vw, $space-24);
+
+  &__title {
+    font-family: $font-accent;
+    font-size: clamp($font-size-32, 3vw, rem(40));
+    font-weight: $fw-bold;
+    color: var(--text-primary);
+  }
+
+  &__description {
+    font-size: clamp($font-size-14, 1.6vw, $font-size-18);
+    font-family: $font-primary;
+    font-weight: $fw-semibold;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 60ch;
+  }
+}
