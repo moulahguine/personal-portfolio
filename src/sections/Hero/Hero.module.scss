@@ -13,6 +13,7 @@
   // ---- map banner wrapper ----
   &__banner {
     width: 100%;
+    height: clamp(200px, 30vw, 300px);
     position: relative;
     z-index: 0;
     overflow: hidden;
@@ -22,6 +23,21 @@
 
   &__map {
     width: 100%;
+    height: 100%;
+  }
+
+  // ---- placeholder ----
+  &__mapPlaceholder {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+      150deg,
+      var(--primary) 0%,
+      var(--primary-soft) 60%
+    );
+    background-size: 200% 200%;
+    animation: hero-map-gradient 3s ease-in-out infinite alternate-reverse;
   }
 
   // ---- content ----
@@ -183,5 +199,15 @@
       font-size: clamp($font-size-16, 1.7vw, $font-size-18);
       border-radius: 0;
     }
+  }
+}
+
+@keyframes hero-map-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
   }
 }

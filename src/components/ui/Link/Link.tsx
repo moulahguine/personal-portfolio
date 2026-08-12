@@ -18,6 +18,7 @@ export default function Link({
   variant = "plain",
   size = "md",
   fullWidth = false,
+  iconPosition = "left",
   download,
   target,
   rel,
@@ -35,6 +36,7 @@ export default function Link({
       variant={variant}
       size={size}
       fullWidth={fullWidth}
+      iconPosition={iconPosition}
       className={className}
       aria-label={rest["aria-label"]}
       shell={(content, shellClassName) => (

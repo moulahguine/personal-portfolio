@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import L, { type LatLngTuple } from "leaflet";
 import type { ClassNameProps } from "@/types";
-import { InteractiveMapPlaceholder } from "./InteractiveMapPlaceholder";
 
 import "leaflet/dist/leaflet.css";
 import "./InteractiveMap.scss";
@@ -15,22 +14,10 @@ const INTRO_ZOOM = 10;
 const TARGET_ZOOM = 13;
 const INTRO_DURATION = 1.2;
 
-const DARK_TILES =
-  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
 const LIGHT_TILES =
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+const DARK_TILES =
   "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
-
-const pulseIcon = L.divIcon({
-  className: "interactive-map__pulse",
-  html: `
-    <span class="interactive-map__pulse-dot"></span>
-    <span class="interactive-map__pulse-ring"></span>
-    <span class="interactive-map__pulse-ring"></span>
-    <span class="interactive-map__pulse-ring"></span>
-  `,
-  iconSize: [18, 18],
-  iconAnchor: [9, 9],
-});
 
 // ---- map intro animation ----
 function MapIntroAnimation() {
@@ -77,7 +64,6 @@ function MapIntroAnimation() {
 
 // ---- interactive location map ----
 export default function InteractiveMap({ className }: ClassNameProps) {
-  const [mounted, setMounted] = useState(false);
   const [isLight, setIsLight] = useState(true);
 
   useEffect(() => {
@@ -86,15 +72,26 @@ export default function InteractiveMap({ className }: ClassNameProps) {
     const syncTheme = () => setIsLight(media.matches);
 
     syncTheme();
-    setMounted(true);
     media.addEventListener("change", syncTheme);
 
     return () => media.removeEventListener("change", syncTheme);
   }, []);
 
-  if (!mounted) {
-    return <InteractiveMapPlaceholder className={className} />;
-  }
+  const pulseIcon = useMemo(
+    () =>
+      L.divIcon({
+        className: "interactive-map__pulse",
+        html: `
+          <span class="interactive-map__pulse-dot"></span>
+          <span class="interactive-map__pulse-ring"></span>
+          <span class="interactive-map__pulse-ring"></span>
+          <span class="interactive-map__pulse-ring"></span>
+        `,
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+      }),
+    [],
+  );
 
   const classNames = [
     "interactive-map",
@@ -105,7 +102,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
     .join(" ");
 
   // ---- here tile url is determined by the theme ----
-  const tileUrl = isLight ? DARK_TILES : LIGHT_TILES;
+  const tileUrl = isLight ? LIGHT_TILES : DARK_TILES;
 
   return (
     <div className={classNames} tabIndex={-1}>
@@ -115,7 +112,6 @@ export default function InteractiveMap({ className }: ClassNameProps) {
         zoomAnimation
         fadeAnimation
         zoomControl={false}
-        keyboard={false}
         scrollWheelZoom
         doubleClickZoom
         dragging

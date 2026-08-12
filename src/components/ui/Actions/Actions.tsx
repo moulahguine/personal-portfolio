@@ -20,6 +20,7 @@ export default function Actions({
   variant,
   size,
   fullWidth = false,
+  iconPosition = "left",
   className = "",
   as = "button",
   shell,
@@ -48,6 +49,7 @@ export default function Actions({
   const contentClassName = [
     styles.actions,
     kind === "both" ? styles["actions--kind-both"] : "",
+    iconPosition === "right" ? styles["actions--icon-right"] : "",
   ]
     .filter(Boolean)
     .join(" ");

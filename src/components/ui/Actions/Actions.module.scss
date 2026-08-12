@@ -161,6 +161,10 @@
     justify-content: flex-start;
   }
 
+  &--icon-right {
+    flex-direction: row-reverse;
+  }
+
   &__icon {
     @include flex-center;
     flex-shrink: 0;

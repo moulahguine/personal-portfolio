@@ -4,6 +4,7 @@ import type { ButtonSize } from "./button.types";
 
 export type ActionVariant = "plain" | "primary" | "secondary" | "ghost";
 export type ActionsKind = "icon" | "label" | "both";
+export type IconPosition = "left" | "right";
 
 export interface ActionsProps {
   icon?: ReactNode;
@@ -12,6 +13,7 @@ export interface ActionsProps {
   variant?: ActionVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
+  iconPosition?: IconPosition;
   "aria-label"?: string;
 }
 

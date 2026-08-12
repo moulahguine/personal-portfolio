@@ -12,6 +12,7 @@ export default function Button({
   variant = "primary",
   size = "md",
   fullWidth = false,
+  iconPosition = "left",
   type = "button",
   className = "",
   ...rest
@@ -23,6 +24,7 @@ export default function Button({
       variant={variant}
       size={size}
       fullWidth={fullWidth}
+      iconPosition={iconPosition}
       className={className}
       aria-label={rest["aria-label"]}
       shell={(content, shellClassName) => (

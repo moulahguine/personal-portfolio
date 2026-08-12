@@ -1,0 +1,9 @@
+@use "../../assets/styles" as *;
+
+.projects {
+  @include section;
+
+  &__container {
+    @include container;
+  }
+}

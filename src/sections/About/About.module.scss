@@ -10,20 +10,17 @@
   }
 
   &__paragraph {
-    font-family: $font-primary;
-    font-size: clamp(rem(15), 2vw, $font-size-20);
+    font-family: $font-secondary;
+    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-weight: $fw-medium;
     line-height: $line-height-relaxed;
     color: var(--text-secondary);
-    font-weight: $fw-bold;
     max-width: 75ch;
     margin-inline: auto;
     text-indent: clamp($space-20, 3vw, $space-32);
 
     @include down(sm) {
-      padding-inline: $space-4;
       letter-spacing: -0.02em;
-      // text-wrap: balance;
-      text-indent: 0;
     }
   }
 }

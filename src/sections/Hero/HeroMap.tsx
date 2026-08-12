@@ -1,14 +1,20 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { InteractiveMapPlaceholder } from "@/components";
 import type { ClassNameProps } from "@/types";
+
+import styles from "./Hero.module.scss";
 
 const InteractiveMap = dynamic(
   () => import("@/components/features/InteractiveMap/InteractiveMap"),
   {
     ssr: false,
-    loading: () => <InteractiveMapPlaceholder />,
+    loading: () => (
+      <div
+        className={`${styles.hero__map} ${styles.hero__mapPlaceholder}`}
+        aria-hidden="true"
+      />
+    ),
   },
 );
 
