@@ -108,7 +108,7 @@ export default function ProjectsGrid({
       {showAllLink ? (
         <Link
           href="/projects"
-          variant="plain"
+          variant="ghost"
           iconPosition="right"
           size="sm"
           className={styles.projects__allLink}

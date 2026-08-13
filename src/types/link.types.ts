@@ -13,4 +13,6 @@ export interface LinkProps
   variant?: LinkVariant;
   size?: LinkSize;
   className?: string;
+  tabIndex?: number;
+  isDisabled?: boolean;
 }

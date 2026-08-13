@@ -8,3 +8,17 @@ export {
   DropdownMenuItem,
   MenuTrigger,
 } from "./DropdownMenu/DropdownMenu";
+export {
+  DisclosureAccordion,
+  DisclosureAccordionItem,
+  DisclosureAccordionPanel,
+  DisclosureAccordionHeading,
+  DisclosureAccordionButton,
+} from "./DisclosureAccordion/DisclosureAccordion";
+export type {
+  DisclosureAccordionProps,
+  DisclosureAccordionItemProps,
+  DisclosureAccordionPanelProps,
+  DisclosureAccordionHeadingProps,
+  DisclosureAccordionButtonProps,
+} from "./DisclosureAccordion/DisclosureAccordion";

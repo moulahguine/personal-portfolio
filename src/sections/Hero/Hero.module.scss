@@ -16,7 +16,6 @@
     height: clamp(200px, 30vw, 300px);
     position: relative;
     z-index: 0;
-    overflow: hidden;
     background-color: var(--image-background);
     mask-image: linear-gradient(to bottom, black 10%, black 80%, transparent);
   }
@@ -24,6 +23,7 @@
   &__map {
     width: 100%;
     height: 100%;
+    border: 1px solid var(--primary-border);
   }
 
   // ---- placeholder ----
@@ -179,6 +179,12 @@
   &__resume-link {
     @include down(md) {
       flex-grow: 1;
+    }
+  }
+
+  &__share-trigger {
+    &[data-pressed] {
+      transform: none;
     }
   }
 

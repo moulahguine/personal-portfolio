@@ -59,9 +59,9 @@
 }
 
 .skills__item--more {
-  border: 2px dashed var(--primary-hover);
-  background-color: var(--primary);
-  color: var(--text-primary);
+  border: 2px dashed var(--background-elevated);
+  background-color: var(--primary-on);
+  color: var(--text-inverse);
   font-size: clamp($font-size-16, 2vw, $font-size-18);
   font-weight: $fw-bold;
   text-transform: capitalize;
@@ -78,5 +78,5 @@
 .skills__iconLink {
   font-size: clamp($font-size-24, 3vw, $font-size-32);
   flex-shrink: 0;
-  color: var(--text-primary);
+  color: inherit;
 }

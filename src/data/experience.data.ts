@@ -1,0 +1,89 @@
+import type { StaticImageData } from "next/image";
+
+import upworkLogo from "@/assets/images/experience/upwork.png";
+import atlasLogo from "@/assets/images/experience/altlasuni.png";
+import nisantasiLogo from "@/assets/images/experience/nisantasi.png";
+
+export interface ExperiencePeriod {
+  start: string;
+  end: string;
+}
+
+export interface ExperienceEntry {
+  id: string;
+  role: string;
+  major: string;
+  organization: string;
+  period: ExperiencePeriod;
+  location: string;
+  logo: StaticImageData;
+  details?: string[];
+}
+
+export interface ExperienceItems {
+  upwork: ExperienceEntry;
+  atlasUniversity: ExperienceEntry;
+  nisantasi: ExperienceEntry;
+}
+
+export interface ExperienceData {
+  headingId: string;
+  headerSection: {
+    title: string;
+  };
+  items: ExperienceItems;
+}
+
+export const experience = {
+  headingId: "experience-heading",
+
+  headerSection: {
+    title: "Experience",
+  },
+
+  items: {
+    upwork: {
+      id: "upwork",
+      role: "Frontend Developer",
+      organization: "Upwork",
+      major: "",
+      period: {
+        start: "Mar 2023",
+        end: "Present",
+      },
+      location: "Istanbul, Türkiye",
+      logo: upworkLogo,
+      details: [
+        "Working with clients on frontend projects across modern web technologies.",
+        "Through Upwork, I work on client projects involving React, Next.js, responsive interfaces, performance, accessibility, and maintainable frontend code.",
+        "I also take on independent client and personal projects, building responsive websites and solving problems such as confusing layouts, slow loading, and poor mobile experiences.",
+      ],
+    },
+
+    atlasUniversity: {
+      id: "atlas-istanbul",
+      role: "Bachelor of Engineering",
+      major: "Software Engineering",
+      organization: "Istanbul Atlas University",
+      period: {
+        start: "Sep 2023",
+        end: "Jul 2028",
+      },
+      location: "Istanbul, Türkiye",
+      logo: atlasLogo,
+    },
+
+    nisantasi: {
+      id: "nisantasi",
+      role: "English Preparatory Program",
+      major: "Academic English",
+      organization: "Istanbul Nisantasi University",
+      period: {
+        start: "Sep 2021",
+        end: "Jul 2022",
+      },
+      location: "Istanbul, Türkiye",
+      logo: nisantasiLogo,
+    },
+  },
+} satisfies ExperienceData;

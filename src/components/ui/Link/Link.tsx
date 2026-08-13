@@ -22,11 +22,13 @@ export default function Link({
   download,
   target,
   rel,
+  isDisabled,
   className = "",
   ...rest
 }: LinkProps) {
   const resolvedRel = target === "_blank" && !rel ? "noopener noreferrer" : rel;
-  const useNextLink = isInternalHref(href) && download === undefined;
+  const useNextLink =
+    isInternalHref(href) && download === undefined && !isDisabled;
 
   return (
     <Actions
@@ -46,11 +48,12 @@ export default function Link({
           download={download}
           target={target}
           rel={resolvedRel}
+          isDisabled={isDisabled}
           className={shellClassName}
           {...(useNextLink
             ? {
                 render: (props) =>
-                  "href" in props ? (
+                  !isDisabled && "href" in props ? (
                     <NextLink {...props} />
                   ) : (
                     <span {...props} />

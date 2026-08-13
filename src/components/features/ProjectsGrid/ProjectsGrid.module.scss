@@ -7,20 +7,19 @@
 
   // ---- projects grid ----
   &__grid {
-    @include responsive-grid(
-      repeat(2, 1fr),
-      clamp($space-10, 1vw, $space-14),
-      (
-        md: 1fr,
-      )
-    );
-    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp($space-10, 1vw, $space-14);
+    @include down(md) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   // ---- project card ----
   &__card {
     @include flex-column;
-    height: 100%;
+    max-width: 450px;
     background-color: var(--surface);
     border: 1px solid var(--border);
     overflow: hidden;
@@ -54,9 +53,9 @@
     // ---- card media ----
     &-media {
       position: relative;
-      max-width: 400px;
-
-      aspect-ratio: 1.5;
+      max-width: inherit;
+      aspect-ratio: 1.2;
+      overflow: hidden;
       background-color: var(--image-background);
       mask-image: linear-gradient(to bottom, black 10%, black 70%, transparent);
     }
@@ -122,6 +121,7 @@
       color: var(--text-primary);
       background-color: var(--surface-muted);
       border: 1px solid var(--border-muted);
+      text-transform: capitalize;
     }
 
     // ---- card actions ----
@@ -149,6 +149,8 @@
   &__allLink {
     text-decoration: underline;
     text-underline-offset: 5px;
+    margin-top: clamp($space-12, 2vw, $space-18);
+    font-size: clamp($font-size-12, 1.5vw, $font-size-16);
 
     @include button-hover {
       color: var(--text-secondary) !important;
