@@ -52,6 +52,7 @@
 @mixin section {
   width: 100vw;
   width: 100svw;
+  padding-inline: clamp($space-4, 1vw, $space-8);
 }
 
 // ---- page ----
@@ -62,13 +63,13 @@
 // ---- container ----
 @mixin container {
   max-width: $container-width;
-  margin-inline: auto;
+  margin-inline: clamp($space-4, 2vw, $space-12);
   padding-block: clamp($space-16, 2vw, $space-32);
   padding-inline: $space-4;
   position: relative;
+  margin-inline: auto;
 
   @include down(lg) {
-    max-width: calc(100% - clamp($space-4, 2vw, $space-12) * 2);
   }
 }
 

@@ -67,7 +67,7 @@ const SKILLS: Skill[] = [
   },
   { id: "css", name: "CSS", icon: SiCss, color: "#1572B6", isPrimary: true },
   { id: "sass", name: "Sass", icon: SiSass, color: "#CC6699", isPrimary: true },
-  { id: "git", name: "Git", icon: SiGit, color: "#F05032", isPrimary: false },
+  { id: "git", name: "Git", icon: SiGit, color: "#F05032", isPrimary: true },
   {
     id: "nodejs",
     name: "Node.js",
@@ -148,6 +148,7 @@ export const sections = {
 
   primarySkills: PRIMARY_SKILLS,
   remainingSkillsCount: REMAINING_SKILLS_COUNT,
+  allSkillsCount: SKILLS.length,
 };
 
 // ---- meta data ----

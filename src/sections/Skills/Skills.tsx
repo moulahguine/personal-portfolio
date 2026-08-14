@@ -5,7 +5,13 @@ import styles from "./Skills.module.scss";
 
 // ---- skills ----
 export default function Skills() {
-  const { skillsHeadingId, headerSection } = sections;
+  const {
+    skillsHeadingId,
+    headerSection,
+    remainingSkillsCount,
+    allSkillsCount,
+  } = sections;
+
   return (
     <section
       className={styles.skills}
@@ -13,11 +19,20 @@ export default function Skills() {
       aria-labelledby={skillsHeadingId}
     >
       <div className={styles.skills__container}>
-        {/* heading */}
-        <HeaderSection title={headerSection.title} id={skillsHeadingId} />
-
-        {/* skills grid */}
-        <SkillsGrid variant="primary" showMoreLink />
+        <HeaderSection
+          title={headerSection.title}
+          id={skillsHeadingId}
+          link={
+            remainingSkillsCount > 0
+              ? {
+                  href: "/skills",
+                  label: ` View all (${allSkillsCount}) skills`,
+                  ariaLabel: `View all (${allSkillsCount}) skills`,
+                }
+              : undefined
+          }
+        />
+        <SkillsGrid variant="primary" />
       </div>
     </section>
   );

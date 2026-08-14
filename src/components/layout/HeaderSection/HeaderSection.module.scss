@@ -1,18 +1,42 @@
 @use "../../../assets/styles" as *;
 
 .headerSection {
-  width: fit-content;
-  padding: clamp($space-4, 1.5vw, $space-8) clamp($space-12, 1.5vw, $space-16);
-  margin-block: clamp($space-10, 2vw, $space-16);
-  background-color: var(--background-overlay);
-  border: 1px solid var(--border);
-  cursor: default;
+  @include flex-between;
+  width: 100%;
+  margin-block: clamp($space-16, 3vw, $space-24);
 
   &__title {
+    background-color: var(--background-elevated);
+    padding: clamp($space-4, 1.5vw, $space-8) clamp($space-12, 1.5vw, $space-16);
+    border: 1px solid var(--border);
     font-family: $font-primary;
-    font-size: clamp($font-size-16, 3vw, $font-size-20);
+    font-size: clamp($font-size-16, 2vw, $font-size-18);
     font-weight: $fw-bold;
     color: var(--text-primary);
     user-select: none;
+  }
+
+  &__link {
+    justify-self: end;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-16);
+    padding-right: $space-4;
+
+    span {
+      gap: 0 !important;
+    }
+
+    @include button-hover {
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__linkIcon {
+    color: inherit;
+    font-size: clamp($font-size-14, 1.5vw, $font-size-16) !important;
+    transition: transform $duration-base ease-in;
   }
 }

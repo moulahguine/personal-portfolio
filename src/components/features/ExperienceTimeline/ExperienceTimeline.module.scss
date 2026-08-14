@@ -46,7 +46,6 @@
     @include flex-column;
     border: 1px solid var(--border);
     background-color: var(--background-muted);
-    overflow: clip;
     transition:
       background-color $duration-base $ease-default,
       box-shadow $duration-base $ease-default;
@@ -154,11 +153,9 @@
   }
 
   &__chevron {
-    flex-shrink: 0;
-    width: rem(20);
-    height: rem(20);
     color: var(--text-tertiary);
     transition: transform $duration-base $ease-default;
+    font-size: clamp($font-size-24, 4vw, rem(30));
 
     .timeline__item[data-expanded] & {
       transform: rotate(180deg);
@@ -167,7 +164,11 @@
 
   &__panel {
     display: grid;
-    grid-template-columns: clamp($space-24, 4vw, $space-64) 1fr;
+    grid-template-columns: clamp($space-24, 4vw, $space-64) 1fr clamp(
+        $font-size-18,
+        3vw,
+        rem(36)
+      );
     overflow: clip;
   }
 
@@ -175,15 +176,14 @@
     grid-column: 2;
     @include flex-column;
     gap: clamp($space-10, 1.5vw, $space-12);
-    padding: 0 clamp($space-16, 2.5vw, $space-20)
-      clamp($space-16, 2.5vw, $space-20);
+    padding: 0 0 clamp($space-16, 2.5vw, $space-20);
     list-style: disc;
   }
 
   &__detail {
     font-family: $font-secondary;
     font-weight: $fw-regular;
-    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    font-size: clamp($font-size-12, 1.5vw, $font-size-16);
     line-height: $line-height-relaxed;
     color: var(--text-secondary);
     max-width: 75ch;

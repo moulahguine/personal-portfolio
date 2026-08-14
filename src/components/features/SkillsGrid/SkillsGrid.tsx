@@ -1,6 +1,5 @@
-import { Button, Link, DialogTrigger, Modal } from "@/components";
+import { Button, DialogTrigger, Modal } from "@/components";
 import { sections, page } from "@/data";
-import { GoLinkExternal } from "react-icons/go";
 
 import styles from "./SkillsGrid.module.scss";
 
@@ -8,21 +7,13 @@ type SkillsGridVariant = "primary" | "all";
 
 interface SkillsGridProps {
   variant?: SkillsGridVariant;
-  showMoreLink?: boolean;
-  moreCount?: number;
-  moreHref?: string;
 }
 
-const { primarySkills, remainingSkillsCount } = sections;
+const { primarySkills } = sections;
 const { skills: skillsData } = page;
 
 // ---- skills grid ----
-export default function SkillsGrid({
-  variant = "all",
-  showMoreLink = false,
-  moreCount = remainingSkillsCount,
-}: SkillsGridProps) {
-  // get skills data based on variant
+export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
   const skills = variant === "primary" ? primarySkills : skillsData;
 
   return (
@@ -54,24 +45,6 @@ export default function SkillsGrid({
           </DialogTrigger>
         </li>
       ))}
-
-      {/* link to show more skills */}
-      {showMoreLink && moreCount > 0 ? (
-        <li>
-          <Link
-            href="/skills"
-            variant="ghost"
-            className={styles.skills__item + " " + styles[`skills__item--more`]}
-            aria-label={`View ${moreCount} more skills`}
-          >
-            <GoLinkExternal
-              className={styles.skills__iconLink}
-              aria-hidden="true"
-            />
-            +{moreCount} more
-          </Link>
-        </li>
-      ) : null}
     </ul>
   );
 }

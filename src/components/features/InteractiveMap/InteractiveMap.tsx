@@ -105,7 +105,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
   const tileUrl = isLight ? LIGHT_TILES : DARK_TILES;
 
   return (
-    <div className={classNames} tabIndex={-1}>
+    <div className={classNames}>
       <MapContainer
         center={ISTANBUL}
         zoom={INTRO_ZOOM}

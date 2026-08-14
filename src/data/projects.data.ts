@@ -73,6 +73,8 @@ const PRIMARY_PROJECTS = PROJECTS.filter((project) => project.primary).slice(
   4,
 );
 
+const REMAINING_PROJECTS_COUNT = PROJECTS.length - PRIMARY_PROJECTS.length;
+
 // ---- sections ----
 export const sections = {
   projectsHeadingId: "projects-heading",
@@ -82,6 +84,7 @@ export const sections = {
   },
 
   primaryProjects: PRIMARY_PROJECTS,
+  remainingProjectsCount: REMAINING_PROJECTS_COUNT,
 };
 
 // ---- meta data ----

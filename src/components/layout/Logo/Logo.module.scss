@@ -3,10 +3,10 @@
 // ---- logo ----
 .logo {
   flex-shrink: 0;
-  max-width: 50px;
+  max-width: calc(50px + clamp(0px, 1vw, $space-8) * 2);
   padding: 0;
   overflow: hidden;
-  margin-inline: $space-12;
+  padding-inline: clamp(0px, 1vw, $space-8);
 
   &__image {
     display: block;

@@ -21,8 +21,9 @@
 
     @include down(sm) {
       text-wrap: balance;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.022em;
       text-align: left;
+      text-indent: 0;
     }
   }
 }
