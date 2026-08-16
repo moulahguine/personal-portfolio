@@ -1,0 +1,238 @@
+@use "../../../assets/styles" as *;
+
+.contact {
+  &__panel {
+    @include flex-column;
+    align-items: center;
+    gap: clamp($space-24, 4vw, $space-40);
+    width: 100%;
+    // background-color: red;
+  }
+
+  &__form {
+    // @include reveal-group(
+    //   $max-children: 12,
+    //   $variant: up-medium,
+    //   $trigger: eager
+    // );
+    @include flex-column;
+    gap: clamp($space-16, 2.5vw, $space-20);
+    width: min(100%, 500px);
+
+    @include down(md) {
+      width: min(100%, 350px);
+    }
+  }
+
+  &__honeypot {
+    @include sr-only;
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $space-8;
+    position: relative;
+  }
+
+  &__field-check {
+    @include flex-center;
+    position: absolute;
+    top: 50%;
+    right: clamp($space-12, 2vw, $space-16);
+    transform: translateY(-50%);
+    color: var(--success);
+    font-size: $font-size-14;
+    pointer-events: none;
+  }
+
+  &__field-count {
+    position: absolute;
+    right: clamp($space-12, 2vw, $space-16);
+    bottom: $space-12;
+    font-size: $font-size-12;
+    font-weight: $fw-medium;
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+
+  &__field-error {
+    display: block;
+    margin: 0;
+    padding-inline: rem(2);
+    font-size: $font-size-14;
+    font-weight: $fw-regular;
+    line-height: 1.45;
+    color: var(--danger);
+
+    strong {
+      font-weight: $fw-bold;
+    }
+  }
+
+  &__field[data-field="fullName"] &__input {
+    text-transform: capitalize;
+  }
+
+  &__field--multiline &__field-check {
+    top: clamp($space-12, 2vw, $space-16);
+    transform: none;
+  }
+
+  &__field--valid &__input,
+  &__field--valid &__textarea,
+  &__field--valid &__select-trigger,
+  &__field--valid-blurred &__input,
+  &__field--valid-blurred &__textarea,
+  &__field--valid-blurred &__select-trigger {
+    border-color: var(--success);
+  }
+
+  &__field--invalid &__input,
+  &__field--invalid &__textarea,
+  &__field--invalid &__select-trigger {
+    border-color: var(--danger);
+  }
+
+  &__input,
+  &__textarea,
+  &__select-trigger {
+    width: 100%;
+    padding: clamp($space-14, 2vw, $space-16);
+    font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+    font-weight: $fw-medium;
+    font-family: $font-primary;
+    color: var(--text-primary);
+    background: var(--surface-muted);
+    border: 2px solid var(--border);
+    outline: none;
+    border-radius: $radius-lg;
+    transition:
+      border-color $duration-base $ease-default,
+      box-shadow $duration-base $ease-default,
+      background-color $duration-base $ease-default;
+
+    &::placeholder {
+      font-weight: $fw-regular;
+      color: var(--text-tertiary);
+    }
+
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        background-color: var(--background-elevated);
+      }
+    }
+
+    &:focus,
+    &:focus-visible,
+    &[data-focus-visible] {
+      outline: solid 2px var(--accent);
+      outline-offset: 4px;
+      border-radius: $radius-lg;
+    }
+  }
+
+  &__textarea {
+    max-height: rem(500);
+    min-height: rem(200);
+    padding-bottom: clamp(rem(28), 4vw, $space-32);
+    line-height: 1.65;
+    padding-right: clamp($space-18, 2.5vw, rem(28));
+    resize: none;
+  }
+
+  &__select-trigger {
+    @include flex-between;
+    gap: $space-12;
+    cursor: pointer;
+    text-align: left;
+    width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 4px);
+  }
+
+  &__select-trigger[data-placeholder] &__select-value {
+    color: alpha(var(--text-tertiary), 70);
+  }
+
+  &__select-value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__select-icon {
+    @include flex-center;
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    font-size: $font-size-14;
+    transition: transform $duration-base $ease-default;
+  }
+
+  &__select[data-open] &__select-icon {
+    transform: rotate(180deg);
+  }
+
+  &__select-popover {
+    width: var(--trigger-width);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    box-shadow: 0 rem(6) rem(16) var(--shadow-color);
+    overflow: hidden;
+
+    &[data-entering],
+    &[data-exiting] {
+      opacity: 0;
+      transform: translateY(rem(-6)) scale(0.98);
+      transition:
+        opacity $duration-base $ease-default,
+        transform $duration-quick $ease-default;
+    }
+  }
+
+  &__select-list {
+    max-height: rem(260);
+    overflow: auto;
+    outline: none;
+  }
+
+  &__select-option {
+    padding: clamp($space-12, 1.8vw, $space-14) clamp($space-14, 2vw, $space-16);
+    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+    font-weight: $fw-semibold;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-muted);
+    cursor: pointer;
+    outline: none;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &[data-focused] {
+      background: var(--surface-muted);
+      color: var(--text-primary);
+    }
+
+    &[data-selected] {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__field[data-field="message"]:has(&__field-check) &__field-count {
+    right: clamp($space-32, 5vw, $space-40);
+  }
+
+  &__submit {
+    min-width: calc(
+      100% - clamp($space-12, 2vw, $space-16) * 2 - 4px
+    ) !important;
+    margin-top: $space-8;
+  }
+
+  &__visually-hidden {
+    @include sr-only;
+  }
+}

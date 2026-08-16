@@ -1,0 +1,11 @@
+@use "../../assets/styles" as *;
+
+.page {
+  @include page;
+
+  &__container {
+    @include container;
+    @include flex-column;
+    gap: clamp($space-24, 3vw, $space-32);
+  }
+}

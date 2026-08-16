@@ -56,27 +56,14 @@
     }
   }
 
-  // ---- overlay ----
-  &__overlay {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-color: alpha(var(--surface-overlay), 50);
-    backdrop-filter: blur(10px);
-
-    @include up(sm) {
-      display: none;
-    }
-  }
-
   &__dropdown {
     width: calc(100svw - clamp($space-10, 2vw, $space-12) * 2);
     padding: $space-10;
-    background-color: var(--background);
+    background-color: var(--background-muted);
     border-radius: 0;
-    border: solid 1px var(--primary-border);
+    border: solid 1px var(--border);
 
-    @include up(sm) {
+    @include up(md) {
       display: none;
     }
   }
@@ -96,7 +83,7 @@
     }
 
     &:not(&--active)[data-focus-visible] {
-      background-color: var(--surface-muted);
+      background-color: var(--background-elevated);
     }
   }
 }

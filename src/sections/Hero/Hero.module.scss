@@ -7,7 +7,7 @@
   // ---- content container ----
   &__container {
     @include container;
-    padding-bottom: 0;
+    padding-block: 0;
   }
 
   // ---- map banner wrapper ----
@@ -23,7 +23,7 @@
   &__map {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--primary-border);
+    border: 1px solid var(--border);
   }
 
   // ---- placeholder ----
@@ -97,8 +97,8 @@
 
     // ---- name ----
     &-name {
-      font-family: $font-secondary;
-      font-size: clamp($font-size-18, 3vw, $font-size-28);
+      font-family: $font-primary;
+      font-size: clamp($font-size-18, 4vw, $font-size-28);
       font-weight: $fw-bold;
       display: flex;
       align-items: center;
@@ -126,8 +126,8 @@
 
     // ---- role ----
     &-role {
-      font-family: $font-secondary;
-      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      font-family: $font-primary;
+      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
       color: var(--text-secondary);
 
       @include down(md) {
@@ -145,7 +145,7 @@
       @include flex-center;
       justify-content: flex-start;
       gap: $space-4;
-      font-family: $font-primary;
+      font-family: $font-secondary;
       font-size: clamp($font-size-14, 1.6vw, $font-size-16);
       font-weight: $fw-regular;
       color: var(--text-secondary);

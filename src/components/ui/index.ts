@@ -15,6 +15,7 @@ export {
   DisclosureAccordionHeading,
   DisclosureAccordionButton,
 } from "./DisclosureAccordion/DisclosureAccordion";
+export { default as Contact } from "./Contact/Contact";
 export type {
   DisclosureAccordionProps,
   DisclosureAccordionItemProps,

@@ -13,10 +13,10 @@ export default function ProjectsPage() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.page__container}>
-        <HeaderPage title={title} description={description} />
+      <HeaderPage title={title} description={description} />
+      <main className={styles.page__container}>
         <ProjectsGrid />
-      </div>
+      </main>
     </div>
   );
 }

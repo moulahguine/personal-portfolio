@@ -1,0 +1,9 @@
+@use "../../assets/styles" as *;
+
+.blog {
+  @include section;
+
+  &__container {
+    @include container;
+  }
+}

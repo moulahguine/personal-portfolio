@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
 import { Comic_Neue, Inter, Sour_Gummy } from "next/font/google";
 import { Header } from "@/components";
 
 import "@/assets/styles/main.scss";
+
+export { generateMetadata } from "./metadata";
 
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const comicNeue = Comic_Neue({
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -23,12 +25,6 @@ const sourGummy = Sour_Gummy({
   variable: "--font-sour-gummy",
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "Mohamed Oulahguine • Frontend Developer",
-  description:
-    "Frontend portfolio built with React and Next.js — live demos, clean UI, and performance notes.",
-};
 
 export default function RootLayout({
   children,

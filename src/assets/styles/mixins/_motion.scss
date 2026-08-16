@@ -249,7 +249,7 @@
   $narrow-breakpoint: lg,
   $to-narrow: $motion-view-width-to-narrow
 ) {
-  $resolved-fallback: if($fallback, $fallback, $to);
+  $resolved-fallback: if(sass($fallback): $fallback; else: $to);
 
   width: $resolved-fallback;
   --view-width-from: #{$from};

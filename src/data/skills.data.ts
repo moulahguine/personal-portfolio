@@ -161,7 +161,7 @@ export const metaData = {
 // ---- page ----
 export const page = {
   headerPage: {
-    title: "Tech Stack",
+    title: "Skills",
     description:
       "These are the technologies I work with regularly. I’ve left out tools I rarely use and those I’m still learning.",
   },

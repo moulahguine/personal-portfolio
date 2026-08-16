@@ -73,6 +73,13 @@ export default function ProjectsGrid({ variant = "all" }: ProjectsGridProps) {
                             ? styles["projects__card-actionLink"]
                             : undefined
                         }
+                        aria-label={
+                          label === "GitHub"
+                            ? `link to ${project.title} project on GitHub`
+                            : label === "Demo"
+                              ? `link to ${project.title} project demo`
+                              : ""
+                        }
                         icon={
                           <Icon
                             className={styles["projects__card-actionIcon"]}

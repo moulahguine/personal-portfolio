@@ -1,10 +1,10 @@
-import { ABOUT_DATA } from "@/data";
+import { ABOUT_SECTION_DATA } from "@/data";
 
 import styles from "./About.module.scss";
 
 // ---- about ----
 export default function About() {
-  const { headingId, paragraph } = ABOUT_DATA;
+  const { headingId, paragraph } = ABOUT_SECTION_DATA;
 
   return (
     <section className={styles.about} id="about" aria-labelledby={headingId}>

@@ -1,0 +1,55 @@
+@use "../../../assets/styles" as *;
+
+.blogs {
+  @include flex-column;
+  gap: clamp($space-16, 2vw, $space-24);
+
+  &__grid {
+    @include flex-column;
+    gap: clamp($space-16, 2vw, $space-24);
+    width: 100%;
+  }
+
+  &__card {
+    @include flex-column;
+    height: 100%;
+    gap: clamp($space-8, 1.5vw, $space-12);
+    padding: clamp($space-12, 2vw, $space-16);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  &__date {
+    font-family: $font-primary;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    font-weight: $fw-regular;
+    color: var(--text-tertiary);
+  }
+
+  &__title {
+    font-family: $font-secondary;
+    font-size: clamp($font-size-16, 2.5vw, $font-size-20);
+    font-weight: $fw-bold;
+    color: var(--text-primary);
+  }
+
+  &__description {
+    font-family: $font-secondary;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    font-weight: $fw-regular;
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__empty {
+    @include flex-column;
+    align-items: center;
+    gap: clamp($space-8, 1.5vw, $space-12);
+  }
+}

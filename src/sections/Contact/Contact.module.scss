@@ -1,0 +1,11 @@
+@use "../../assets/styles" as *;
+
+.contact {
+  @include section;
+
+  &__container {
+    @include container;
+    @include flex-column;
+    align-items: center;
+  }
+}

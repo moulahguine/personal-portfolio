@@ -10,12 +10,13 @@ export default function SkillsPage() {
   const {
     headerPage: { title, description },
   } = page;
+
   return (
     <div className={styles.page}>
-      <div className={styles.page__container}>
-        <HeaderPage title={title} description={description} />
+      <HeaderPage title={title} description={description} />
+      <main className={styles.page__container}>
         <SkillsGrid />
-      </div>
+      </main>
     </div>
   );
 }

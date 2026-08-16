@@ -255,13 +255,13 @@ $colors: (
 /* ===== ROOT ===== */
 
 :root {
-  @include light-theme;
+  @include dark-theme;
 }
 
 /* ===== LIGHT MODE ===== */
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    @include dark-theme;
+    @include light-theme;
   }
 }

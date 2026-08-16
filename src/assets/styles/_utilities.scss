@@ -63,14 +63,8 @@
 // ---- container ----
 @mixin container {
   max-width: $container-width;
-  margin-inline: clamp($space-4, 2vw, $space-12);
-  padding-block: clamp($space-16, 2vw, $space-32);
-  padding-inline: $space-4;
-  position: relative;
-  margin-inline: auto;
-
-  @include down(lg) {
-  }
+  margin: clamp($space-4, 2vw, $space-12) auto;
+  padding: clamp($space-16, 2vw, $space-32) clamp($space-8, 1vw, $space-12);
 }
 
 // ---- responsive grid ----
@@ -302,5 +296,21 @@ $page-header-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   100% {
     transform: translate(-50%, -50%) scale(10);
     opacity: 0;
+  }
+}
+
+@mixin text-indent-marker($color: var(--primary)) {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: clamp(3px, 0.5vw, 5px);
+    height: clamp(25px, 3.5vw, 35px);
+    background-color: $color;
+    z-index: -1;
   }
 }

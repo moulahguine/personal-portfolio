@@ -3,22 +3,38 @@
 .headerPage {
   @include flex-column;
   align-items: center;
+  @include container;
+  width: 100%;
   gap: clamp($space-10, 2vw, $space-16);
-  margin-block: clamp($space-16, 3vw, $space-24);
+  padding-block: clamp($space-40, 6vw, $space-64);
+  border-bottom: 1px solid var(--border);
 
   &__title {
-    font-family: $font-accent;
-    font-size: clamp($font-size-32, 3vw, rem(40));
-    font-weight: $fw-bold;
+    font-family: $font-primary;
     color: var(--text-primary);
+    font-size: clamp(rem(40), 8vw, rem(60));
+    font-weight: $fw-bold;
+    position: relative;
+    isolation: isolate;
+
+    // Background
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include square(35px);
+      background-color: var(--primary);
+      z-index: $z-below;
+    }
   }
 
   &__description {
-    font-size: clamp($font-size-14, 1.6vw, $font-size-18);
-    font-family: $font-primary;
-    font-weight: $fw-semibold;
+    font-family: $font-secondary;
     color: var(--text-secondary);
-    text-align: center;
+    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-weight: $fw-semibold;
     max-width: 60ch;
+    text-align: center;
   }
 }

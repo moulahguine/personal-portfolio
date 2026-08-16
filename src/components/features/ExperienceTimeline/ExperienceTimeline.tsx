@@ -40,9 +40,10 @@ export default function ExperienceTimeline() {
             <div className={styles.timeline__media}>
               <Image
                 src={entry.logo}
-                alt={`${entry.organization} logo`}
+                alt=""
                 width={50}
                 height={50}
+                preload
                 className={styles["timeline__media-logo"]}
               />
             </div>
@@ -50,7 +51,11 @@ export default function ExperienceTimeline() {
             <div className={styles.timeline__content}>
               {/* --- role and major of the entry --- */}
               <div className={styles.timeline__info}>
-                <h3 className={styles.timeline__role}>
+                <h3
+                  className={styles.timeline__role}
+                  id={`${entry.id}-role`}
+                  aria-label={`${entry.role} ${entry.major ? `major in ${entry.major}` : ""}, at ${entry.organization}`}
+                >
                   {entry.role}
                   {entry.role && entry.major && ", "}
                   {entry.major && (
@@ -68,13 +73,13 @@ export default function ExperienceTimeline() {
               </div>
 
               {/* --- period and location of the entry --- */}
-              <div className={styles.timeline__meta}>
-                <time
-                  dateTime={`${entry.period.start} - ${entry.period.end}`}
-                  className={styles.timeline__period}
-                >
+              <div
+                className={styles.timeline__meta}
+                aria-label={`${entry.period.start} - ${entry.period.end} in ${entry.location}`}
+              >
+                <span className={styles.timeline__period}>
                   {entry.period.start} - {entry.period.end}
-                </time>
+                </span>
                 <span className={styles.timeline__location}>
                   {entry.location}
                 </span>
@@ -121,7 +126,10 @@ export default function ExperienceTimeline() {
 
             <article className={styles.timeline__card}>
               <DisclosureAccordionHeading className={styles.timeline__heading}>
-                <DisclosureAccordionButton className={styles.timeline__trigger}>
+                <DisclosureAccordionButton
+                  className={styles.timeline__trigger}
+                  aria-labelledby={`${entry.id}-role`}
+                >
                   {header}
                 </DisclosureAccordionButton>
               </DisclosureAccordionHeading>

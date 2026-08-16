@@ -24,22 +24,31 @@ export default function Header() {
   }
 
   return (
-    <header className={styles.header}>
-      {/* ---- container ---- */}
-      <div className={styles.header__container}>
-        {/* ---- logo ---- */}
-        <Logo />
+    <>
+      <header className={styles.header}>
+        {/* ---- container ---- */}
+        <div className={styles.header__container}>
+          {/* ---- logo ---- */}
+          <Logo />
 
-        {/* ---- mobile menu ---- */}
-        <Menu
-          isOpen={isMenuOpen}
-          onOpenChange={setIsMenuOpen}
-          id={MOBILE_NAV_ID}
+          {/* ---- mobile menu ---- */}
+          <Menu
+            isOpen={isMenuOpen}
+            onOpenChange={setIsMenuOpen}
+            id={MOBILE_NAV_ID}
+          />
+
+          {/* ---- desktop navigation ---- */}
+          <Navigation className={styles.header__navigation} />
+        </div>
+      </header>
+      {isMenuOpen ? (
+        <div
+          className={styles.header__overlay}
+          onPointerDown={() => setIsMenuOpen(false)}
+          aria-hidden="true"
         />
-
-        {/* ---- desktop navigation ---- */}
-        <Navigation className={styles.header__navigation} />
-      </div>
-    </header>
+      ) : null}
+    </>
   );
 }

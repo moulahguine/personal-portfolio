@@ -11,19 +11,19 @@
 
   &__paragraph {
     font-family: $font-secondary;
-    font-size: clamp($font-size-14, 2vw, $font-size-18);
-    font-weight: $fw-regular;
+    font-size: clamp($font-size-16, 2vw, $font-size-18);
+    font-weight: $fw-medium;
     line-height: $line-height-relaxed;
     color: var(--text-primary);
     max-width: 75ch;
     margin-inline: auto;
-    text-indent: clamp($space-20, 3vw, $space-32);
+    text-indent: clamp($space-12, 2vw, $space-20);
+    @include text-indent-marker;
 
     @include down(sm) {
       text-wrap: balance;
       letter-spacing: -0.022em;
       text-align: left;
-      text-indent: 0;
     }
   }
 }

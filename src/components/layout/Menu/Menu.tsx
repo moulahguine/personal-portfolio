@@ -37,14 +37,6 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
 
   return (
     <>
-      {isOpen ? (
-        <div
-          className={styles.menu__overlay}
-          onPointerDown={() => onOpenChange(false)}
-          aria-hidden="true"
-        />
-      ) : null}
-
       <MenuTrigger isOpen={isOpen} onOpenChange={onOpenChange}>
         <Button
           type="button"

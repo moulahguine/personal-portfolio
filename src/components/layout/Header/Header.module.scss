@@ -18,7 +18,7 @@
     margin-top: clamp($space-8, 1.5vw, $space-12);
     overflow: hidden;
     outline: 1px solid var(--background-inverse);
-    max-width: calc($container-width - clamp($space-4, 1vw, $space-8));
+    max-width: calc($container-width - clamp($space-8, 1vw, $space-12));
 
     @include down(sm) {
       padding-inline: $space-12;
@@ -30,5 +30,14 @@
     @include down(md) {
       display: none !important;
     }
+  }
+
+  // ---- overlay ----
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: $z-menu;
+    background-color: alpha(var(--surface-overlay), 70);
+    backdrop-filter: blur(10px);
   }
 }

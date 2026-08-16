@@ -14,9 +14,9 @@ const INTRO_ZOOM = 10;
 const TARGET_ZOOM = 13;
 const INTRO_DURATION = 1.2;
 
-const LIGHT_TILES =
-  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
 const DARK_TILES =
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+const LIGHT_TILES =
   "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 
 // ---- map intro animation ----
@@ -102,7 +102,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
     .join(" ");
 
   // ---- here tile url is determined by the theme ----
-  const tileUrl = isLight ? LIGHT_TILES : DARK_TILES;
+  const tileUrl = !isLight ? LIGHT_TILES : DARK_TILES;
 
   return (
     <div className={classNames}>
@@ -117,6 +117,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
         dragging
         touchZoom
         className="interactive-map__map"
+        aria-label="Map showing my current location in Istanbul, Türkiye"
       >
         <TileLayer
           key={tileUrl}
