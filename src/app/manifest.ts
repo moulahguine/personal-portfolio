@@ -56,6 +56,19 @@ export default function manifest() {
         ],
       },
       {
+        name: "Skills",
+        short_name: "Skills",
+        description: "My skills and technologies I use",
+        url: "/skills",
+        icons: [
+          {
+            src: PWA_ICON_192,
+            sizes: "192x192",
+            type: "image/png",
+          },
+        ],
+      },
+      {
         name: "Projects",
         short_name: "Projects",
         description:
