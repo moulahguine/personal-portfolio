@@ -69,7 +69,6 @@
   }
 
   &__item {
-    @include rac-touch;
     justify-content: center;
     width: 100%;
     padding-block: $space-16;
@@ -77,13 +76,14 @@
     font-size: $font-size-16;
     font-weight: $fw-bold;
 
-    &--active {
-      background-color: var(--primary-on);
-      color: var(--text-inverse);
+    &--active,
+    &:has(&--active):is(:hover) {
+      background-color: var(--background-inverse) !important;
+      color: var(--text-inverse) !important;
     }
 
-    &:not(&--active)[data-focus-visible] {
-      background-color: var(--background-elevated);
+    &:not(&--active):is(:hover, [data-focus-visible]) {
+      background-color: alpha(var(--background-inverse), 30) !important;
     }
   }
 }

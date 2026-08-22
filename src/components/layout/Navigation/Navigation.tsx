@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Link } from "@/components";
 import { NAV_ITEMS } from "@/data";
 import type { ClassNameProps } from "@/types";
+import * as motion from "motion/react-client";
 
 import styles from "./Navigation.module.scss";
 
@@ -48,13 +49,20 @@ export default function Navigation({
                 href={item.href}
                 variant="ghost"
                 size="md"
-                label={item.label}
                 className={`${styles.navigation__link} ${
                   active ? styles["navigation__link--active"] : ""
                 }`.trim()}
                 aria-current={active ? "page" : undefined}
                 onPress={onNavigate}
-              />
+              >
+                {active ? (
+                  <motion.span
+                    layoutId="indicator"
+                    className={styles["navigation__link--indicator"]}
+                  />
+                ) : null}
+                {item.label}
+              </Link>
             </li>
           );
         })}

@@ -5,12 +5,7 @@ import styles from "./Skills.module.scss";
 
 // ---- skills ----
 export default function Skills() {
-  const {
-    skillsHeadingId,
-    headerSection,
-    remainingSkillsCount,
-    allSkillsCount,
-  } = sections;
+  const { skillsHeadingId, headerSection, remainingSkillsCount } = sections;
 
   return (
     <section
@@ -26,8 +21,9 @@ export default function Skills() {
             remainingSkillsCount > 0
               ? {
                   href: "/skills",
-                  label: ` View all (${allSkillsCount}) skills`,
-                  ariaLabel: `View all (${allSkillsCount}) skills`,
+                  label: "View all skills",
+                  ariaLabel:
+                    "These are some of my featured skills. To explore my complete tech stack, visit the Skills page.",
                 }
               : undefined
           }

@@ -1,0 +1,72 @@
+@use "../../../assets/styles" as *;
+
+.themeSelector {
+  padding: $space-8 !important;
+  border-radius: 50%;
+
+  @include down(md) {
+    margin-left: auto;
+  }
+
+  @include button-hover {
+    background-color: #ffffffbb !important;
+  }
+
+  &[data-pressed] {
+    background-color: transparent;
+    transform: translateY(0);
+  }
+
+  &__iconLight,
+  &__iconDark {
+    color: var(--primary-on);
+    font-size: $font-size-24;
+
+    transform-origin: center;
+    animation: theme-icon-switch $duration-base $ease-default;
+
+    @include reduced-motion {
+      animation: none;
+    }
+  }
+
+  &__iconLight {
+    display: block;
+  }
+
+  &__iconDark {
+    display: none;
+  }
+}
+
+:global(html[data-theme="light"]) {
+  .themeSelector__iconLight {
+    display: none;
+  }
+
+  .themeSelector__iconDark {
+    display: block;
+  }
+}
+
+:global(html[data-theme="dark"]) {
+  .themeSelector__iconLight {
+    display: block;
+  }
+
+  .themeSelector__iconDark {
+    display: none;
+  }
+}
+
+@keyframes theme-icon-switch {
+  from {
+    transform: rotate(-180deg) scale(0.2);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}

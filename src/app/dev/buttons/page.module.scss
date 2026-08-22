@@ -1,0 +1,82 @@
+@use "../../../assets/styles" as *;
+
+.page {
+  width: min(100%, 960px);
+  margin-inline: auto;
+  padding: clamp($space-24, 5vw, $space-48) clamp($space-16, 4vw, $space-32)
+    clamp($space-48, 8vw, $space-64);
+
+  &__header {
+    margin-bottom: clamp($space-32, 5vw, $space-48);
+  }
+
+  &__title {
+    margin-bottom: $space-8;
+    font-family: $font-accent;
+    font-size: clamp($font-size-24, 4vw, $font-size-32);
+    color: var(--text-primary);
+  }
+
+  &__description {
+    color: var(--text-secondary);
+    font-size: clamp($font-size-14, 2vw, $font-size-16);
+  }
+}
+
+.section {
+  &:not(:last-child) {
+    margin-bottom: clamp($space-32, 5vw, $space-48);
+    padding-bottom: clamp($space-32, 5vw, $space-48);
+    border-bottom: 1px solid var(--border-muted);
+  }
+
+  &__title {
+    margin-bottom: $space-20;
+    font-family: $font-accent;
+    font-size: clamp($font-size-18, 2.5vw, $font-size-24);
+    color: var(--text-primary);
+  }
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-24;
+
+  @include down(md) {
+    grid-template-columns: 1fr;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-12;
+  }
+
+  &__label {
+    font-size: $font-size-12;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-12;
+
+  &:not(:last-child) {
+    margin-bottom: $space-16;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+  max-width: 420px;
+}

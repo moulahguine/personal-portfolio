@@ -42,6 +42,10 @@ const PROJECT_ACTIONS = [
   },
 ] as const;
 
+export function getProjectsBySkillId(skillId: string): Project[] {
+  return PROJECTS.filter((project) => project.tagIds.includes(skillId));
+}
+
 export function getProjectActions(project: Project): ProjectAction[] {
   return PROJECT_ACTIONS.map(({ id, label, icon, hrefKey, ...rest }) => {
     const href = project[hrefKey];

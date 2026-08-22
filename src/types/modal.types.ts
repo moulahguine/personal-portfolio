@@ -8,10 +8,11 @@ export interface ModalRenderProps {
 
 export interface ModalProps {
   children: ReactNode | ((props: ModalRenderProps) => ReactNode);
-  size?: ModalSize;
+  size: ModalSize;
+  icon?: ReactNode;
+  iconColor?: string;
   title?: ReactNode;
   description?: ReactNode;
-  /** When omitted, the header shows if `title` or `description` is set. */
   showHeader?: boolean;
   "aria-label"?: string;
   className?: string;

@@ -10,20 +10,36 @@
   }
 
   &__paragraph {
-    font-family: $font-secondary;
-    font-size: clamp($font-size-16, 2vw, $font-size-18);
-    font-weight: $fw-medium;
-    line-height: $line-height-relaxed;
+    font-family: $font-primary;
+    font-size: clamp($font-size-14, 3vw, $font-size-18);
+    font-weight: 100;
+    line-height: 2;
     color: var(--text-primary);
     max-width: 75ch;
     margin-inline: auto;
-    text-indent: clamp($space-12, 2vw, $space-20);
-    @include text-indent-marker;
+    text-indent: $space-24;
+    position: relative;
+    isolation: isolate;
+    text-wrap: pretty;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: clamp(2px, 0.5vw, 4px);
+      height: clamp(20px, 3vw, 30px);
+      background-color: var(--primary);
+      z-index: -1;
+    }
 
     @include down(sm) {
-      text-wrap: balance;
       letter-spacing: -0.022em;
-      text-align: left;
+      line-height: $line-height-relaxed;
+
+      &::before {
+        top: 2px;
+      }
     }
   }
 }

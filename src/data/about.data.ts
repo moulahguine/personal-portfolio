@@ -56,7 +56,7 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
   header: {
     title: "About Me",
     description:
-      "Here’s a short story about how I got into programming. It’s a bit long because some parts still stand out clearly in my memory.",
+      "A little about how I found programming, what I care about, and where I'm headed.",
   },
 
   sections: [
@@ -89,11 +89,11 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
             " the computer.",
           ],
         },
-        {
-          type: "image",
-          content: computerImage,
-          alt: "An old desktop computer",
-        },
+        // {
+        //   type: "image",
+        //   content: computerImage,
+        //   alt: "An old desktop computer",
+        // },
         {
           type: "paragraph",
           content:
@@ -116,11 +116,11 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
           type: "paragraph",
           content: "We started with Scratch.",
         },
-        {
-          type: "image",
-          content: scratchImage,
-          alt: "Scratch programming blocks on a screen",
-        },
+        // {
+        //   type: "image",
+        //   content: scratchImage,
+        //   alt: "Scratch programming blocks on a screen",
+        // },
         {
           type: "paragraph",
           content:
@@ -395,11 +395,11 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
           content:
             "I want to build something that matters enough for people to remember the person who built it. When we talk about software today, we still remember the names of people who created important technologies, built systems that changed how we work, or solved problems that seemed difficult at the time.",
         },
-        {
-          type: "image",
-          content: creators,
-          alt: "Developers and technology pioneers who shaped the industry",
-        },
+        // {
+        //   type: "image",
+        //   content: creators,
+        //   alt: "Developers and technology pioneers who shaped the industry",
+        // },
         {
           type: "paragraph",
           content: "I'd like to leave something behind like that.",

@@ -1,5 +1,6 @@
 import { Comic_Neue, Inter, Sour_Gummy } from "next/font/google";
 import { Header } from "@/components";
+import { ThemeProvider } from "@/providers";
 
 import "@/assets/styles/main.scss";
 
@@ -34,11 +35,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable}`}
     >
       <body>
-        <Header />
-        <main>{children}</main>
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

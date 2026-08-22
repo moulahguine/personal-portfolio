@@ -1,0 +1,172 @@
+@use "sass:map";
+
+@use "./colors" as *;
+
+@function theme-value($light, $dark, $mode: null) {
+  @if $mode == light {
+    @return $light;
+  }
+
+  @if $mode == dark {
+    @return $dark;
+  }
+
+  @return light-dark($light, $dark);
+}
+
+@mixin theme($mode: null) {
+  /* ----- BASE ----- */
+  --background: #{theme-value(#f8f8f6, #11110f, $mode)};
+  --background-muted: #{theme-value(#f1f1ef, #191917, $mode)};
+  --background-elevated: #{theme-value(#ffffff, #211f1d, $mode)};
+  --background-inverse: #{theme-value(#11110f, #f8f8f6, $mode)};
+  --background-overlay: #{theme-value(
+      rgba(248, 248, 246, 0.683),
+      rgba(17, 17, 15, 0.82),
+      $mode
+    )};
+
+  /* ----- SURFACES ----- */
+  --surface: #{theme-value(#ffffff, #151513, $mode)};
+  --surface-muted: #{theme-value(#f3f3f1, #1b1b18, $mode)};
+  --surface-elevated: #{theme-value(#ffffff, #232320, $mode)};
+  --surface-overlay: #{theme-value(#ffffff, #2b2b27, $mode)};
+  --surface-inverse: #{theme-value(#0d1111, #ffffff, $mode)};
+
+  /* ----- BORDERS ----- */
+  --border: #{theme-value(#e5e5e1, #2a2a26, $mode)};
+  --border-muted: #{theme-value(#eeeeeb, #20201d, $mode)};
+  --border-strong: #{theme-value(#d5d5d0, #373732, $mode)};
+
+  /* ----- DIVIDER ----- */
+  --divider: #{theme-value(#e5e5e1, #252522, $mode)};
+
+  /* ----- TEXT ----- */
+  --text: #{theme-value(#171717, #f2f2ed, $mode)};
+  --text-primary: #{theme-value(#1a1a1c, #ededec, $mode)};
+  --text-secondary: #{theme-value(#4f5352, #c4c4c3, $mode)};
+  --text-tertiary: #{theme-value(#514e4b, #7e7d75, $mode)};
+  --text-muted: #{theme-value(#656560, #999890, $mode)};
+  --text-subtle: #{theme-value(#8a8a84, #74736c, $mode)};
+  --text-disabled: #{theme-value(#a3a5a4, #55544f, $mode)};
+  --text-inverse: #{theme-value(#f8f8f6, #11110f, $mode)};
+
+  /* ----- FOCUS ----- */
+  --focus-ring: #{theme-value(#252522, #e5e5df, $mode)};
+
+  /* ----- SHADOWS ----- */
+  --shadow-color: #{theme-value(
+      rgba(0, 0, 0, 0.12),
+      rgba(137, 137, 137, 0.45),
+      $mode
+    )};
+
+  /* ----- SELECTION ----- */
+  --selection-bg: var(--primary);
+  --selection-text: #{theme-value(#1a1a1c, #11110f, $mode)};
+
+  /* ----- SCROLLBAR ----- */
+  --scrollbar-thumb: #{theme-value(#c9c9c6, #3a3a35, $mode)};
+  --scrollbar-track: #{theme-value(#f1f1ef, #151513, $mode)};
+
+  /* ----- CODE ----- */
+  --code-bg: #{theme-value(#f0f0ee, #151513, $mode)};
+  --code-text: #{theme-value(#1a1a1c, #ededec, $mode)};
+  --code-border: #{theme-value(#e0e0de, #2a2a26, $mode)};
+
+  /* ----- HIGHLIGHT ----- */
+  --highlight: var(--primary-soft);
+
+  /* ----- IMAGE ----- */
+  --image-background: #{theme-value(#f0f0ee, #151513, $mode)};
+
+  /* ----- INTERACTION ----- */
+  --color-interaction: #{theme-value(#000000, #ffffff, $mode)};
+
+  /* ----- BRAND ----- */
+  @include color-scale(
+    "primary",
+    map.get($colors, primary),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "secondary",
+    map.get($colors, secondary),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "accent",
+    map.get($colors, accent),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "success",
+    map.get($colors, success),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "warning",
+    map.get($colors, warning),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale("danger", map.get($colors, danger), #ffffff);
+
+  @include color-scale(
+    "info",
+    map.get($colors, info),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "neutral",
+    map.get($colors, neutral),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "purple",
+    map.get($colors, purple),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "pink",
+    map.get($colors, pink),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "blue",
+    map.get($colors, blue),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+
+  @include color-scale(
+    "green",
+    map.get($colors, green),
+    theme-value(#1a1a1c, #0d1111, $mode)
+  );
+}
+
+:root {
+  color-scheme: light dark;
+
+  @include theme;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  @include theme($mode: light);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  @include theme($mode: dark);
+}

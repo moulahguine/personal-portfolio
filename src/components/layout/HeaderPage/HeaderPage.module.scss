@@ -12,6 +12,8 @@
   &__title {
     font-family: $font-primary;
     color: var(--text-primary);
+    text-shadow: clamp(-1.5px, 1vw, -3px) clamp(-1.5px, 1vw, -3px) 0
+      var(--background);
     font-size: clamp(rem(40), 8vw, rem(60));
     font-weight: $fw-bold;
     position: relative;
@@ -23,7 +25,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      @include square(35px);
+      @include square(clamp(20px, 3.5vw, 35px));
       background-color: var(--primary);
       z-index: $z-below;
     }
@@ -32,9 +34,9 @@
   &__description {
     font-family: $font-secondary;
     color: var(--text-secondary);
-    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-size: clamp($font-size-14, 2.5vw, $font-size-20);
     font-weight: $fw-semibold;
-    max-width: 60ch;
+    max-width: 65ch;
     text-align: center;
   }
 }

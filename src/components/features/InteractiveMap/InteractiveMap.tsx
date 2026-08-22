@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import L, { type LatLngTuple } from "leaflet";
+import { useTheme } from "next-themes";
 import type { ClassNameProps } from "@/types";
 
 import "leaflet/dist/leaflet.css";
@@ -64,18 +65,8 @@ function MapIntroAnimation() {
 
 // ---- interactive location map ----
 export default function InteractiveMap({ className }: ClassNameProps) {
-  const [isLight, setIsLight] = useState(true);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: light)");
-
-    const syncTheme = () => setIsLight(media.matches);
-
-    syncTheme();
-    media.addEventListener("change", syncTheme);
-
-    return () => media.removeEventListener("change", syncTheme);
-  }, []);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
 
   const pulseIcon = useMemo(
     () =>
@@ -102,7 +93,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
     .join(" ");
 
   // ---- here tile url is determined by the theme ----
-  const tileUrl = !isLight ? LIGHT_TILES : DARK_TILES;
+  const tileUrl = isLight ? LIGHT_TILES : DARK_TILES;
 
   return (
     <div className={classNames}>

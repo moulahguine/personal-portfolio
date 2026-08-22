@@ -15,10 +15,12 @@ import styles from "./Modal.module.scss";
 
 export { DialogTrigger };
 
-// ---- modal----
+// ---- modal ----
 export default function Modal({
   children,
   size = "md",
+  icon,
+  iconColor,
   title,
   description,
   showHeader,
@@ -28,9 +30,8 @@ export default function Modal({
 }: ModalProps) {
   const titleId = useId();
   const descriptionId = useId();
-  const hasHeader = showHeader ?? Boolean(title || description);
+  const hasHeader = showHeader ?? Boolean(icon || title || description);
 
-  // ---- dialog class names ----
   const dialogClassNames = [
     styles.modal__dialog,
     styles[`modal__dialog--size-${size}`],
@@ -53,31 +54,47 @@ export default function Modal({
         >
           {({ close }) => (
             <>
-              {hasHeader && (
+              {hasHeader ? (
                 <header className={styles.modal__header}>
                   <div className={styles["modal__header-content"]}>
-                    {title && (
-                      <h2
-                        id={titleId}
-                        className={styles["modal__header-content--title"]}
+                    {icon ? (
+                      <span
+                        className={styles["modal__header-content--icon"]}
+                        style={{ color: iconColor }}
+                        aria-hidden="true"
                       >
-                        {title}
-                      </h2>
-                    )}
-                    {description && (
-                      <p
-                        id={descriptionId}
-                        className={styles["modal__header-content--description"]}
-                      >
-                        {description}
-                      </p>
-                    )}
+                        {icon}
+                      </span>
+                    ) : null}
+
+                    {title || description ? (
+                      <div className={styles["modal__header-content--text"]}>
+                        {title ? (
+                          <h2
+                            id={titleId}
+                            className={styles["modal__header-content--title"]}
+                          >
+                            {title}
+                          </h2>
+                        ) : null}
+                        {description ? (
+                          <p
+                            id={descriptionId}
+                            className={
+                              styles["modal__header-content--description"]
+                            }
+                          >
+                            {description}
+                          </p>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
 
                   <Button
                     onPress={close}
                     variant="ghost"
-                    className={styles["modal__header-close"]}
+                    size="lg"
                     aria-label="Close"
                     icon={
                       <HiXMark
@@ -87,7 +104,7 @@ export default function Modal({
                     }
                   />
                 </header>
-              )}
+              ) : null}
 
               <div className={styles.modal__body}>
                 {typeof children === "function"

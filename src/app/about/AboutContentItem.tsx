@@ -54,9 +54,12 @@ export default function AboutContentItem({ item }: { item: AboutContentItem }) {
         <Image
           src={item.content}
           alt={item.alt ?? ""}
-          width={500}
-          height={500}
-          sizes="(max-width: 768px) 300px, 500px"
+          width={300}
+          height={300}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          quality={85}
+          preload
+          placeholder="blur"
           className={styles.page__image}
         />
       </figure>

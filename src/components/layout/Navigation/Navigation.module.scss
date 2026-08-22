@@ -22,9 +22,29 @@
   &__link {
     width: 100%;
     justify-self: center;
+    color: var(--primary-on);
+    position: relative;
+    isolation: isolate;
 
+    @include button-hover {
+      background-color: transparent;
+    }
+
+    &[data-pressed] {
+      transform: none;
+      background-color: transparent;
+    }
+
+    // ---- active ----
     &--active {
-      color: var(--primary);
+      color: var(--primary) !important;
+    }
+
+    // ---- indicator ----
+    &--indicator {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
       background-color: var(--primary-on);
     }
   }

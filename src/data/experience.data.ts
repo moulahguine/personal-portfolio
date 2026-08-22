@@ -12,6 +12,7 @@ export interface ExperiencePeriod {
 export interface ExperienceEntry {
   id: string;
   role: string;
+  type?: "freelance" | "full-time" | "part-time";
   major: string;
   organization: string;
   period: ExperiencePeriod;
@@ -45,13 +46,14 @@ export const experience = {
     upwork: {
       id: "upwork",
       role: "Frontend Developer",
+      type: "freelance",
       organization: "Upwork",
       major: "",
       period: {
         start: "Mar 2023",
         end: "Present",
       },
-      location: "Istanbul, Türkiye",
+      location: "Remote, Worldwide",
       logo: upworkLogo,
       details: [
         "Working with clients on frontend projects across modern web technologies.",

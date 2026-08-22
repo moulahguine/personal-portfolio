@@ -41,5 +41,6 @@ export {
   metaData as projectsMetaData,
   page as projectsPage,
   getProjectActions,
+  getProjectsBySkillId,
 } from "./projects.data";
 export type { Project, ProjectAction } from "./projects.data";

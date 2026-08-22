@@ -54,15 +54,17 @@ export default function ExperienceTimeline() {
                 <h3
                   className={styles.timeline__role}
                   id={`${entry.id}-role`}
-                  aria-label={`${entry.role} ${entry.major ? `major in ${entry.major}` : ""}, at ${entry.organization}`}
+                  aria-label={`${entry.role} ${entry.major ? `major in ${entry.major}` : entry.type ? `working as a ${entry.type}` : ""}, at ${entry.organization}`}
                 >
                   {entry.role}
-                  {entry.role && entry.major && ", "}
-                  {entry.major && (
+                  {(entry.role && entry.major) || (entry.role && entry.type)
+                    ? ", "
+                    : ""}
+                  {entry.major || entry.type ? (
                     <span className={styles.timeline__major}>
-                      {entry.major}
+                      {entry.major || entry.type}
                     </span>
-                  )}
+                  ) : null}
                 </h3>
 
                 {entry.organization && (

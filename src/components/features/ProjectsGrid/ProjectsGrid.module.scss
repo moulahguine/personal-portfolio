@@ -19,6 +19,20 @@
     justify-content: center;
   }
 
+  &__grid--modal {
+    @include responsive-grid(
+      repeat(2, minmax(0, 1fr)),
+      clamp($space-10, 1vw, $space-14),
+      (
+        md: minmax(0, 1fr),
+      )
+    );
+
+    .projects__card {
+      max-width: none;
+    }
+  }
+
   // ---- project card ----
   &__card {
     @include flex-column;

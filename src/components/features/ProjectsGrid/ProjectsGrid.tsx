@@ -1,13 +1,17 @@
 import { Link } from "@/components";
 import Image from "next/image";
+import type { Project } from "@/data";
 import { projectsPage, projectsSections, getProjectActions } from "@/data";
 
 import styles from "./ProjectsGrid.module.scss";
 
 type ProjectsGridVariant = "primary" | "all";
+type ProjectsGridLayout = "default" | "modal";
 
 interface ProjectsGridProps {
   variant?: ProjectsGridVariant;
+  projects?: Project[];
+  layout?: ProjectsGridLayout;
 }
 
 // ---- projects data ----
@@ -15,11 +19,24 @@ const { primaryProjects } = projectsSections;
 const { projects: projectsData } = projectsPage;
 
 // ---- projects grid ----
-export default function ProjectsGrid({ variant = "all" }: ProjectsGridProps) {
-  const projects = variant === "primary" ? primaryProjects : projectsData;
+export default function ProjectsGrid({
+  variant = "all",
+  projects: projectsProp,
+  layout = "default",
+}: ProjectsGridProps) {
+  const projects =
+    projectsProp ??
+    (variant === "primary" ? primaryProjects : projectsData);
+
+  const gridClassName = [
+    styles.projects__grid,
+    layout === "modal" && styles["projects__grid--modal"],
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <ul className={styles.projects__grid}>
+    <ul className={gridClassName}>
       {projects.map((project) => (
         <li key={project.id}>
           <article

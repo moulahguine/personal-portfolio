@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Logo, Navigation, Menu } from "@/components";
+import { Logo, Navigation, Menu, ThemeSelector } from "@/components";
 
 import styles from "./Header.module.scss";
 
@@ -31,15 +31,18 @@ export default function Header() {
           {/* ---- logo ---- */}
           <Logo />
 
+          {/* ---- desktop navigation ---- */}
+          <Navigation className={styles.header__navigation} />
+
+          {/* ---- theme selector ---- */}
+          <ThemeSelector />
+
           {/* ---- mobile menu ---- */}
           <Menu
             isOpen={isMenuOpen}
             onOpenChange={setIsMenuOpen}
             id={MOBILE_NAV_ID}
           />
-
-          {/* ---- desktop navigation ---- */}
-          <Navigation className={styles.header__navigation} />
         </div>
       </header>
       {isMenuOpen ? (

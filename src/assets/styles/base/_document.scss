@@ -41,6 +41,47 @@ body {
   color: var(--selection-text);
 }
 
+/* ---- theme view transitions ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition {
+    pointer-events: none;
+  }
+
+  ::view-transition-old(root) {
+    animation-duration: 600ms;
+  }
+
+  ::view-transition-new(root) {
+    animation: circle-in 600ms linear;
+  }
+
+  @keyframes circle-in {
+    from {
+      clip-path: circle(
+        0% at var(--theme-transition-x) var(--theme-transition-y)
+      );
+    }
+
+    to {
+      clip-path: circle(
+        150% at var(--theme-transition-x) var(--theme-transition-y)
+      );
+    }
+  }
+
+  :root {
+    --theme-transition-x: 70%;
+    --theme-transition-y: 5%;
+  }
+
+  @include down(md) {
+    :root {
+      --theme-transition-x: 80%;
+      --theme-transition-y: 3%;
+    }
+  }
+}
 // ---- section performance ----
 // Skip `.hero` — `transform` on an ancestor breaks MapLibre WebGL tile rendering.
 @include down(md) {
