@@ -1,10 +1,11 @@
 import { ABOUT_METADATA, ABOUT_PAGE_DATA } from "@/data";
 import { HeaderPage } from "@/components";
+import { createPageMetadata } from "@/lib";
 
 import AboutContentItem from "./AboutContentItem";
 import styles from "./page.module.scss";
 
-export const metadata = ABOUT_METADATA;
+export const metadata = createPageMetadata("/about", ABOUT_METADATA);
 
 export default function AboutPage() {
   const {
@@ -16,7 +17,7 @@ export default function AboutPage() {
     <div className={styles.page}>
       <HeaderPage title={title} description={description} />
 
-      <main className={styles.page__container}>
+      <main id="main-content" className={styles.page__container}>
         {sections.map((section) => (
           <section key={section.id} className={styles.page__section}>
             <h2 className={styles.page__sectionTitle}>{section.title}</h2>

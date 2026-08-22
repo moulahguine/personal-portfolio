@@ -1,9 +1,6 @@
 import type { StaticImageData } from "next/image";
 import { experienceYears } from "@/lib";
 
-import computerImage from "@/assets/images/about/computer.png";
-import scratchImage from "@/assets/images/about/scratch.jpg";
-import creators from "@/assets/images/about/creators.jpg";
 import myimage from "@/assets/images/about/myimage.jpeg";
 
 export type AboutContentPart =
@@ -43,6 +40,7 @@ export type AboutPageData = {
 
 export const ABOUT_SECTION_DATA = {
   headingId: "about-heading",
+  title: "About",
   paragraph: `I'm a creative software developer with ${experienceYears}+ years of experience, working mainly in frontend development. I enjoy solving problems and building thoughtful interfaces, paying close attention to the details that make them feel right. Originally from Morocco, but now I live in Istanbul, where I'm pursuing a Bachelor's degree in Software Engineering. I'm currently looking for a frontend role where I can solve meaningful problems and build great products with a strong team. In the future, I also hope to continue my studies in Europe through a Master's degree, particularly with a focus on research in software engineering.`,
 };
 
@@ -74,7 +72,7 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
         {
           type: "image",
           content: myimage,
-          alt: "",
+          alt: "I'm looking out over the Bosphorus in Istanbul",
         },
         {
           type: "paragraph",
@@ -89,11 +87,6 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
             " the computer.",
           ],
         },
-        // {
-        //   type: "image",
-        //   content: computerImage,
-        //   alt: "An old desktop computer",
-        // },
         {
           type: "paragraph",
           content:
@@ -116,11 +109,6 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
           type: "paragraph",
           content: "We started with Scratch.",
         },
-        // {
-        //   type: "image",
-        //   content: scratchImage,
-        //   alt: "Scratch programming blocks on a screen",
-        // },
         {
           type: "paragraph",
           content:
@@ -395,11 +383,6 @@ export const ABOUT_PAGE_DATA: AboutPageData = {
           content:
             "I want to build something that matters enough for people to remember the person who built it. When we talk about software today, we still remember the names of people who created important technologies, built systems that changed how we work, or solved problems that seemed difficult at the time.",
         },
-        // {
-        //   type: "image",
-        //   content: creators,
-        //   alt: "Developers and technology pioneers who shaped the industry",
-        // },
         {
           type: "paragraph",
           content: "I'd like to leave something behind like that.",

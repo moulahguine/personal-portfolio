@@ -9,6 +9,10 @@
     padding-top: 0;
   }
 
+  &__header {
+    display: none;
+  }
+
   &__paragraph {
     font-family: $font-primary;
     font-size: clamp($font-size-14, 3vw, $font-size-18);

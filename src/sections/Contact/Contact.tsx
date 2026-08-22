@@ -13,8 +13,8 @@ export default function ContactSection() {
       aria-labelledby={contactHeadingId}
     >
       <div className={styles.contact__container}>
-        <Contact />
         <HeaderSection title={headerSection.title} id={contactHeadingId} />
+        <Contact />
       </div>
     </section>
   );

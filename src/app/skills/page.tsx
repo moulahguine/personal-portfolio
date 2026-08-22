@@ -1,9 +1,10 @@
 import { HeaderPage, SkillsGrid } from "@/components";
 import { metaData, page } from "@/data";
+import { createPageMetadata } from "@/lib";
 
 import styles from "./page.module.scss";
 
-export const metadata = metaData;
+export const metadata = createPageMetadata("/skills", metaData);
 
 // ---- skills page ----
 export default function SkillsPage() {
@@ -14,7 +15,7 @@ export default function SkillsPage() {
   return (
     <div className={styles.page}>
       <HeaderPage title={title} description={description} />
-      <main className={styles.page__container}>
+      <main id="main-content" className={styles.page__container}>
         <SkillsGrid />
       </main>
     </div>

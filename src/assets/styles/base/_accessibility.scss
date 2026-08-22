@@ -20,9 +20,34 @@ a:focus-visible,
 abbr:focus-visible,
 [role="region"]:focus-visible,
 [role="tab"]:focus-visible,
-[data-state="tap"]:focus-visible,
-.skip-link:focus-visible {
+[data-state="tap"]:focus-visible {
   @include focus-ring;
+}
+
+.skip-link {
+  @include sr-only;
+
+  &:focus-visible {
+    @include focus-ring;
+    position: fixed;
+    top: $space-8;
+    left: $space-8;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    padding: $space-8 $space-12;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    background-color: var(--background-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    font-family: $font-primary;
+    font-size: $font-size-14;
+    font-weight: $fw-bold;
+    text-decoration: none;
+  }
 }
 
 .sr-only {

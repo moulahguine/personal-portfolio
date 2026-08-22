@@ -16,7 +16,8 @@ export default function Logo({ className }: ClassNameProps) {
     >
       <Image
         src={logoSrc}
-        alt="logo"
+        alt=""
+        aria-hidden="true"
         width={100}
         height={50}
         sizes="(max-width: 768px) 50px, 50px"

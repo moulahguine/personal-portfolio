@@ -1,9 +1,10 @@
 import { BlogsGrid, HeaderPage } from "@/components";
 import { blogMetaData, blogPage } from "@/data";
+import { createPageMetadata } from "@/lib";
 
 import styles from "./page.module.scss";
 
-export const metadata = blogMetaData;
+export const metadata = createPageMetadata("/blog", blogMetaData);
 
 // ---- blog page ----
 export default function BlogPage() {
@@ -14,7 +15,7 @@ export default function BlogPage() {
   return (
     <div className={styles.page}>
       <HeaderPage title={title} description={description} />
-      <main className={styles.page__container}>
+      <main id="main-content" className={styles.page__container}>
         <BlogsGrid />
       </main>
     </div>

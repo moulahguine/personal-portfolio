@@ -8,21 +8,6 @@ export const SITE_TITLE_TEMPLATE = "%s | Mohamed Oulahguine";
 export const SITE_DEFAULT_DESCRIPTION =
   "I’m a frontend engineer focused on building accessible, performant, and well-crafted web experiences with React and Next.js.";
 
-export const SITE_KEYWORDS = [
-  "Mohamed Oulahguine",
-  "Mohamed Oulahguine developer",
-  "frontend developer",
-  "React developer",
-  "Next.js developer",
-  "TypeScript developer",
-  "modern web development",
-  "frontend engineering",
-  "React Next.js portfolio",
-  "web developer portfolio",
-  "frontend developer Istanbul",
-  "frontend developer Morocco",
-];
-
 export const SITE_AUTHOR_NAME = "Mohamed Oulahguine";
 export const SITE_TWITTER_SITE = "@moulahguine";
 export const SITE_TWITTER_CREATOR = "@moulahguine";
@@ -49,3 +34,6 @@ export const PWA_CATEGORIES = [
   "productivity",
   "technology",
 ] as const;
+
+export const isNetlifyPreview =
+  Boolean(process.env.CONTEXT) && process.env.CONTEXT !== "production";

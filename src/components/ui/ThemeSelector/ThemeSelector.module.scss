@@ -2,7 +2,6 @@
 
 .themeSelector {
   padding: $space-8 !important;
-  border-radius: 50%;
 
   @include down(md) {
     margin-left: auto;

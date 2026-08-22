@@ -59,6 +59,7 @@ export default function AboutContentItem({ item }: { item: AboutContentItem }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           quality={85}
           preload
+          fetchPriority="high"
           placeholder="blur"
           className={styles.page__image}
         />

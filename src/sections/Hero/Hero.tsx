@@ -80,7 +80,11 @@ export default function Hero() {
 
           {/* ---- profile information ---- */}
           <div className={styles.hero__info}>
-            <h1 id={headingId} className={styles["hero__info-name"]}>
+            <h1
+              id={headingId}
+              className={styles["hero__info-name"]}
+              aria-label={name}
+            >
               {name}
               <span className={styles["hero__info-icon"]} aria-hidden="true">
                 <BadgeIcon className={styles["hero__info-icon__badge"]} />
@@ -102,7 +106,7 @@ export default function Hero() {
               <span className={styles["hero__info-icon"]} aria-hidden="true">
                 <LocationIcon className={styles["hero__info-icon__location"]} />
               </span>
-              {location} (from {origin})
+              {`${location} (from ${origin})`}
             </address>
           </div>
 
@@ -131,7 +135,7 @@ export default function Hero() {
                 variant="secondary"
                 size="lg"
                 className={styles["hero__share-trigger"]}
-                aria-label="Share"
+                aria-label="Connect with me"
                 icon={
                   <ShareIcon
                     aria-hidden="true"
@@ -144,7 +148,7 @@ export default function Hero() {
                 aria-label="Share links"
                 placement="bottom end"
                 className={styles["hero__share-menu"]}
-                offset={20}
+                offset={10}
               >
                 {socialLinks.map(
                   ({
@@ -162,7 +166,7 @@ export default function Hero() {
                       rel={external ? "noopener noreferrer" : undefined}
                       className={styles["hero__share-menu-item"]}
                     >
-                      <SocialLinkIcon />
+                      <SocialLinkIcon aria-hidden="true" />
                       {label}
                     </DropdownMenuItem>
                   ),

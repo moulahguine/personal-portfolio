@@ -1,5 +1,6 @@
 import { Comic_Neue, Inter, Sour_Gummy } from "next/font/google";
 import { Header } from "@/components";
+import { SkipLink } from "@/lib";
 import { ThemeProvider } from "@/providers";
 
 import "@/assets/styles/main.scss";
@@ -40,8 +41,9 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
+          <SkipLink />
           <Header />
-          <main>{children}</main>
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -1,9 +1,10 @@
 import { Contact, HeaderPage } from "@/components";
 import { contactMetaData, contactPage } from "@/data";
+import { createPageMetadata } from "@/lib";
 
 import styles from "./page.module.scss";
 
-export const metadata = contactMetaData;
+export const metadata = createPageMetadata("/contact", contactMetaData);
 
 export default function ContactPage() {
   const {
@@ -13,7 +14,7 @@ export default function ContactPage() {
   return (
     <div className={styles.page}>
       <HeaderPage title={title} description={description} />
-      <main className={styles.page__container}>
+      <main id="main-content" className={styles.page__container}>
         <Contact />
       </main>
     </div>

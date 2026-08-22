@@ -4,8 +4,8 @@ import {
   FaEnvelope,
   FaCheckCircle,
   FaMapMarkerAlt,
+  FaLink,
 } from "react-icons/fa";
-import { MdShare } from "react-icons/md";
 import { FiDownload } from "react-icons/fi";
 import type { IconType } from "react-icons";
 
@@ -25,7 +25,7 @@ export interface SocialLink {
 export const HERO_DATA = {
   headingId: "hero-heading",
   profilePhotoSrc: profilePhotoSrc,
-  shareIcon: MdShare,
+  shareIcon: FaLink,
 
   profileInfo: {
     name: "Mohamed Oulahguine",
