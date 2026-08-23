@@ -55,11 +55,7 @@ export const experience = {
       },
       location: "Remote, Worldwide",
       logo: upworkLogo,
-      details: [
-        "Working with clients on frontend projects across modern web technologies.",
-        "Through Upwork, I work on client projects involving React, Next.js, responsive interfaces, performance, accessibility, and maintainable frontend code.",
-        "I also take on independent client and personal projects, building responsive websites and solving problems such as confusing layouts, slow loading, and poor mobile experiences.",
-      ],
+      details: [],
     },
 
     atlasUniversity: {

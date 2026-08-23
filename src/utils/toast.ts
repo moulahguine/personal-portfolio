@@ -19,7 +19,6 @@ export function addToast(message: string, variant: ToastVariant = "success") {
     zIndex: "9999",
     maxWidth: "min(90vw, 24rem)",
     padding: "0.875rem 1rem",
-    borderRadius: "0.5rem",
     fontFamily: "inherit",
     fontSize: "0.875rem",
     fontWeight: "600",

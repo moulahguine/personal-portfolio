@@ -1,6 +1,7 @@
-import { Contact, HeaderPage } from "@/components";
-import { contactMetaData, contactPage } from "@/data";
+import { Contact } from "@/features";
+import { HeaderPage } from "@/components";
 import { createPageMetadata } from "@/lib";
+import { metaData as contactMetaData, page as contactPage } from "@/data";
 
 import styles from "./page.module.scss";
 

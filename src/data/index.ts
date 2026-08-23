@@ -11,16 +11,11 @@ export type {
   AboutPageData,
 } from "./about.data";
 export {
+  contactForm,
   metaData as contactMetaData,
   page as contactPage,
   sections as contactSections,
-  contactForm,
-  getContactServiceOptions,
 } from "./contact.data";
-export type {
-  ContactFormConfig,
-  ContactServiceOption,
-} from "@/components/ui/Contact/contact.types";
 export {
   sections as blogSections,
   metaData as blogMetaData,

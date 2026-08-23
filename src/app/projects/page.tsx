@@ -1,4 +1,5 @@
-import { HeaderPage, ProjectsGrid } from "@/components";
+import { HeaderPage } from "@/components";
+import { ProjectsGrid } from "@/features";
 import { projectsMetaData, projectsPage } from "@/data";
 import { createPageMetadata } from "@/lib";
 

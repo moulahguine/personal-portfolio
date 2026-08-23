@@ -1,4 +1,5 @@
-import { HeaderSection, SkillsGrid } from "@/components";
+import { HeaderSection } from "@/components";
+import { SkillsGrid } from "@/features";
 import { sections } from "@/data";
 
 import styles from "./Skills.module.scss";

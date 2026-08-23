@@ -1,4 +1,5 @@
-import { BlogsGrid, HeaderPage } from "@/components";
+import { HeaderPage } from "@/components";
+import { BlogsGrid } from "@/features";
 import { blogMetaData, blogPage } from "@/data";
 import { createPageMetadata } from "@/lib";
 

@@ -1,4 +1,5 @@
-import { HeaderSection, ProjectsGrid } from "@/components";
+import { HeaderSection } from "@/components";
+import { ProjectsGrid } from "@/features";
 import { projectsSections } from "@/data";
 
 import styles from "./Projects.module.scss";

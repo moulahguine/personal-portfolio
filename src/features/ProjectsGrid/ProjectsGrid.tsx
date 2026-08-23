@@ -27,7 +27,11 @@ export default function ProjectsGrid({
   return (
     <ul className={styles.projects}>
       {projects.map((project) => (
-        <article key={project.id} className={styles.projects__card}>
+        <article
+          key={project.id}
+          className={styles.projects__card}
+          style={{ "--card-color": project.color } as React.CSSProperties}
+        >
           <figure className={styles["projects__card-media"]}>
             <Image
               src={project.image}

@@ -6,22 +6,13 @@
     align-items: center;
     gap: clamp($space-24, 4vw, $space-40);
     width: 100%;
-    // background-color: red;
+    padding-block: clamp($space-40, 5vw, rem(60));
   }
 
   &__form {
-    // @include reveal-group(
-    //   $max-children: 12,
-    //   $variant: up-medium,
-    //   $trigger: eager
-    // );
     @include flex-column;
     gap: clamp($space-16, 2.5vw, $space-20);
-    width: min(100%, 500px);
-
-    @include down(md) {
-      width: min(100%, 350px);
-    }
+    width: min(95%, 500px);
   }
 
   &__honeypot {
@@ -47,8 +38,8 @@
 
   &__field-count {
     position: absolute;
-    right: clamp($space-12, 2vw, $space-16);
-    bottom: $space-12;
+    right: $space-8;
+    bottom: rem(28);
     font-size: $font-size-12;
     font-weight: $fw-medium;
     color: var(--text-tertiary);
@@ -105,7 +96,6 @@
     background: var(--surface-muted);
     border: 2px solid var(--border);
     outline: none;
-    border-radius: $radius-lg;
     transition:
       border-color $duration-base $ease-default,
       box-shadow $duration-base $ease-default,
@@ -127,7 +117,6 @@
     &[data-focus-visible] {
       outline: solid 2px var(--accent);
       outline-offset: 4px;
-      border-radius: $radius-lg;
     }
   }
 
@@ -176,7 +165,7 @@
     width: var(--trigger-width);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: $radius-lg;
+
     box-shadow: 0 rem(6) rem(16) var(--shadow-color);
     overflow: hidden;
 
@@ -226,9 +215,7 @@
   }
 
   &__submit {
-    min-width: calc(
-      100% - clamp($space-12, 2vw, $space-16) * 2 - 4px
-    ) !important;
+    min-width: calc(100% - clamp($space-12, 2vw, $space-16) - 8px) !important;
     margin-top: $space-8;
   }
 

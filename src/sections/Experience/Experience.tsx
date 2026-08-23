@@ -1,4 +1,5 @@
-import { ExperienceTimeline, HeaderSection } from "@/components";
+import { HeaderSection } from "@/components";
+import { ExperienceTimeline } from "@/features";
 import { experience } from "@/data";
 
 import styles from "./Experience.module.scss";

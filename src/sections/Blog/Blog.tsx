@@ -1,4 +1,5 @@
-import { BlogsGrid, HeaderSection } from "@/components";
+import { HeaderSection } from "@/components";
+import { BlogsGrid } from "@/features";
 import { blogSections } from "@/data";
 
 import styles from "./Blog.module.scss";

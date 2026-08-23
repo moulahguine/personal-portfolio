@@ -3,8 +3,8 @@ import {
   DialogTrigger,
   HeaderSection,
   Modal,
-  ProjectsGrid,
 } from "@/components";
+import { ProjectsGrid } from "@/features";
 import { sections, page, getProjectsBySkillId } from "@/data";
 
 import styles from "./SkillsGrid.module.scss";

@@ -1,7 +1,5 @@
-"use client";
-
-import ContactForm from "./ContactForm";
 import type { ClassNameProps } from "@/types";
+import ContactForm from "./ContactForm";
 
 import styles from "./Contact.module.scss";
 

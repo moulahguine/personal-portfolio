@@ -1,4 +1,5 @@
-import { HeaderPage, SkillsGrid } from "@/components";
+import { HeaderPage } from "@/components";
+import { SkillsGrid } from "@/features";
 import { metaData, page } from "@/data";
 import { createPageMetadata } from "@/lib";
 

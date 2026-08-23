@@ -6,7 +6,7 @@ import type { ClassNameProps } from "@/types";
 import styles from "./Hero.module.scss";
 
 const InteractiveMap = dynamic(
-  () => import("@/components/features/InteractiveMap/InteractiveMap"),
+  () => import("@/features/InteractiveMap/InteractiveMap"),
   {
     ssr: false,
     loading: () => (

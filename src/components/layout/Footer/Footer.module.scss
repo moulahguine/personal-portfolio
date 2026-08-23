@@ -1,0 +1,55 @@
+@use "../../../assets/styles" as *;
+
+.footer {
+  @include section;
+  padding-block: $space-24 $space-32;
+
+  &__container {
+    @include container;
+    @include flex-between;
+    gap: $space-16;
+    padding-block: $space-16;
+    margin-block: 0;
+    max-width: calc($container-width - clamp($space-8, 1vw, $space-12));
+  }
+
+  &__copyright {
+    font-family: $font-primary;
+    font-size: $font-size-14;
+    color: var(--text-secondary);
+    line-height: $line-height-normal;
+  }
+
+  &__social {
+    @include flex-center;
+    gap: $space-12;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__socialLink {
+    @include flex-center;
+    @include transition-base(color);
+    color: var(--text-secondary);
+    font-size: $font-size-20;
+    transition:
+      transform 0.3s ease-in-out,
+      color 0.3s ease-in-out;
+
+    @include fine-pointer-hover {
+      &:hover {
+        transform: rotate(-7deg) scale(1.1);
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  @include down(sm) {
+    &__container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+}

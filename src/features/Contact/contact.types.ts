@@ -1,27 +1,15 @@
 import type { ReactNode } from "react";
 import type { IconType } from "react-icons";
 
+import type { ContactFormData } from "./contact.schema";
+
 export type ContactFieldName = "fullName" | "email" | "message";
 
 export type ContactFieldState = "idle" | "valid" | "valid-blurred" | "invalid";
 
-export interface ContactFormValues {
-  fullName: string;
-  email: string;
-  service: string;
-  message: string;
-}
-
-export interface ContactServiceOption {
-  value: string;
-  label: string;
-}
-
 export interface ContactFormConfig {
   checkIcon: IconType;
-  selectCaretIcon: IconType;
   submitIcon: IconType;
-  servicePlaceholder: string;
   submitLabel: string;
   sendingLabel: string;
   successMessage: string;
@@ -37,16 +25,17 @@ export interface ContactFieldProps {
   multiline?: boolean;
 }
 
+export interface VisibleFieldErrorContext {
+  isTouched: boolean;
+  isSubmitted: boolean;
+  firstSubmitErrorField: ContactFieldName | null;
+}
+
 export interface FieldStateInput {
   error: string;
   isValid: boolean;
-  blurred?: boolean;
+  isTouched: boolean;
   value: string;
 }
 
-export interface VisibleErrorContext {
-  touched: Partial<Record<keyof ContactFormValues, boolean>>;
-  blurred: Partial<Record<keyof ContactFormValues, boolean>>;
-  submitAttempted: boolean;
-  submitErrorField: ContactFieldName | null;
-}
+export type { ContactFormData };
