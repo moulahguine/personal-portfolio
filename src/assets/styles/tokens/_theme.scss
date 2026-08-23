@@ -16,7 +16,7 @@
 
 @mixin theme($mode: null) {
   /* ----- BASE ----- */
-  --background: #{theme-value(#f8f8f6, #11110f, $mode)};
+  --background: #{theme-value(#f8f8f6, #1c1c18, $mode)};
   --background-muted: #{theme-value(#f1f1ef, #191917, $mode)};
   --background-elevated: #{theme-value(#ffffff, #211f1d, $mode)};
   --background-inverse: #{theme-value(#11110f, #f8f8f6, $mode)};

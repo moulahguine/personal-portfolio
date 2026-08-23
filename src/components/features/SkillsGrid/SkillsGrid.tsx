@@ -1,6 +1,11 @@
-import { Button, DialogTrigger, Link, Modal, ProjectsGrid } from "@/components";
+import {
+  Button,
+  DialogTrigger,
+  HeaderSection,
+  Modal,
+  ProjectsGrid,
+} from "@/components";
 import { sections, page, getProjectsBySkillId } from "@/data";
-import { MdOutlineArrowOutward } from "react-icons/md";
 
 import styles from "./SkillsGrid.module.scss";
 
@@ -60,27 +65,18 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
 
                 {relatedProjects.length > 0 ? (
                   <section className={styles["skills__modal-projects"]}>
-                    <ProjectsGrid projects={relatedProjects} layout="modal" />
-
-                    {hasMoreProjects ? (
-                      <Link
-                        href="/projects"
-                        variant="ghost"
-                        iconPosition="right"
-                        size="sm"
-                        className={styles["skills__modal-projects-link"]}
-                        aria-label={`View all projects using ${skill.name}`}
-                        icon={
-                          <MdOutlineArrowOutward
-                            className={
-                              styles["skills__modal-projects-link-icon"]
+                    <HeaderSection
+                      title="Related projects"
+                      link={
+                        hasMoreProjects
+                          ? {
+                              href: "/projects",
+                              label: "View all projects",
                             }
-                            aria-hidden="true"
-                          />
-                        }
-                        label="View all projects"
-                      />
-                    ) : null}
+                          : undefined
+                      }
+                    />
+                    <ProjectsGrid projects={relatedProjects} />
                   </section>
                 ) : null}
               </Modal>

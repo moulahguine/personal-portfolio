@@ -7,7 +7,7 @@ import styles from "./HeaderSection.module.scss";
 interface HeaderSectionLink {
   href: string;
   label: string;
-  ariaLabel: string;
+  ariaLabel?: string;
 }
 
 interface HeaderSectionProps extends ClassNameProps {

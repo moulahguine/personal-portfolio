@@ -64,7 +64,7 @@
 @mixin container {
   max-width: $container-width;
   margin: clamp($space-4, 2vw, $space-12) auto;
-  padding: clamp($space-16, 2vw, $space-32) clamp($space-4, 1vw, $space-12);
+  padding: $space-32 clamp($space-4, 1vw, $space-12);
 }
 
 // ---- responsive grid ----

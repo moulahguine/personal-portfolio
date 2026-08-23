@@ -6,7 +6,8 @@
       repeat(4, 1fr),
       clamp($space-8, 2vw, $space-12),
       (
-        sm: repeat(3, 1fr),
+        md: repeat(3, 1fr),
+        sm: repeat(2, 1fr),
       )
     );
   }
@@ -46,7 +47,7 @@
   }
 
   &__icon {
-    font-size: clamp($font-size-28, 3vw, rem(36));
+    font-size: rem(36);
     flex-shrink: 0;
     color: var(--text-primary);
     filter: drop-shadow(3px 3px 0px var(--shadow-color));
@@ -59,9 +60,9 @@
   &__name {
     text-transform: capitalize;
     font-family: $font-secondary;
-    font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+    font-size: $font-size-16;
     font-weight: $fw-bold;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     text-align: center;
   }
 
@@ -73,34 +74,6 @@
       font-size: clamp($font-size-14, 1.6vw, $font-size-16);
       line-height: $line-height-relaxed;
       color: var(--text-secondary);
-    }
-
-    &-projects {
-      @include flex-column;
-      gap: clamp($space-8, 1.5vw, $space-12);
-      padding-block: clamp($space-16, 2.5vw, $space-24);
-
-      &-link {
-        text-decoration: underline;
-        text-underline-offset: 5px;
-        font-size: clamp($font-size-12, 1.5vw, $font-size-16);
-
-        @include button-hover {
-          svg {
-            transform: rotate(45deg);
-          }
-        }
-
-        &[data-pressed] {
-          transform: none;
-        }
-
-        &-icon {
-          color: inherit;
-          font-size: clamp($font-size-14, 1.5vw, $font-size-16) !important;
-          transition: transform $duration-base ease-in;
-        }
-      }
     }
   }
 }

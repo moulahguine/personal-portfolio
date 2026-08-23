@@ -39,7 +39,6 @@
 
     @include down(sm) {
       letter-spacing: -0.022em;
-      line-height: $line-height-relaxed;
 
       &::before {
         top: 2px;

@@ -19,11 +19,11 @@
     transform $duration-fast $ease-default;
 
   &[data-pressed] {
-    transform: translateY(1.5px);
+    transform: translateY(1.3px);
   }
 
   &[data-disabled] {
-    cursor: not-allowed;
+    cursor: pointer !important;
     opacity: 0.5;
   }
 

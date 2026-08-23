@@ -45,6 +45,7 @@ export default function Navigation({
 
           return (
             <li key={item.href} className={styles.navigation__item}>
+              {/* ---- link ---- */}
               <Link
                 href={item.href}
                 variant="ghost"
@@ -55,14 +56,21 @@ export default function Navigation({
                 aria-current={active ? "page" : undefined}
                 onPress={onNavigate}
               >
-                {active ? (
-                  <motion.span
-                    layoutId="indicator"
-                    className={styles["navigation__link--indicator"]}
-                  />
-                ) : null}
                 {item.label}
               </Link>
+
+              {/* ---- indicator ---- */}
+              {active ? (
+                <motion.span
+                  layoutId="indicator"
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 20,
+                  }}
+                  className={styles["navigation__item--indicator"]}
+                />
+              ) : null}
             </li>
           );
         })}

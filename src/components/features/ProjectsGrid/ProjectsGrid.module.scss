@@ -2,79 +2,37 @@
 
 // ---- projects grid ----
 .projects {
-  @include flex-column;
-  gap: clamp($space-16, 2vw, $space-24);
-
-  // ---- projects grid ----
-  &__grid {
-    @include responsive-grid(
-      repeat(2, 1fr),
-      clamp($space-16, 2vw, $space-20),
-      (
-        md: auto,
-      )
-    );
-    gap: clamp($space-10, 1vw, $space-14);
-    width: 100%;
-    justify-content: center;
-  }
-
-  &__grid--modal {
-    @include responsive-grid(
-      repeat(2, minmax(0, 1fr)),
-      clamp($space-10, 1vw, $space-14),
-      (
-        md: minmax(0, 1fr),
-      )
-    );
-
-    .projects__card {
-      max-width: none;
-    }
-  }
+  @include responsive-grid(
+    repeat(2, 1fr),
+    clamp($space-12, 1.5vw, $space-16),
+    (
+      md: auto,
+    )
+  );
+  justify-content: center;
 
   // ---- project card ----
   &__card {
     @include flex-column;
-    max-width: 450px;
-    background-color: var(--surface);
+    max-width: 430px;
+    background-color: var(--background-muted);
     border: 1px solid var(--border);
     overflow: hidden;
     padding: clamp($space-10, 1vw, $space-12);
-    box-shadow: 0 0 5px 0 var(--shadow-color);
-    position: relative;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0%;
-      background-color: var(--surface);
-      background-image: linear-gradient(
-        to bottom,
-        alpha(var(--card-color), 80) 10%,
-        alpha(var(--card-color), 30) 70%,
-        transparent
-      );
-      transition: height $duration-base ease;
-    }
-
-    @include fine-pointer-hover {
-      &:hover::before {
-        height: 50%;
-      }
+    :global(html[data-theme="dark"]) & {
+      box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.1);
     }
 
     // ---- card media ----
     &-media {
       position: relative;
       max-width: inherit;
-      aspect-ratio: 1.5;
+      aspect-ratio: 1.6;
       overflow: hidden;
       background-color: var(--image-background);
-      mask-image: linear-gradient(to bottom, black 10%, black 70%, transparent);
+      mask-image: linear-gradient(to bottom, black 70%, transparent);
+      border: 1px solid var(--border);
     }
 
     // ---- card image ----
@@ -89,21 +47,21 @@
       flex: 1;
       gap: clamp($space-8, 1.5vw, $space-12);
       padding-left: clamp($space-12, 2vw, $space-16);
-      margin-top: clamp(-1rem, -3vw, -1.5rem);
     }
 
     // ---- card title ----
     &-title {
-      font-family: $font-secondary;
-      font-size: clamp($font-size-18, 3vw, $font-size-24);
+      font-family: $font-primary;
+      font-size: clamp($font-size-24, 4vw, $font-size-28);
       font-weight: $fw-bold;
       color: var(--text-primary);
+      text-transform: capitalize;
     }
 
     // ---- card description ----
     &-description {
-      font-family: $font-secondary;
-      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-family: $font-primary;
+      font-size: clamp($font-size-12, 2vw, $font-size-14);
       font-weight: $fw-regular;
       color: var(--text-secondary);
       line-height: $line-height-relaxed;
@@ -113,13 +71,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    // ---- card footer ----
-    &-footer {
-      @include flex-column;
-      gap: clamp($space-12, 1.5vw, $space-16);
-      margin-top: auto;
     }
 
     // ---- card tags ----
@@ -132,12 +83,12 @@
     // ---- card tag ----
     &-tag {
       padding: $space-4 $space-8;
-      font-family: $font-primary;
-      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
-      font-weight: $fw-regular;
-      color: var(--text-primary);
-      background-color: var(--surface-muted);
-      border: 1px solid var(--border-muted);
+      font-family: $font-secondary;
+      font-size: clamp(rem(13), 2vw, rem(15));
+      font-weight: $fw-bold;
+      color: var(--text-secondary);
+      background-color: var(--background-elevated);
+      border: 1px solid var(--border);
       text-transform: capitalize;
     }
 
@@ -149,16 +100,13 @@
       margin-top: clamp($space-12, 2vw, $space-18);
     }
 
-    // ---- card action icon ----
-    &-actionIcon {
-      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
-    }
-
-    // ---- card action link ----
-    &-actionLink {
-      background-color: var(--primary-on);
-      color: var(--text-inverse);
-      border-color: var(--primary-on);
+    // ---- card action ----
+    &-action {
+      &--github {
+        background-color: var(--background-inverse);
+        color: var(--text-inverse);
+        border-color: var(--background-inverse);
+      }
     }
   }
 }

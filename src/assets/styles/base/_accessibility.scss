@@ -40,8 +40,8 @@ abbr:focus-visible,
     overflow: visible;
     clip-path: none;
     white-space: normal;
-    background-color: var(--background-elevated);
-    color: var(--text-primary);
+    background-color: var(--background-inverse);
+    color: var(--text-inverse);
     border: 1px solid var(--border);
     font-family: $font-primary;
     font-size: $font-size-14;

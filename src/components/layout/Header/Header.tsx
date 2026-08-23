@@ -5,11 +5,25 @@ import { usePathname } from "next/navigation";
 import { Logo, Navigation, Menu, ThemeSelector } from "@/components";
 
 import styles from "./Header.module.scss";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 const MOBILE_NAV_ID = "mobile-navigation";
 
 // ---- header ----
 export default function Header() {
+  // ---- here only for hide header on scroll ----
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (current > previous && current > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   // ---- pathname ----
   const pathname = usePathname();
 
@@ -25,7 +39,13 @@ export default function Header() {
 
   return (
     <>
-      <header className={styles.header}>
+      <motion.header
+        className={styles.header}
+        animate={{
+          y: hidden ? -150 : 0,
+        }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      >
         {/* ---- container ---- */}
         <div className={styles.header__container}>
           {/* ---- logo ---- */}
@@ -44,7 +64,7 @@ export default function Header() {
             id={MOBILE_NAV_ID}
           />
         </div>
-      </header>
+      </motion.header>
       {isMenuOpen ? (
         <div
           className={styles.header__overlay}
