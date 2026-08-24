@@ -76,14 +76,14 @@ const PRIMARY_PROJECTS = PROJECTS.filter((project) => project.primary).slice(
   0,
   4,
 );
-
 const REMAINING_PROJECTS_COUNT = PROJECTS.length - PRIMARY_PROJECTS.length;
 
 // ---- sections ----
-export const sections = {
+export const PROJECTS_SECTION_DATA = {
   projectsHeadingId: "projects-heading",
 
   headerSection: {
+    id: "projects",
     title: "Projects",
   },
 
@@ -92,14 +92,14 @@ export const sections = {
 };
 
 // ---- meta data ----
-export const metaData = {
+export const PROJECTS_META_DATA = {
   title: "Projects",
   description:
     "Explore projects I've built across frontend development, software engineering, and digital experiences.",
 };
 
 // ---- page ----
-export const page = {
+export const PROJECTS_PAGE_DATA = {
   headerPage: {
     title: "Projects",
     description:

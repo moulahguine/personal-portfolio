@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 import { Link as RACLink } from "react-aria-components";
-import { Actions } from "@/components";
+import { ActionsButton } from "@/components";
 import type { LinkProps } from "@/types";
 
 function isInternalHref(href: string) {
@@ -31,7 +31,7 @@ export default function Link({
     isInternalHref(href) && download === undefined && !isDisabled;
 
   return (
-    <Actions
+    <ActionsButton
       as="link"
       icon={icon}
       label={label}
@@ -67,6 +67,6 @@ export default function Link({
       )}
     >
       {children}
-    </Actions>
+    </ActionsButton>
   );
 }

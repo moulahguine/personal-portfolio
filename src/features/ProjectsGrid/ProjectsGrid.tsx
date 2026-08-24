@@ -1,7 +1,11 @@
 import { Link } from "@/components";
 import Image from "next/image";
 import type { Project } from "@/data";
-import { projectsPage, projectsSections, getProjectActions } from "@/data";
+import {
+  PROJECTS_PAGE_DATA,
+  PROJECTS_SECTION_DATA,
+  getProjectActions,
+} from "@/data";
 
 import styles from "./ProjectsGrid.module.scss";
 
@@ -13,8 +17,8 @@ interface ProjectsGridProps {
 }
 
 // ---- projects data ----
-const { primaryProjects } = projectsSections;
-const { projects: projectsData } = projectsPage;
+const { primaryProjects } = PROJECTS_SECTION_DATA;
+const { projects: projectsData } = PROJECTS_PAGE_DATA;
 
 // ---- projects grid ----
 export default function ProjectsGrid({

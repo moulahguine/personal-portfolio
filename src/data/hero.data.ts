@@ -1,31 +1,11 @@
-import {
-  FaLinkedin,
-  FaGithub,
-  FaEnvelope,
-  FaCheckCircle,
-  FaMapMarkerAlt,
-  FaLink,
-} from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
-import type { IconType } from "react-icons";
+import { FaCheckCircle, FaLink, FaMapMarkerAlt } from "react-icons/fa";
 
 import profilePhotoSrc from "@/assets/images/profilePicture/profilePicture.png";
 
-// ---- social links ----
-export type SocialLinkId = "linkedin" | "github" | "email";
-
-export interface SocialLink {
-  id: SocialLinkId;
-  label: string;
-  href: string;
-  external: boolean;
-  icon: IconType;
-}
-
 export const HERO_DATA = {
-  headingId: "hero-heading",
   profilePhotoSrc: profilePhotoSrc,
-  shareIcon: FaLink,
+  connectIcon: FaLink,
 
   profileInfo: {
     name: "Mohamed Oulahguine",
@@ -36,30 +16,6 @@ export const HERO_DATA = {
     badgeIcon: FaCheckCircle,
     locationIcon: FaMapMarkerAlt,
   },
-
-  socialLinks: [
-    {
-      id: "linkedin",
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/moulahguine",
-      external: true,
-      icon: FaLinkedin,
-    },
-    {
-      id: "github",
-      label: "GitHub",
-      href: "https://github.com/moulahguine",
-      external: true,
-      icon: FaGithub,
-    },
-    {
-      id: "email",
-      label: "Email",
-      href: "mailto:hello@mohamedoulahguine.com",
-      external: false,
-      icon: FaEnvelope,
-    },
-  ] satisfies SocialLink[],
 
   resume: {
     downloadIcon: FiDownload,

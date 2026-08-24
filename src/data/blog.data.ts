@@ -13,11 +13,12 @@ const PRIMARY_BLOGS = BLOGS.slice(0, 3);
 const REMAINING_BLOGS_COUNT = BLOGS.length - PRIMARY_BLOGS.length;
 
 // ---- sections ----
-export const sections = {
+export const BLOG_SECTION_DATA = {
   blogsHeadingId: "blogs-heading",
 
   headerSection: {
-    title: "Blog",
+    id: "blogs",
+    title: "Blogs",
   },
 
   primaryBlogs: PRIMARY_BLOGS,
@@ -25,16 +26,16 @@ export const sections = {
 };
 
 // ---- meta data ----
-export const metaData = {
-  title: "Blog",
+export const BLOG_META_DATA = {
+  title: "Blogs",
   description:
     "Notes, lessons, and things I've learned while building software and growing as a developer.",
 };
 
 // ---- page ----
-export const page = {
+export const BLOG_PAGE_DATA = {
   headerPage: {
-    title: "Blog",
+    title: "Blogs",
     description:
       "Notes, lessons, and things I've learned while building software and growing as a developer.",
   },

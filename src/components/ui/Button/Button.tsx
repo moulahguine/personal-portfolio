@@ -1,7 +1,7 @@
 "use client";
 
 import { Button as RACButton } from "react-aria-components";
-import { Actions } from "@/components";
+import { ActionsButton } from "@/components";
 import type { ButtonProps } from "@/types";
 
 export default function Button({
@@ -18,7 +18,7 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   return (
-    <Actions
+    <ActionsButton
       icon={icon}
       label={label}
       variant={variant}
@@ -34,6 +34,6 @@ export default function Button({
       )}
     >
       {children}
-    </Actions>
+    </ActionsButton>
   );
 }

@@ -1,32 +1,51 @@
-import { ABOUT_METADATA, ABOUT_PAGE_DATA } from "@/data";
-import { HeaderPage } from "@/components";
+import type { MDXComponents } from "mdx/types";
+import { ABOUT_METADATA, ABOUT_PAGE_HEADER, ROUTES } from "@/data";
+import { HeaderPage, Link } from "@/components";
 import { createPageMetadata } from "@/lib";
+import AboutContent from "./about.mdx";
 
-import AboutContentItem from "./AboutContentItem";
 import styles from "./page.module.scss";
 
-export const metadata = createPageMetadata("/about", ABOUT_METADATA);
+export const metadata = createPageMetadata(ROUTES.about.href, ABOUT_METADATA);
 
+// ------ MDX components ------
+const aboutComponents = {
+  h2: ({ children }) => (
+    <h2 className={styles["page__about-section--title"]}>{children}</h2>
+  ),
+  p: ({ children }) => (
+    <p className={styles["page__about-paragraph"]}>{children}</p>
+  ),
+  blockquote: (props) => (
+    <blockquote {...props} className={styles["page__about-paragraph--quote"]} />
+  ),
+  a: ({ href, children, ...props }) => {
+    const isExternal = href?.startsWith("http");
+
+    return (
+      <Link
+        href={href}
+        className={styles["page__about-link"]}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        {...props}
+      >
+        {children}
+      </Link>
+    );
+  },
+} satisfies MDXComponents;
+
+// ------ about page ------
 export default function AboutPage() {
-  const {
-    header: { title, description },
-    sections,
-  } = ABOUT_PAGE_DATA;
+  const { title, description } = ABOUT_PAGE_HEADER;
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page__about}>
       <HeaderPage title={title} description={description} />
 
-      <main id="main-content" className={styles.page__container}>
-        {sections.map((section) => (
-          <section key={section.id} className={styles.page__section}>
-            <h2 className={styles.page__sectionTitle}>{section.title}</h2>
-
-            {section.content.map((item, index) => (
-              <AboutContentItem key={index} item={item} />
-            ))}
-          </section>
-        ))}
+      <main id="main-content" className={styles["page__about-container"]}>
+        <AboutContent components={aboutComponents} />
       </main>
     </div>
   );

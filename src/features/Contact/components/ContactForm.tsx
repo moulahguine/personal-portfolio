@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components";
-import { contactForm } from "@/data";
+import { CONTACT_FORM_DATA } from "@/data";
 import { Controller } from "react-hook-form";
 import {
   FieldError,
@@ -47,7 +47,7 @@ function ContactField({
 }
 
 export default function ContactForm() {
-  const { checkIcon: CheckIcon, submitIcon: SubmitIcon } = contactForm;
+  const { checkIcon: CheckIcon, submitIcon: SubmitIcon } = CONTACT_FORM_DATA;
 
   const {
     formRef,
@@ -254,7 +254,9 @@ export default function ContactForm() {
         iconPosition="left"
         isDisabled={isSubmitting}
       >
-        {isSubmitting ? contactForm.sendingLabel : contactForm.submitLabel}
+        {isSubmitting
+          ? CONTACT_FORM_DATA.sendingLabel
+          : CONTACT_FORM_DATA.submitLabel}
       </Button>
     </Form>
   );

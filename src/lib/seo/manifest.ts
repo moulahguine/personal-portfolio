@@ -1,3 +1,4 @@
+import { ROUTES, type RouteId } from "@/data";
 import {
   OPEN_GRAPH_IMAGE,
   PWA_BACKGROUND_COLOR,
@@ -10,15 +11,49 @@ import {
   SITE_SHORT_NAME,
 } from "./site";
 
+const MANIFEST_SHORTCUTS: {
+  id: RouteId;
+  name: string;
+  description: string;
+}[] = [
+  {
+    id: "about",
+    name: "About Me",
+    description:
+      "Read my story, from hardware tinkering to software development",
+  },
+  {
+    id: "skills",
+    name: ROUTES.skills.label,
+    description: "My skills and technologies I use",
+  },
+  {
+    id: "projects",
+    name: ROUTES.projects.label,
+    description:
+      "Browse my Next.js and TypeScript projects with live demos and code",
+  },
+  {
+    id: "blogs",
+    name: ROUTES.blogs.label,
+    description: "Articles and notes on software development",
+  },
+  {
+    id: "contact",
+    name: ROUTES.contact.label,
+    description: "Get in touch for collaborations or opportunities.",
+  },
+];
+
 export function getManifest() {
   return {
-    id: "/",
+    id: ROUTES.home.href,
     name: SITE_NAME,
     short_name: SITE_SHORT_NAME,
     description: SITE_DEFAULT_DESCRIPTION,
     lang: "en",
     dir: "ltr",
-    start_url: "/?source=pwa",
+    start_url: `${ROUTES.home.href}?source=pwa`,
     scope: "/",
     display: "standalone",
     orientation: "portrait",
@@ -40,75 +75,19 @@ export function getManifest() {
         purpose: "any maskable",
       },
     ],
-    shortcuts: [
-      {
-        name: "About Me",
-        short_name: "About",
-        description:
-          "Read my story, from hardware tinkering to software development",
-        url: "/about",
-        icons: [
-          {
-            src: PWA_ICON_192,
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-      },
-      {
-        name: "Skills",
-        short_name: "Skills",
-        description: "My skills and technologies I use",
-        url: "/skills",
-        icons: [
-          {
-            src: PWA_ICON_192,
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-      },
-      {
-        name: "Projects",
-        short_name: "Projects",
-        description:
-          "Browse my Next.js and TypeScript projects with live demos and code",
-        url: "/projects",
-        icons: [
-          {
-            src: PWA_ICON_192,
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-      },
-      {
-        name: "Blog",
-        short_name: "Blog",
-        description: "Articles and notes on software development",
-        url: "/blog",
-        icons: [
-          {
-            src: PWA_ICON_192,
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-      },
-      {
-        name: "Contact",
-        short_name: "Contact",
-        description: "Get in touch for collaborations or opportunities.",
-        url: "/contact",
-        icons: [
-          {
-            src: PWA_ICON_192,
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-      },
-    ],
+    shortcuts: MANIFEST_SHORTCUTS.map(({ id, name, description }) => ({
+      name,
+      short_name: ROUTES[id].label,
+      description,
+      url: ROUTES[id].href,
+      icons: [
+        {
+          src: PWA_ICON_192,
+          sizes: "192x192",
+          type: "image/png",
+        },
+      ],
+    })),
     screenshots: [
       {
         src: OPEN_GRAPH_IMAGE.url,

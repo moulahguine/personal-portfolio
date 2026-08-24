@@ -1,41 +1,70 @@
-export { NAV_ITEMS } from "./navigation.data";
+// ===== navigation data & types =====
+export {
+  NAV_ITEMS,
+  ROUTES,
+  getRouteHref,
+  getRouteLabel,
+  type NavItem,
+  type RouteId,
+} from "./navigation.data";
+
+// ===== hero data =====
 export { HERO_DATA } from "./hero.data";
+
+// ===== social links data & types =====
+export {
+  SOCIAL_LINKS,
+  type SocialLink,
+  type SocialLinkId,
+} from "./social-links.data";
+
+// ===== about data =====
 export {
   ABOUT_SECTION_DATA,
   ABOUT_METADATA,
-  ABOUT_PAGE_DATA,
+  ABOUT_PAGE_HEADER,
 } from "./about.data";
-export type {
-  AboutContentItem,
-  AboutContentPart,
-  AboutPageData,
-} from "./about.data";
+
+// ===== skills data & types =====
 export {
-  contactForm,
-  metaData as contactMetaData,
-  page as contactPage,
-  sections as contactSections,
-} from "./contact.data";
+  SKILLS_SECTION_DATA,
+  SKILLS_META_DATA,
+  SKILLS_PAGE_DATA,
+  type Skill,
+} from "./skills.data";
+
+// ===== projects data & types =====
 export {
-  sections as blogSections,
-  metaData as blogMetaData,
-  page as blogPage,
-} from "./blog.data";
-export type { Blog } from "./blog.data";
-export { experience } from "./experience.data";
-export type {
-  ExperienceData,
-  ExperienceEntry,
-  ExperienceItems,
-  ExperiencePeriod,
-} from "./experience.data";
-export { sections, metaData, page } from "./skills.data";
-export type { Skill } from "./skills.data";
-export {
-  sections as projectsSections,
-  metaData as projectsMetaData,
-  page as projectsPage,
+  PROJECTS_SECTION_DATA,
+  PROJECTS_META_DATA,
+  PROJECTS_PAGE_DATA,
   getProjectActions,
   getProjectsBySkillId,
+  type Project,
+  type ProjectAction,
 } from "./projects.data";
-export type { Project, ProjectAction } from "./projects.data";
+
+// ===== experience data & types =====
+export {
+  EXPERIENCE_DATA,
+  type ExperienceData,
+  type ExperienceEntry,
+  type ExperienceItems,
+  type ExperiencePeriod,
+} from "./experience.data";
+
+// ===== blog data & types =====
+export {
+  BLOG_SECTION_DATA,
+  BLOG_META_DATA,
+  BLOG_PAGE_DATA,
+  type Blog,
+} from "./blog.data";
+
+// ===== contact data & types =====
+export {
+  CONTACT_FORM_DATA,
+  CONTACT_META_DATA,
+  CONTACT_PAGE_DATA,
+  CONTACT_SECTION_DATA,
+} from "./contact.data";

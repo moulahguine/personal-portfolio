@@ -1,22 +1,23 @@
+import { ROUTES, type RouteId } from "@/data";
 import { isNetlifyPreview, SITE_URL } from "./site";
 
-const staticRoutes = [
-  { path: "/", priority: 1.0 },
-  { path: "/about", priority: 0.8 },
-  { path: "/projects", priority: 0.8 },
-  { path: "/skills", priority: 0.7 },
-  { path: "/blog", priority: 0.8 },
-  { path: "/contact", priority: 0.8 },
-] as const;
+const SITEMAP_PRIORITIES: Record<RouteId, number> = {
+  home: 1.0,
+  about: 0.8,
+  projects: 0.8,
+  skills: 0.7,
+  blogs: 0.8,
+  contact: 0.8,
+};
 
 export function getSitemap() {
   if (isNetlifyPreview) {
     return [];
   }
 
-  return staticRoutes.map(({ path, priority }) => ({
-    url: `${SITE_URL}${path}`,
+  return (Object.keys(SITEMAP_PRIORITIES) as RouteId[]).map((id) => ({
+    url: `${SITE_URL}${ROUTES[id].href}`,
     changeFrequency: "monthly" as const,
-    priority,
+    priority: SITEMAP_PRIORITIES[id],
   }));
 }

@@ -3,7 +3,7 @@ import { FiSend } from "react-icons/fi";
 
 import type { ContactFormConfig } from "@/features/Contact/contact.types";
 
-export const contactForm: ContactFormConfig = {
+export const CONTACT_FORM_DATA: ContactFormConfig = {
   checkIcon: FaCheck,
   submitIcon: FiSend,
   submitLabel: "Send message",
@@ -13,20 +13,21 @@ export const contactForm: ContactFormConfig = {
   notConfiguredMessage: "Contact form is not configured yet.",
 };
 
-export const sections = {
+export const CONTACT_SECTION_DATA = {
   contactHeadingId: "contact-heading",
 
   headerSection: {
+    id: "contact",
     title: "Contact",
   },
 };
 
-export const metaData = {
+export const CONTACT_META_DATA = {
   title: "Contact",
   description: "Get in touch about work, collaboration, or a project idea.",
 };
 
-export const page = {
+export const CONTACT_PAGE_DATA = {
   headerPage: {
     title: "Hire Me",
     description:

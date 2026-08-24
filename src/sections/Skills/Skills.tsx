@@ -1,27 +1,31 @@
 import { HeaderSection } from "@/components";
 import { SkillsGrid } from "@/features";
-import { sections } from "@/data";
+import { ROUTES, SKILLS_SECTION_DATA } from "@/data";
 
 import styles from "./Skills.module.scss";
 
 // ---- skills ----
 export default function Skills() {
-  const { skillsHeadingId, headerSection, remainingSkillsCount } = sections;
+  const {
+    skillsHeadingId,
+    headerSection: { id, title },
+    remainingSkillsCount,
+  } = SKILLS_SECTION_DATA;
 
   return (
     <section
       className={styles.skills}
-      id="skills"
+      id={id}
       aria-labelledby={skillsHeadingId}
     >
       <div className={styles.skills__container}>
         <HeaderSection
-          title={headerSection.title}
+          title={title}
           id={skillsHeadingId}
           link={
             remainingSkillsCount > 0
               ? {
-                  href: "/skills",
+                  href: ROUTES.skills.href,
                   label: "View all skills",
                   ariaLabel:
                     "These are some of my featured skills. To explore my complete tech stack, visit the Skills page.",

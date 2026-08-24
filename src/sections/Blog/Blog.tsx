@@ -1,27 +1,27 @@
 import { HeaderSection } from "@/components";
 import { BlogsGrid } from "@/features";
-import { blogSections } from "@/data";
+import { BLOG_SECTION_DATA, ROUTES } from "@/data";
 
 import styles from "./Blog.module.scss";
 
 // ---- blog ----
 export default function Blog() {
-  const { blogsHeadingId, headerSection, remainingBlogsCount } = blogSections;
+  const {
+    blogsHeadingId,
+    headerSection: { id, title },
+    remainingBlogsCount,
+  } = BLOG_SECTION_DATA;
 
   return (
-    <section
-      className={styles.blog}
-      id="blog"
-      aria-labelledby={blogsHeadingId}
-    >
+    <section className={styles.blog} id={id} aria-labelledby={blogsHeadingId}>
       <div className={styles.blog__container}>
         <HeaderSection
-          title={headerSection.title}
+          title={title}
           id={blogsHeadingId}
           link={
             remainingBlogsCount > 0
               ? {
-                  href: "/blog",
+                  href: ROUTES.blogs.href,
                   label: "View all posts",
                   ariaLabel: `View all posts, ${remainingBlogsCount} more`,
                 }

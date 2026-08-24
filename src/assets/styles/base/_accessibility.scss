@@ -32,7 +32,7 @@ abbr:focus-visible,
     position: fixed;
     top: $space-8;
     left: $space-8;
-    z-index: 1000;
+    z-index: $z-menu;
     width: auto;
     height: auto;
     padding: $space-8 $space-12;

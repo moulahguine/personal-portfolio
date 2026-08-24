@@ -30,15 +30,17 @@ export interface ExperienceItems {
 export interface ExperienceData {
   headingId: string;
   headerSection: {
+    id: string;
     title: string;
   };
   items: ExperienceItems;
 }
 
-export const experience = {
+export const EXPERIENCE_DATA = {
   headingId: "experience-heading",
 
   headerSection: {
+    id: "experience",
     title: "Experience",
   },
 

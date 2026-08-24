@@ -31,13 +31,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background: linear-gradient(
-      150deg,
-      var(--primary) 0%,
-      var(--primary-soft) 60%
-    );
-    background-size: 200% 200%;
-    animation: hero-map-gradient 3s ease-in-out infinite alternate-reverse;
+    background-color: var(--image-background);
   }
 
   // ---- content ----
@@ -56,7 +50,7 @@
   // ---- avatar ----
   &__avatar {
     // ---- image ----
-    &-image {
+    &-media {
       all: unset;
       border-radius: 50%;
       width: clamp(150px, 18vw, 200px);
@@ -108,20 +102,20 @@
       @include down(md) {
         font-size: clamp($font-size-18, 5vw, $font-size-28);
       }
-    }
 
-    // ---- icon ----
-    &-icon {
-      @include flex-center;
-      width: clamp(16px, 2vw, 20px);
-      height: clamp(16px, 2vw, 20px);
-      overflow: hidden;
-    }
+      // ---- icon ----
+      &--icon {
+        @include flex-center;
+        width: clamp(16px, 2vw, 20px);
+        height: clamp(16px, 2vw, 20px);
+        overflow: hidden;
 
-    // ---- badge ----
-    &-icon__badge {
-      font-size: clamp($font-size-16, 1.6vw, $font-size-18);
-      color: var(--text-primary);
+        // ---- badge ----
+        &---badge {
+          font-size: clamp($font-size-16, 1.6vw, $font-size-18);
+          color: var(--text-primary);
+        }
+      }
     }
 
     // ---- role ----
@@ -133,11 +127,11 @@
       @include down(md) {
         text-align: center;
       }
-    }
 
-    // ---- separator ----
-    &-separator {
-      margin-inline: $space-4;
+      // ---- separator ----
+      &--separator {
+        margin-inline: $space-4;
+      }
     }
 
     // ---- location ----
@@ -147,20 +141,16 @@
       gap: $space-4;
       font-family: $font-secondary;
       font-size: clamp($font-size-14, 1.6vw, $font-size-16);
-      font-weight: $fw-regular;
-      color: var(--text-secondary);
+      font-weight: $fw-medium;
+      color: var(--text-tertiary);
 
-      .hero__info-icon {
+      &--icon {
         width: fit-content;
         height: fit-content;
+        font-size: clamp($font-size-14, 1.6vw, $font-size-16);
+        color: var(--primary);
+        filter: drop-shadow(1px 0px 1px var(--text-tertiary));
       }
-    }
-
-    // ---- location icon ----
-    &-icon__location {
-      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
-      color: var(--primary);
-      filter: drop-shadow(1px 0px 0px var(--shadow-color));
     }
   }
 
@@ -174,51 +164,44 @@
       margin-top: $space-20;
       width: 100%;
     }
-  }
 
-  &__resume-link {
-    @include down(md) {
-      flex-grow: 1;
-    }
-  }
-
-  &__share-trigger {
-    &[data-pressed] {
-      transform: none;
+    &-resume {
+      @include down(md) {
+        flex-grow: 1;
+      }
     }
 
-    &-icon {
-      font-size: clamp($font-size-16, 1.7vw, $font-size-18);
+    &-connect {
+      &--trigger {
+        &[data-pressed] {
+          transform: none;
+        }
+
+        &---icon {
+          font-size: clamp($font-size-16, 1.7vw, $font-size-18);
+        }
+      }
+
+      &--menu {
+        width: 250px;
+        padding: 0;
+        margin: 0;
+        box-shadow: 0 0 5px 0 var(--shadow-color);
+        border: none;
+        border-radius: 0;
+
+        &---item {
+          @include flex-center;
+          justify-content: flex-start;
+          gap: $space-10;
+          padding: $space-12;
+          background-color: var(--background);
+          color: var(--text-secondary);
+          font-weight: $fw-bold;
+          font-size: clamp($font-size-16, 1.7vw, $font-size-18);
+          border-radius: 0;
+        }
+      }
     }
-  }
-
-  &__share-menu {
-    width: clamp(80px, 10vw, 130px);
-    padding: 0;
-    margin: 0;
-    box-shadow: 0 0 5px 0 var(--shadow-color);
-    border: none;
-    border-radius: 0;
-
-    &-item {
-      @include flex-center;
-      justify-content: flex-start;
-      gap: $space-4;
-      padding: $space-12;
-      background-color: var(--background);
-      color: var(--text-secondary);
-      font-size: clamp($font-size-16, 1.7vw, $font-size-18);
-      border-radius: 0;
-    }
-  }
-}
-
-@keyframes hero-map-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 100% 50%;
   }
 }

@@ -27,6 +27,7 @@ import {
   SiVite,
   SiWebpack,
   SiZod,
+  SiMdx,
 } from "react-icons/si";
 import {
   TbSeo,
@@ -149,6 +150,17 @@ const SKILLS: Skill[] = [
     isPrimary: true,
     overview:
       "Next.js is my main framework for building complete React applications. I use it when a project needs more than a client-side UI, particularly for routing, server-side capabilities, metadata, SEO, data handling, and performance. I'm interested in understanding where code should run and choosing between server and client functionality deliberately instead of making everything a Client Component by default.",
+  },
+  {
+    id: "mdx",
+    name: "MDX",
+    description:
+      "A format that lets you write JSX inside Markdown for content-rich pages.",
+    icon: SiMdx,
+    color: "#F9AC00",
+    isPrimary: false,
+    overview:
+      "MDX lets me keep written content in Markdown while still using React components where they actually add value, such as images, links, or interactive elements. I use it with Next.js through the official @next/mdx setup when a page is mostly prose but still needs the flexibility of components. I prefer this over building custom content objects and renderers, because MDX already gives me a clear separation between page structure, styling, and the content itself.",
   },
   {
     id: "astro",
@@ -449,7 +461,7 @@ const PRIMARY_SKILLS = SKILLS.filter((skill) => skill.isPrimary);
 const REMAINING_SKILLS_COUNT = SKILLS.length - PRIMARY_SKILLS.length;
 
 // ---- sections ----
-export const sections = {
+export const SKILLS_SECTION_DATA = {
   skillsHeadingId: "skills-heading",
 
   headerSection: {
@@ -459,18 +471,17 @@ export const sections = {
 
   primarySkills: PRIMARY_SKILLS,
   remainingSkillsCount: REMAINING_SKILLS_COUNT,
-  allSkillsCount: SKILLS.length,
 };
 
 // ---- meta data ----
-export const metaData = {
+export const SKILLS_META_DATA = {
   title: "Skills",
   description:
     "Here you'll find the technologies I work with regularly. I’ve left out the ones I rarely use and the ones I’m still learning.",
 };
 
 // ---- page ----
-export const page = {
+export const SKILLS_PAGE_DATA = {
   headerPage: {
     title: "Skills",
     description:

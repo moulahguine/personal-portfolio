@@ -1,4 +1,4 @@
-import { blogPage, blogSections } from "@/data";
+import { BLOG_PAGE_DATA, BLOG_SECTION_DATA } from "@/data";
 
 import styles from "./BlogsGrid.module.scss";
 
@@ -8,8 +8,8 @@ interface BlogsGridProps {
   variant?: BlogsGridVariant;
 }
 
-const { primaryBlogs } = blogSections;
-const { blogs: blogsData } = blogPage;
+const { primaryBlogs } = BLOG_SECTION_DATA;
+const { blogs: blogsData } = BLOG_PAGE_DATA;
 
 // ---- blogs grid ----
 export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {

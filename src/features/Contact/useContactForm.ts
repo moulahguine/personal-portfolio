@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { addToast } from "@/utils";
-import { contactForm } from "@/data";
+import { CONTACT_FORM_DATA } from "@/data";
 import { contactSchema, type ContactFormData } from "./contact.schema";
 import type { ContactFieldName } from "./contact.types";
 
@@ -67,7 +67,7 @@ export function useContactForm() {
         });
 
         if (response.status === 503) {
-          addToast(contactForm.notConfiguredMessage, "error");
+          addToast(CONTACT_FORM_DATA.notConfiguredMessage, "error");
           return;
         }
 
@@ -77,9 +77,9 @@ export function useContactForm() {
 
         reset(INITIAL_VALUES);
         formRef.current?.reset();
-        addToast(contactForm.successMessage, "success");
+        addToast(CONTACT_FORM_DATA.successMessage, "success");
       } catch {
-        addToast(contactForm.errorMessage, "error");
+        addToast(CONTACT_FORM_DATA.errorMessage, "error");
       }
     },
     (fieldErrors) => {

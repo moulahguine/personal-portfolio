@@ -13,8 +13,8 @@ html {
 body {
   min-height: 100vh;
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -49,11 +49,11 @@ body {
   }
 
   ::view-transition-old(root) {
-    animation-duration: 600ms;
+    animation-duration: 500ms;
   }
 
   ::view-transition-new(root) {
-    animation: circle-in 600ms linear;
+    animation: circle-in 500ms linear;
   }
 
   @keyframes circle-in {

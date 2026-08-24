@@ -5,7 +5,7 @@ import { Tooltip, TooltipTrigger } from "@/components";
 import { getActionsKind } from "@/types";
 import type { ActionsProps } from "@/types";
 
-import styles from "./Actions.module.scss";
+import styles from "./ActionsButton.module.scss";
 
 type Props = ActionsProps & {
   className?: string;

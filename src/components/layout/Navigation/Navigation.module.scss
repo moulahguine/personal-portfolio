@@ -28,6 +28,10 @@
       inset: 0;
       z-index: -1;
       background-color: var(--primary-on);
+
+      @include down(md) {
+        display: none;
+      }
     }
   }
 
@@ -35,15 +39,15 @@
   &__link {
     width: 100%;
     justify-self: center;
-    color: var(--primary-on);
+    color: var(--primary-on) !important;
 
     @include button-hover {
-      background-color: transparent;
+      background-color: transparent !important;
     }
 
     &[data-pressed] {
-      transform: none;
-      background-color: transparent;
+      transform: none !important;
+      background-color: transparent !important;
     }
 
     // ---- active ----

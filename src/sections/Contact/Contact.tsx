@@ -1,20 +1,23 @@
 import { HeaderSection } from "@/components";
-import { contactSections } from "@/data";
+import { CONTACT_SECTION_DATA } from "@/data";
 import { Contact as ContactFeature } from "@/features";
 
 import styles from "./Contact.module.scss";
 
 export default function Contact() {
-  const { contactHeadingId, headerSection } = contactSections;
+  const {
+    contactHeadingId,
+    headerSection: { id, title },
+  } = CONTACT_SECTION_DATA;
 
   return (
     <section
       className={styles.contact}
-      id="contact"
+      id={id}
       aria-labelledby={contactHeadingId}
     >
       <div className={styles.contact__container}>
-        <HeaderSection title={headerSection.title} id={contactHeadingId} />
+        <HeaderSection title={title} id={contactHeadingId} />
         <ContactFeature />
       </div>
     </section>

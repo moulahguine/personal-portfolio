@@ -1,41 +1,41 @@
 @use "../../assets/styles" as *;
 
-.page {
+.page__about {
   @include page;
 
-  &__container {
+  &-container {
     @include flex-column;
     @include container;
     gap: clamp($space-32, 4vw, $space-48);
     counter-reset: counter;
   }
 
-  &__section {
+  &-section {
     counter-increment: counter;
     padding-inline: clamp($space-4, 0.7vw, $space-8);
-  }
 
-  &__sectionTitle {
-    font-family: $font-primary;
-    font-size: clamp($font-size-20, 3vw, rem(30));
-    font-weight: $fw-bold;
-    line-height: $line-height-tight;
-    color: var(--text-primary);
-    margin-block: clamp($space-32, 4vw, $space-48)
-      clamp($space-16, 2.5vw, $space-24);
-    letter-spacing: -0.01em;
+    &--title {
+      font-family: $font-primary;
+      font-size: clamp($font-size-20, 3vw, rem(30));
+      font-weight: $fw-bold;
+      line-height: $line-height-tight;
+      color: var(--text-primary);
+      margin-block: clamp($space-32, 4vw, $space-48)
+        clamp($space-16, 2.5vw, $space-24);
+      letter-spacing: -0.01em;
 
-    // Counter
-    &::before {
-      content: counter(counter, decimal-leading-zero) "-";
-      font-family: $font-secondary;
-      background-color: var(--primary);
-      color: #000;
+      // Counter style
+      &::before {
+        content: counter(counter, decimal-leading-zero) "-";
+        font-family: $font-secondary;
+        background-color: var(--primary);
+        color: #000;
+      }
     }
   }
 
   // Paragraph
-  &__paragraph {
+  &-paragraph {
     font-family: $font-primary;
     color: var(--text-secondary);
     font-size: clamp($font-size-16, 2vw, $font-size-20);
@@ -50,29 +50,38 @@
     @include down(md) {
       line-height: 1.6;
     }
-  }
 
-  &__quote {
-    font-style: italic;
-    margin-block: clamp($space-16, 2.5vw, $space-24);
-    margin-inline: 0;
-    padding-inline-start: clamp($space-16, 3vw, $space-24);
-    border-inline-start: 3px solid var(--primary-border);
+    &--quote {
+      font-style: italic;
+      margin-block: clamp($space-16, 2.5vw, $space-24);
+      margin-inline: 0;
+      padding-inline-start: clamp($space-16, 3vw, $space-24);
+      border-inline-start: 3px solid var(--primary-border);
 
-    p {
-      font-family: $font-primary;
-      font-size: clamp($font-size-14, 1.8vw, $font-size-16);
-      line-height: $line-height-relaxed;
-      color: var(--text-secondary);
-      margin: 0;
+      p {
+        font-family: $font-primary;
+        font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+        line-height: $line-height-relaxed;
+        font-weight: $fw-bold;
+        color: var(--text-secondary);
+        margin: 0;
 
-      &:not(:last-child) {
-        margin-block-end: $space-12;
+        &::before {
+          content: "\201C";
+        }
+
+        &::after {
+          content: "\201D";
+        }
+
+        &:not(:last-child) {
+          margin-block-end: $space-12;
+        }
       }
     }
   }
 
-  &__figure {
+  &-media {
     margin-block: clamp($space-24, 4vw, $space-32);
     max-width: 850px;
     aspect-ratio: 1.7;
@@ -94,16 +103,16 @@
     mask-composite: intersect;
     background-color: var(--image-background);
     overflow: hidden;
+
+    &--img {
+      @include cover-image;
+      object-position: bottom;
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    @include cover-image;
-    object-position: bottom;
-  }
-
-  &__link {
+  &-link {
     display: inline;
     width: auto;
     white-space: normal;

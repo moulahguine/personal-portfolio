@@ -1,22 +1,20 @@
-import {
-  Button,
-  DialogTrigger,
-  HeaderSection,
-  Modal,
-} from "@/components";
+import { Button, DialogTrigger, HeaderSection, Modal } from "@/components";
 import { ProjectsGrid } from "@/features";
-import { sections, page, getProjectsBySkillId } from "@/data";
+import {
+  ROUTES,
+  SKILLS_SECTION_DATA,
+  SKILLS_PAGE_DATA,
+  getProjectsBySkillId,
+} from "@/data";
 
 import styles from "./SkillsGrid.module.scss";
 
-type SkillsGridVariant = "primary" | "all";
-
 interface SkillsGridProps {
-  variant?: SkillsGridVariant;
+  variant?: "primary" | "all";
 }
 
-const { primarySkills } = sections;
-const { skills: skillsData } = page;
+const { primarySkills } = SKILLS_SECTION_DATA;
+const { skills: skillsData } = SKILLS_PAGE_DATA;
 const SKILL_MODAL_MAX_PROJECTS = 2;
 
 // ---- skills grid ----
@@ -70,7 +68,7 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
                       link={
                         hasMoreProjects
                           ? {
-                              href: "/projects",
+                              href: ROUTES.projects.href,
                               label: "View all projects",
                             }
                           : undefined

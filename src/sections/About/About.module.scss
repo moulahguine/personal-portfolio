@@ -15,7 +15,7 @@
 
   &__paragraph {
     font-family: $font-primary;
-    font-size: clamp($font-size-14, 3vw, $font-size-18);
+    font-size: clamp($font-size-14, 2vw, $font-size-18);
     font-weight: 100;
     line-height: 2;
     color: var(--text-primary);
@@ -39,6 +39,7 @@
 
     @include down(sm) {
       letter-spacing: -0.022em;
+      line-height: 1.5;
 
       &::before {
         top: 2px;

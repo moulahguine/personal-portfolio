@@ -1,8 +1,8 @@
 import { About, Contact, Hero, Projects, Skills } from "@/sections";
-import { HERO_DATA } from "@/data";
+import { HERO_DATA, SOCIAL_LINKS } from "@/data";
 import { JsonLd, getPersonJsonLd, getWebSiteJsonLd } from "@/lib";
 
-const { profileInfo, socialLinks } = HERO_DATA;
+const { profileInfo } = HERO_DATA;
 
 export default function Home() {
   return (
@@ -14,9 +14,9 @@ export default function Home() {
             jobTitle: profileInfo.role,
             location: profileInfo.location,
             techStack: profileInfo.techStack,
-            sameAs: socialLinks
-              .filter((link) => link.external)
-              .map((link) => link.href),
+            sameAs: SOCIAL_LINKS.filter((link) => link.external).map(
+              (link) => link.href,
+            ),
           }),
           getWebSiteJsonLd(),
         ]}

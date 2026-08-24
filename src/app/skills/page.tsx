@@ -1,17 +1,17 @@
 import { HeaderPage } from "@/components";
 import { SkillsGrid } from "@/features";
-import { metaData, page } from "@/data";
+import { ROUTES, SKILLS_META_DATA, SKILLS_PAGE_DATA } from "@/data";
 import { createPageMetadata } from "@/lib";
 
 import styles from "./page.module.scss";
 
-export const metadata = createPageMetadata("/skills", metaData);
+export const metadata = createPageMetadata(ROUTES.skills.href, SKILLS_META_DATA);
 
 // ---- skills page ----
 export default function SkillsPage() {
   const {
     headerPage: { title, description },
-  } = page;
+  } = SKILLS_PAGE_DATA;
 
   return (
     <div className={styles.page}>

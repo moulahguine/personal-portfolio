@@ -9,7 +9,7 @@ export { generateMetadata } from "./metadata";
 
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "700"],
   variable: "--font-comic",
   display: "swap",
 });

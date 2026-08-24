@@ -7,12 +7,11 @@ import {
   DisclosureAccordionItem,
   DisclosureAccordionPanel,
 } from "@/components";
-import { experience } from "@/data";
-import type { ExperienceEntry } from "@/data";
+import { EXPERIENCE_DATA, type ExperienceEntry } from "@/data";
 
 import styles from "./ExperienceTimeline.module.scss";
 
-const { upwork, atlasUniversity, nisantasi } = experience.items;
+const { upwork, atlasUniversity, nisantasi } = EXPERIENCE_DATA.items;
 
 const entries: ExperienceEntry[] = [upwork, atlasUniversity, nisantasi];
 

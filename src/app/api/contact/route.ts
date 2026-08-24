@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { submitContactForm } from "@/features/Contact";
+import { submitContactForm } from "@/features";
 
 export async function POST(request: Request) {
   const formData = await request.formData();

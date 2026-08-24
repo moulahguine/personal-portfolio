@@ -1,0 +1,43 @@
+@use "../../../assets/styles" as *;
+
+.socialLinks {
+  display: flex;
+  gap: $space-12;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &--horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__link {
+    @include flex-center;
+    gap: $space-4;
+    text-decoration: none;
+    font-size: $font-size-20;
+    color: inherit;
+
+    @include button-hover {
+      color: var(--text-secondary) !important;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+  }
+
+  &__label {
+    line-height: $line-height-normal;
+  }
+}

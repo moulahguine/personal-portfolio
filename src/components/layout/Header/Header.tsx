@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo, Navigation, Menu, ThemeSelector } from "@/components";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 import styles from "./Header.module.scss";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 const MOBILE_NAV_ID = "mobile-navigation";
 
