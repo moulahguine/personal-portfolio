@@ -1,6 +1,7 @@
 import { HeaderPage } from "@/components";
 import { BlogsGrid } from "@/features";
-import { BLOG_META_DATA, BLOG_PAGE_DATA, ROUTES } from "@/data";
+import { ROUTES } from "@/data";
+import { BLOG_META_DATA, BLOG_PAGE_DATA } from "@/data/blog.data";
 import { createPageMetadata } from "@/lib";
 
 import styles from "./page.module.scss";

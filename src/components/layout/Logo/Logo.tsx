@@ -1,30 +1,27 @@
 import Image from "next/image";
 import { Link } from "@/components";
 import logoSrc from "@/assets/images/portfolioLogo/logo.png";
-import type { ClassNameProps } from "@/types";
 
 import styles from "./Logo.module.scss";
 
-export default function Logo({ className }: ClassNameProps) {
+export default function Logo() {
   return (
     <Link
       href="/"
       variant="plain"
       size="md"
-      className={`${styles.logo} ${className ?? ""}`.trim()}
+      className={styles.logo}
       aria-label="Home"
     >
       <Image
         src={logoSrc}
         alt=""
         aria-hidden="true"
-        width={100}
+        width={50}
         height={50}
-        sizes="(max-width: 768px) 50px, 50px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         preload
-        loading="eager"
         fetchPriority="high"
-        className={styles.logo__image}
       />
     </Link>
   );

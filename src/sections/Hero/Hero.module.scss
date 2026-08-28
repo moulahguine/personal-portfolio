@@ -139,17 +139,16 @@
       @include flex-center;
       justify-content: flex-start;
       gap: $space-4;
-      font-family: $font-secondary;
-      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
-      font-weight: $fw-medium;
-      color: var(--text-tertiary);
+      font-family: $font-primary;
+      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-weight: $fw-regular;
+      color: var(--text-secondary);
 
       &--icon {
-        width: fit-content;
-        height: fit-content;
-        font-size: clamp($font-size-14, 1.6vw, $font-size-16);
+        flex-shrink: 0;
+        font-size: inherit;
         color: var(--primary);
-        filter: drop-shadow(1px 0px 1px var(--text-tertiary));
+        filter: drop-shadow(0 0 1px var(--border));
       }
     }
   }
@@ -166,19 +165,20 @@
     }
 
     &-resume {
-      @include down(md) {
+      @include down(sm) {
         flex-grow: 1;
       }
     }
 
     &-connect {
       &--trigger {
+        padding: clamp($space-14, 1.5vw, $space-16) !important;
         &[data-pressed] {
           transform: none;
         }
 
         &---icon {
-          font-size: clamp($font-size-16, 1.7vw, $font-size-18);
+          font-size: clamp($font-size-16, 2vw, $font-size-18);
         }
       }
 

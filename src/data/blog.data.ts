@@ -1,16 +1,19 @@
-// ---- blog ----
+import { getBlogPosts } from "@/server/blog.server";
+
 export interface Blog {
   id: string;
+  slug: string;
   title: string;
   description: string;
   date: string;
+  dateTime: string;
 }
 
-// ---- blogs ----
-const BLOGS: Blog[] = [];
+const BLOGS = getBlogPosts();
 
 const PRIMARY_BLOGS = BLOGS.slice(0, 3);
-const REMAINING_BLOGS_COUNT = BLOGS.length - PRIMARY_BLOGS.length;
+
+const REMAINING_BLOGS_COUNT = Math.max(BLOGS.length - PRIMARY_BLOGS.length, 0);
 
 // ---- sections ----
 export const BLOG_SECTION_DATA = {

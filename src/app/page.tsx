@@ -1,4 +1,4 @@
-import { About, Contact, Hero, Projects, Skills } from "@/sections";
+import { Hero, About, Skills, Projects, Blog, Contact } from "@/sections";
 import { HERO_DATA, SOCIAL_LINKS } from "@/data";
 import { JsonLd, getPersonJsonLd, getWebSiteJsonLd } from "@/lib";
 
@@ -26,6 +26,7 @@ export default function Home() {
         <About />
         <Skills />
         <Projects />
+        <Blog />
         <Contact />
       </main>
     </>

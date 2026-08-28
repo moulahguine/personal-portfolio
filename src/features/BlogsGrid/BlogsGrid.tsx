@@ -1,4 +1,5 @@
-import { BLOG_PAGE_DATA, BLOG_SECTION_DATA } from "@/data";
+import { Link } from "@/components";
+import { BLOG_PAGE_DATA, BLOG_SECTION_DATA } from "@/data/blog.data";
 
 import styles from "./BlogsGrid.module.scss";
 
@@ -20,11 +21,20 @@ export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
       {blogs.length > 0 ? (
         blogs.map((blog) => (
           <li key={blog.id}>
-            <article className={styles.blogs__card}>
-              <time className={styles.blogs__date}>{blog.date}</time>
-              <h3 className={styles.blogs__title}>{blog.title}</h3>
-              <p className={styles.blogs__description}>{blog.description}</p>
-            </article>
+            <Link
+              href={`/blogs/${blog.slug}`}
+              variant="plain"
+              className={styles.blogs__card}
+              aria-label={`Read blog post: ${blog.title}`}
+            >
+              <article>
+                <time className={styles.blogs__date} dateTime={blog.dateTime}>
+                  {blog.date}
+                </time>
+                <h3 className={styles.blogs__title}>{blog.title}</h3>
+                <p className={styles.blogs__description}>{blog.description}</p>
+              </article>
+            </Link>
           </li>
         ))
       ) : (

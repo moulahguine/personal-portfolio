@@ -3,17 +3,9 @@
 // ---- logo ----
 .logo {
   flex-shrink: 0;
-  max-width: calc(50px + clamp(0px, 1vw, $space-8) * 2);
-  padding: 0;
   overflow: hidden;
-  padding-inline: clamp(0px, 1vw, $space-8);
-
-  &__image {
-    display: block;
-    object-fit: contain;
-  }
 
   &[data-pressed] {
-    transform: none;
+    transform: none !important;
   }
 }

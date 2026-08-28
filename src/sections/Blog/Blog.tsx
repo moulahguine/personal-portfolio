@@ -1,6 +1,7 @@
 import { HeaderSection } from "@/components";
 import { BlogsGrid } from "@/features";
-import { BLOG_SECTION_DATA, ROUTES } from "@/data";
+import { BLOG_SECTION_DATA } from "@/data/blog.data";
+import { ROUTES } from "@/data";
 
 import styles from "./Blog.module.scss";
 

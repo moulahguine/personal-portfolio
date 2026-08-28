@@ -16,10 +16,10 @@
   &__paragraph {
     font-family: $font-primary;
     font-size: clamp($font-size-14, 2vw, $font-size-18);
-    font-weight: 100;
+    font-weight: $fw-regular;
     line-height: 2;
     color: var(--text-primary);
-    max-width: 75ch;
+    max-width: 73ch;
     margin-inline: auto;
     text-indent: $space-24;
     position: relative;
@@ -29,7 +29,7 @@
     &::before {
       content: "";
       position: absolute;
-      top: 0;
+      top: 2px;
       left: 0;
       width: clamp(2px, 0.5vw, 4px);
       height: clamp(20px, 3vw, 30px);
@@ -39,11 +39,7 @@
 
     @include down(sm) {
       letter-spacing: -0.022em;
-      line-height: 1.5;
-
-      &::before {
-        top: 2px;
-      }
+      word-wrap: pretty;
     }
   }
 }

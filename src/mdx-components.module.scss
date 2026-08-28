@@ -1,0 +1,145 @@
+@use "./assets/styles" as *;
+
+.mdx {
+  &__section {
+    padding-inline: clamp($space-4, 0.7vw, $space-8);
+  }
+
+  &__heading {
+    counter-increment: counter;
+
+    &::before {
+      content: counter(counter, decimal-leading-zero) "-";
+      font-family: $font-secondary;
+      background-color: var(--primary);
+      color: #000;
+      display: inline-block;
+      margin-inline-end: 0.15em;
+    }
+
+    font-family: $font-primary;
+    font-size: clamp($font-size-20, 3vw, rem(30));
+    font-weight: $fw-bold;
+    line-height: $line-height-tight;
+    color: var(--text-primary);
+    margin-block: clamp($space-32, 4vw, $space-48)
+      clamp($space-16, 2.5vw, $space-24);
+    letter-spacing: -0.01em;
+  }
+
+  &__paragraph {
+    font-family: $font-primary;
+    color: var(--text-secondary);
+    font-size: clamp($font-size-16, 2vw, $font-size-20);
+    font-weight: $fw-regular;
+    line-height: 2;
+    margin-block-end: clamp($space-12, 2vw, $space-18);
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+
+    @include down(md) {
+      line-height: 1.6;
+    }
+  }
+
+  &__quote {
+    font-style: italic;
+    margin-block: clamp($space-16, 2.5vw, $space-24);
+    margin-inline: 0;
+    padding-inline-start: clamp($space-16, 3vw, $space-24);
+    border-inline-start: 3px solid var(--primary-border);
+
+    p {
+      font-family: $font-primary;
+      font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+      line-height: $line-height-relaxed;
+      font-weight: $fw-bold;
+      color: var(--text-secondary);
+      margin: 0;
+
+      &::before {
+        content: "\201C";
+      }
+
+      &::after {
+        content: "\201D";
+      }
+
+      &:not(:last-child) {
+        margin-block-end: $space-12;
+      }
+    }
+  }
+
+  &__link {
+    display: inline;
+    width: auto;
+    white-space: normal;
+    vertical-align: baseline;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    color: inherit;
+
+    @include button-hover {
+      color: var(--text-primary);
+    }
+  }
+
+  &__pre {
+    margin-block: clamp($space-16, 2.5vw, $space-24);
+    padding: clamp($space-12, 2vw, $space-16);
+    overflow-x: auto;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  &__code {
+    font-family: $font-secondary;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    line-height: $line-height-relaxed;
+    color: var(--text-secondary);
+    white-space: pre;
+  }
+
+  &__code-inline {
+    font-family: $font-secondary;
+    font-size: 0.9em;
+    color: var(--text-primary);
+    background-color: var(--surface);
+    padding-inline: 0.25em;
+    border: 1px solid var(--border);
+  }
+
+  &__media {
+    margin-block: clamp($space-24, 4vw, $space-32);
+    max-width: 850px;
+    aspect-ratio: 1.7;
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+      );
+    mask-composite: intersect;
+    background-color: var(--image-background);
+    overflow: hidden;
+
+    &-img {
+      @include cover-image;
+      object-position: bottom;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

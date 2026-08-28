@@ -53,14 +53,6 @@ export {
   type ExperiencePeriod,
 } from "./experience.data";
 
-// ===== blog data & types =====
-export {
-  BLOG_SECTION_DATA,
-  BLOG_META_DATA,
-  BLOG_PAGE_DATA,
-  type Blog,
-} from "./blog.data";
-
 // ===== contact data & types =====
 export {
   CONTACT_FORM_DATA,
