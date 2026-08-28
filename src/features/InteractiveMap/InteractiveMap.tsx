@@ -15,10 +15,8 @@ const INTRO_ZOOM = 10;
 const TARGET_ZOOM = 13;
 const INTRO_DURATION = 1.2;
 
-const DARK_TILES =
-  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
-const LIGHT_TILES =
-  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+const DARK_TILES = "/api/map-tiles/dark_all/{z}/{x}/{y}{r}.png";
+const LIGHT_TILES = "/api/map-tiles/light_all/{z}/{x}/{y}{r}.png";
 
 // ---- map intro animation ----
 function MapIntroAnimation() {
