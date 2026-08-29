@@ -1,13 +1,9 @@
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
 import { Button } from "@/components";
+import { getResolvedThemeFromDocument } from "@/lib";
 
 import styles from "./ThemeSelector.module.scss";
-
-function getResolvedThemeFromDocument() {
-  const theme = document.documentElement.getAttribute("data-theme");
-  return theme === "light" ? "light" : "dark";
-}
 
 function runThemeTransition(update: () => void) {
   if (typeof document.startViewTransition === "function") {

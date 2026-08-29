@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import type { Project } from "@/data";
+import { useResolvedTheme } from "@/hooks";
 
 import styles from "./ProjectsGrid.module.scss";
 
@@ -11,9 +11,8 @@ interface ProjectImageProps {
 }
 
 export default function ProjectImage({ project }: ProjectImageProps) {
-  const { resolvedTheme } = useTheme();
-  const src =
-    resolvedTheme === "dark" ? project.images.dark : project.images.light;
+  const theme = useResolvedTheme();
+  const src = theme === "dark" ? project.images.dark : project.images.light;
 
   return (
     <figure className={styles["projects__card-media"]}>
