@@ -36,10 +36,5 @@
       background-color: var(--primary);
       z-index: -1;
     }
-
-    @include down(sm) {
-      letter-spacing: -0.022em;
-      word-wrap: pretty;
-    }
   }
 }

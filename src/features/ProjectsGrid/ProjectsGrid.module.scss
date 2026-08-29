@@ -7,36 +7,24 @@
 
   // ---- project card ----
   &__card {
-    @include flex-center;
-    width: 100%;
+    max-width: 450px;
+    padding: clamp(rem(6), 1vw, $space-10);
+    background-color: var(--background-muted);
+    border: 1px solid var(--border);
+    margin-inline: auto;
 
-    @include down(md) {
-      flex-direction: column;
-      max-width: 400px;
-      padding: clamp($space-12, 1.8vw, $space-16);
-      background-color: var(--background-muted);
-      border: 1px solid var(--border);
-      margin: 0 auto;
-
-      :global(html[data-theme="dark"]) & {
-        box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.1);
-      }
+    :global(html[data-theme="dark"]) & {
+      box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
     }
 
     // ---- card media ----
     &-media {
-      width: 50%;
-      aspect-ratio: 1.3;
-      position: relative;
-      overflow: hidden;
       background-color: var(--image-background);
       border: 1px solid var(--border);
-
-      @include down(md) {
-        width: 100%;
-        mask-image: linear-gradient(to bottom, black 70%, transparent);
-        aspect-ratio: 1.6;
-      }
+      mask-image: linear-gradient(to bottom, black 70%, transparent);
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 1.7;
     }
 
     // ---- card image ----
@@ -70,6 +58,13 @@
       color: var(--text-secondary);
       line-height: $line-height-relaxed;
       max-width: 50ch;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-clamp: 4;
+      box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     // ---- card tags ----
@@ -84,7 +79,7 @@
       padding: $space-4 $space-8;
       font-family: $font-secondary;
       font-size: clamp(rem(13), 2vw, rem(15));
-      font-weight: $fw-bold;
+      font-weight: $fw-semibold;
       color: var(--text-primary);
       background-color: var(--background-elevated);
       border: 1px solid var(--border);

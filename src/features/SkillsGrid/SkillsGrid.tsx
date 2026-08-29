@@ -34,7 +34,7 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
           matchingProjects.length > SKILL_MODAL_MAX_PROJECTS;
 
         return (
-          <li key={skill.id}>
+          <li key={skill.id} className={styles.skills__list}>
             <DialogTrigger>
               <Button
                 variant="ghost"

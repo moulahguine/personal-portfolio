@@ -226,7 +226,7 @@ const SKILLS: Skill[] = [
       "A collection of customizable React components built to be owned by your project.",
     icon: SiShadcnui,
     color: "var(--color-interaction)",
-    isPrimary: false,
+    isPrimary: true,
     overview:
       "I like shadcn/ui because it takes a different approach from traditional component libraries: instead of treating the components as a black box dependency, it gives me components that I can own and adapt inside the project. That fits my preference for having control over the UI while still starting from well-designed patterns rather than rebuilding every primitive from zero.",
   },
