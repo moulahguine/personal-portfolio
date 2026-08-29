@@ -12,15 +12,46 @@
     background-color: var(--background-muted);
     border: 1px solid var(--border);
     margin-inline: auto;
+    position: relative;
+    isolation: isolate;
 
     :global(html[data-theme="dark"]) & {
       box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
     }
 
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(
+        to bottom,
+        var(--card-color),
+        alpha(var(--card-color), 50),
+        alpha(var(--card-color), 20),
+        alpha(var(--card-color), 5),
+        transparent
+      );
+      z-index: -1;
+      transition: height 0.3s ease-in-out;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        &::before {
+          height: 40%;
+        }
+
+        .projects__card-image {
+          transform: translateY(-10px);
+        }
+      }
+    }
+
     // ---- card media ----
     &-media {
-      background-color: var(--image-background);
-      border: 1px solid var(--border);
       mask-image: linear-gradient(to bottom, black 70%, transparent);
       overflow: hidden;
       width: 100%;
@@ -31,6 +62,8 @@
     &-image {
       @include cover-image;
       object-position: top;
+      transition: transform 0.3s ease-in-out;
+      scale: 1.05;
     }
 
     // ---- card body ----

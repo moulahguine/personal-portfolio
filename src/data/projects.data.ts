@@ -3,14 +3,18 @@ import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 
-import portfolioImage from "@/assets/images/projects/myportfolio.png";
+import portfolioDarkImage from "@/assets/images/projects/portfolio/dark.png";
+import portfolioLightImage from "@/assets/images/projects/portfolio/light.png";
 
 // ---- project ----
 export interface Project {
   id: string;
   title: string;
   description: string;
-  image: StaticImageData;
+  images: {
+    light: StaticImageData;
+    dark: StaticImageData;
+  };
   color: string;
   tagIds: string[];
   demo: string;
@@ -63,9 +67,12 @@ const PROJECTS: Project[] = [
     title: "My portfolio",
     description:
       "It's my website that represents my work as a frontend developer, including the projects I build and the things I learn along the way.",
-    image: portfolioImage,
+    images: {
+      light: portfolioLightImage,
+      dark: portfolioDarkImage,
+    },
     color: "#ffe023",
-    tagIds: ["react", "nextjs", "typescript", "sass", "motion"],
+    tagIds: ["nextjs", "typescript", "sass", "motion", "mdx"],
     demo: "/",
     github: "https://github.com/moulahguine/personal-portfolio",
     primary: true,

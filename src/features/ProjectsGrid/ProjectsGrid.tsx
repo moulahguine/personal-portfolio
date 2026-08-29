@@ -1,6 +1,6 @@
 import { Link } from "@/components";
-import Image from "next/image";
 import type { Project } from "@/data";
+import ProjectImage from "./ProjectImage";
 import {
   PROJECTS_PAGE_DATA,
   PROJECTS_SECTION_DATA,
@@ -36,16 +36,7 @@ export default function ProjectsGrid({
           className={styles.projects__card}
           style={{ "--card-color": project.color } as React.CSSProperties}
         >
-          <figure className={styles["projects__card-media"]}>
-            <Image
-              src={project.image}
-              alt={`Screenshot of ${project.title}`}
-              width={500}
-              height={500}
-              sizes="(max-width: 768px) 300px, 500px"
-              className={styles["projects__card-image"]}
-            />
-          </figure>
+          <ProjectImage project={project} />
 
           <div className={styles["projects__card-body"]}>
             <h3 className={styles["projects__card-title"]}>{project.title}</h3>
