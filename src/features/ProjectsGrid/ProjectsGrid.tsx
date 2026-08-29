@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { Link } from "@/components";
-import type { Project } from "@/data";
-import ProjectImage from "./ProjectImage";
 import {
   PROJECTS_PAGE_DATA,
   PROJECTS_SECTION_DATA,
   getProjectActions,
+  type Project,
 } from "@/data";
 
 import styles from "./ProjectsGrid.module.scss";
@@ -36,8 +36,24 @@ export default function ProjectsGrid({
           className={styles.projects__card}
           style={{ "--card-color": project.color } as React.CSSProperties}
         >
-          <ProjectImage project={project} />
-
+          <figure className={styles["projects__card-media"]}>
+            <Image
+              src={project.images.light}
+              alt={`Screenshot of ${project.title}`}
+              width={800}
+              height={800}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className={`${styles["projects__card-image"]} ${styles["projects__card-image--light"]}`}
+            />
+            <Image
+              src={project.images.dark}
+              alt={`Screenshot of ${project.title}`}
+              width={800}
+              height={800}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className={`${styles["projects__card-image"]} ${styles["projects__card-image--dark"]}`}
+            />
+          </figure>
           <div className={styles["projects__card-body"]}>
             <h3 className={styles["projects__card-title"]}>{project.title}</h3>
             <p className={styles["projects__card-description"]}>

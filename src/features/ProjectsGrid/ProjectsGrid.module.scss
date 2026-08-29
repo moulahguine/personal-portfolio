@@ -63,6 +63,32 @@
       object-position: top;
       transition: translate $duration-base $ease-default;
       scale: 1.1;
+
+      &--light {
+        display: block;
+      }
+
+      &--dark {
+        display: none;
+      }
+    }
+
+    :global(html[data-theme="dark"]) &-image--light {
+      display: none;
+    }
+
+    :global(html[data-theme="dark"]) &-image--dark {
+      display: block;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :global(html:not([data-theme="light"])) &-image--light {
+        display: none;
+      }
+
+      :global(html:not([data-theme="light"])) &-image--dark {
+        display: block;
+      }
     }
 
     // ---- card body ----

@@ -1,1 +1,0 @@
-export { useResolvedTheme } from "./useResolvedTheme";
