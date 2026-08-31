@@ -13,12 +13,11 @@
     @include container;
     @include flex-between;
     background-color: var(--primary);
-    backdrop-filter: blur(15px);
     padding: clamp($space-4, 1vw, $space-8);
     margin-top: clamp($space-8, 1.5vw, $space-12);
     overflow: hidden;
     outline: 1px solid var(--background-inverse);
-    max-width: calc($container-width - clamp($space-8, 1vw, $space-12));
+    max-width: calc($container-width - clamp($space-8, 1vw, $space-12) * 2);
 
     @include down(sm) {
       padding-inline: $space-12;
@@ -38,9 +37,8 @@
       position: fixed;
       inset: 0;
       z-index: $z-menu;
-      background-color: alpha(var(--surface-overlay), 20);
-      filter: contrast(0.5);
-      backdrop-filter: blur(10px);
+      background-color: alpha(var(--surface-overlay), 5);
+      backdrop-filter: blur(7px);
     }
   }
 }

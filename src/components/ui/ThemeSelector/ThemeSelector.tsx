@@ -21,7 +21,6 @@ export default function ThemeSelector() {
     <Button
       type="button"
       variant="ghost"
-      size="lg"
       className={styles.themeSelector}
       aria-label="Toggle color theme"
       onPress={() => {

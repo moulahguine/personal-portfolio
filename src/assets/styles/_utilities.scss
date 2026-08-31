@@ -1,4 +1,3 @@
-@use "sass:list";
 @use "./tokens/bundle" as *;
 @use "./functions" as *;
 
@@ -48,11 +47,18 @@
   flex-direction: column;
 }
 
+// ---- lazy loading ----
+@mixin lazy-loading {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
 // ---- section ----
 @mixin section {
   width: 100vw;
   width: 100svw;
   padding-inline: clamp($space-4, 1vw, $space-8);
+  @include lazy-loading;
 }
 
 // ---- page ----
@@ -152,24 +158,5 @@
 @mixin fine-pointer-hover {
   @media (hover: hover) and (pointer: fine) {
     @content;
-  }
-}
-
-// ---- transition base ----
-@mixin transition-base(
-  $properties: all,
-  $duration: $duration-base,
-  $ease: $ease-default
-) {
-  @if list.length($properties) > 1 {
-    $transitions: ();
-
-    @each $property in $properties {
-      $transitions: list.append($transitions, $property $duration $ease, comma);
-    }
-
-    transition: $transitions;
-  } @else {
-    transition: $properties $duration $ease;
   }
 }

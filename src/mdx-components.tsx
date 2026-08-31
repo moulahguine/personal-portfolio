@@ -44,9 +44,7 @@ const defaultMdxComponents = {
     return (
       <code
         {...props}
-        className={
-          isBlock ? styles["mdx__code"] : styles["mdx__code-inline"]
-        }
+        className={isBlock ? styles["mdx__code"] : styles["mdx__code-inline"]}
       >
         {children}
       </code>
@@ -71,8 +69,7 @@ const defaultMdxComponents = {
           alt={alt}
           width={MDX_IMAGE_SIZE}
           height={MDX_IMAGE_SIZE}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          placeholder={typeof src === "object" ? "blur" : undefined}
+          sizes="(max-width: 768px) 500px, (max-width: 1200px) 700px"
           className={styles["mdx__media-img"]}
         />
       </figure>

@@ -3,17 +3,32 @@
 .headerSection {
   @include flex-between;
   width: 100%;
-  margin-block: clamp($space-16, 3vw, $space-24);
+  margin-block: clamp($space-24, 4vw, $space-32);
 
   &__title {
     font-family: $font-secondary;
     font-size: clamp($font-size-16, 2vw, $font-size-18);
     font-weight: $fw-bold;
-    color: var(--text-primary);
-    background-color: var(--background-elevated);
+    background-color: var(--primary);
+    color: var(--primary-on);
     padding: clamp($space-4, 1.5vw, $space-8) clamp($space-12, 1.5vw, $space-16);
-    border: 1px solid var(--border);
     user-select: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      width: clamp(150px, 15vw, 250px);
+      height: 3px;
+      transform: translateY(-50%);
+      background-color: var(--primary);
+
+      @include down(sm) {
+        display: none;
+      }
+    }
   }
 
   &__link {

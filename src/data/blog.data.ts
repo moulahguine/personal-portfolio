@@ -7,6 +7,7 @@ export interface Blog {
   description: string;
   date: string;
   dateTime: string;
+  readingTime: number;
 }
 
 const BLOGS = getBlogPosts();

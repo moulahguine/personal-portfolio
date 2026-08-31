@@ -1,0 +1,79 @@
+@use "../../assets/styles" as *;
+
+// ---- table of contents ----
+.toc {
+  $border-width: 3px;
+
+  @include flex-column;
+  gap: clamp($space-24, 3vw, $space-32);
+  padding: clamp($space-12, 2vw, $space-16);
+  border: 1px solid var(--border);
+
+  @include up(xl) {
+    position: sticky;
+    top: 70px;
+  }
+
+  // ---- title ----
+  &__title {
+    font-family: $font-primary;
+    font-size: clamp($font-size-14, 1.8vw, $font-size-18);
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  // ---- list ----
+  &__list {
+    @include flex-column;
+    gap: clamp($space-8, 1.5vw, $space-12);
+    border-left: $border-width solid var(--border);
+    scroll-target-group: auto;
+  }
+
+  // ---- link ----
+  &__link {
+    display: block;
+    font-family: $font-primary;
+    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+    font-weight: $fw-medium;
+    line-height: $line-height-normal;
+    text-wrap: wrap;
+    letter-spacing: -0.02em;
+    color: var(--text-tertiary);
+    padding-left: $space-10;
+    margin-left: -$border-width;
+    overflow: hidden;
+    position: relative;
+    transition:
+      color $duration-base $ease-out-expo,
+      font-weight $duration-base $ease-out-expo;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $border-width;
+      height: 100%;
+      transform: translateY(-100%);
+      background-color: var(--primary);
+      transition: transform $duration-base $ease-out-expo;
+    }
+
+    @include button-hover {
+      color: var(--text-primary);
+      font-weight: $fw-semibold;
+    }
+
+    // ---- current scroll target ----
+    &:target-current {
+      color: var(--text-primary);
+      font-weight: $fw-semibold;
+
+      &::before {
+        transform: translateY(0);
+      }
+    }
+  }
+}

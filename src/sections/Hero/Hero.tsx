@@ -53,7 +53,7 @@ export default function Hero() {
                   alt={`Portrait of ${name}`}
                   preload
                   fetchPriority="high"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 150px, (max-width: 1200px) 200px"
                   className={styles["hero__avatar-media--small"]}
                 />
               </Button>
@@ -69,7 +69,7 @@ export default function Hero() {
                   alt={`Portrait of ${name}`}
                   preload
                   fetchPriority="high"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 350px, (max-width: 1200px) 500px"
                   className={styles["hero__avatar-media--large"]}
                 />
               </Modal>

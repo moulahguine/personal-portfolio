@@ -1,5 +1,5 @@
 import { ABOUT_METADATA, ABOUT_PAGE_HEADER, ROUTES } from "@/data";
-import { HeaderPage } from "@/components";
+import { ArticleLayout, HeaderPage } from "@/components";
 import { createPageMetadata } from "@/lib";
 import AboutContent from "@/content/about/about.mdx";
 
@@ -15,9 +15,9 @@ export default function AboutPage() {
     <div className={styles.page__about}>
       <HeaderPage title={title} description={description} />
 
-      <main id="main-content" className={styles["page__about-container"]}>
+      <ArticleLayout>
         <AboutContent />
-      </main>
+      </ArticleLayout>
     </div>
   );
 }

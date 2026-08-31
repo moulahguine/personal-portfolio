@@ -1,0 +1,44 @@
+@use "sass:math";
+@use "../../../assets/styles" as *;
+
+// ---- article layout ----
+.layout {
+  @include section;
+  @include flex-column;
+  gap: clamp($space-24, 3vw, $space-48);
+  position: relative;
+
+  @include down(xl) {
+    @include container;
+  }
+
+  // ---- content ----
+
+  &__content {
+    @include flex-column;
+    @include container;
+    gap: clamp($space-32, 4vw, $space-48);
+    /*
+    this is for the counter of the sections 
+    you can check this in the mdx-components.module.scss file 
+    where you will find counter-increment: counter;
+    */
+    counter-reset: counter;
+
+    // this is for the scroll-margin-block-start of the sections
+    section[id] {
+      scroll-margin-block-start: clamp($space-64, 8vw, $space-96);
+    }
+  }
+
+  // ---- aside (table of contents) ----
+  &__aside {
+    @include up(xl) {
+      position: absolute;
+      inset-block: $space-32 0;
+      inset-inline-start: calc(
+        50% + #{math.div($container-width, 2)} + #{$space-24}
+      );
+    }
+  }
+}

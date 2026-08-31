@@ -2,19 +2,4 @@
 
 .page {
   @include page;
-
-  &__container {
-    @include flex-column;
-    @include container;
-    gap: clamp($space-32, 4vw, $space-48);
-    counter-reset: counter;
-  }
-
-  &__date {
-    font-family: $font-primary;
-    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
-    font-weight: $fw-regular;
-    color: var(--text-tertiary);
-    padding-inline: clamp($space-4, 0.7vw, $space-8);
-  }
 }

@@ -21,6 +21,7 @@
   // ---- item ----
   &__item {
     position: relative;
+    isolation: isolate;
 
     // ---- indicator ----
     &--indicator {

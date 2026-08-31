@@ -1,5 +1,5 @@
-import { createElement } from "react";
 import { notFound } from "next/navigation";
+import { ArticleLayout } from "@/components";
 import { blogComponents } from "@/content/blogs";
 import { ROUTES } from "@/data";
 import { getBlogPost, getBlogPosts } from "@/server/blog.server";
@@ -40,9 +40,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className={styles.page}>
-      <main id="main-content" className={styles.page__container}>
-        {createElement(Content)}
-      </main>
+      <ArticleLayout>
+        <Content />
+      </ArticleLayout>
     </div>
   );
 }

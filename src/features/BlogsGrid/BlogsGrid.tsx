@@ -1,5 +1,7 @@
+import { FaBookmark, FaRegClock } from "react-icons/fa";
 import { Link } from "@/components";
 import { BLOG_PAGE_DATA, BLOG_SECTION_DATA } from "@/data/blog.data";
+import { ROUTES } from "@/data";
 
 import styles from "./BlogsGrid.module.scss";
 
@@ -17,23 +19,38 @@ export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
   const blogs = variant === "primary" ? primaryBlogs : blogsData;
 
   return (
-    <ul className={styles.blogs__grid}>
+    <ol className={styles.blogs__grid}>
       {blogs.length > 0 ? (
         blogs.map((blog) => (
-          <li key={blog.id}>
+          <li key={blog.id} className={styles.blogs__card}>
             <Link
-              href={`/blogs/${blog.slug}`}
+              href={`${ROUTES.blogs.href}/${blog.slug}`}
               variant="plain"
-              className={styles.blogs__card}
+              className={styles.blogs__link}
               aria-label={`Read blog post: ${blog.title}`}
             >
-              <article>
+              <FaBookmark
+                className={styles.blogs__bookmark}
+                aria-hidden="true"
+              />
+
+              <div className={styles.blogs__body}>
+                <h3 className={styles.blogs__title}>{blog.title}</h3>
+                <p className={styles.blogs__description}>{blog.description}</p>
+              </div>
+
+              <div className={styles.blogs__footer}>
+                <span className={styles.blogs__readingTime}>
+                  <FaRegClock
+                    className={styles.blogs__readingTimeIcon}
+                    aria-hidden="true"
+                  />
+                  {blog.readingTime} min read
+                </span>
                 <time className={styles.blogs__date} dateTime={blog.dateTime}>
                   {blog.date}
                 </time>
-                <h3 className={styles.blogs__title}>{blog.title}</h3>
-                <p className={styles.blogs__description}>{blog.description}</p>
-              </article>
+              </div>
             </Link>
           </li>
         ))
@@ -42,6 +59,6 @@ export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
           <p>Nothing to see here yet.</p>
         </li>
       )}
-    </ul>
+    </ol>
   );
 }

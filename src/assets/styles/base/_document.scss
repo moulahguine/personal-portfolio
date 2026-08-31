@@ -7,6 +7,16 @@ html {
   font-size: $base-font-size;
   font-weight: $fw-medium;
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 // ---- body ----

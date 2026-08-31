@@ -11,12 +11,11 @@
     padding: clamp($space-12, 1.5vw, $space-14);
     background-color: var(--background-muted);
     border: 1px solid var(--border);
-    margin-inline: auto;
     position: relative;
     isolation: isolate;
 
-    :global(html[data-theme="dark"]) & {
-      box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
+    @include down(md) {
+      margin-inline: auto;
     }
 
     &::before {

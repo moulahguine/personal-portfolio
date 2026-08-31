@@ -4,6 +4,18 @@ import path from "node:path";
 import type { Blog } from "@/data/blog.data";
 
 const BLOGS_DIR = path.join(process.cwd(), "src/content/blogs");
+const WORDS_PER_MINUTE = 200;
+
+function getReadingTime(content: string): number {
+  const body = content.replace(/^---[\s\S]*?---/, "");
+  const text = body
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/[#>*_\[\]()`~-]/g, " ")
+    .trim();
+  const words = text.split(/\s+/).filter(Boolean).length;
+
+  return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+}
 
 function readBlogMetadata(filename: string): Blog {
   const slug = filename.replace(/\.mdx$/, "");
@@ -50,6 +62,7 @@ function readBlogMetadata(filename: string): Blog {
     description: metadata.description,
     date: metadata.date,
     dateTime: metadata.dateTime,
+    readingTime: getReadingTime(fileContent),
   };
 }
 

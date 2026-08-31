@@ -65,6 +65,8 @@ export default function Header() {
           />
         </div>
       </motion.header>
+
+      {/* ---- mobile menu overlay ---- */}
       {isMenuOpen ? (
         <div
           className={styles.header__overlay}

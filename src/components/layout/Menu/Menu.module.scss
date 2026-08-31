@@ -19,7 +19,7 @@
     }
 
     &__line {
-      height: 1.5px;
+      height: 1.6px;
       background-color: var(--primary-on);
       transition:
         transform $duration-fast $ease-default,
@@ -59,7 +59,7 @@
   &__dropdown {
     width: calc(100svw - clamp($space-10, 2vw, $space-12) * 2);
     padding: $space-10;
-    background-color: var(--background-muted);
+    background-color: var(--surface-muted);
     border-radius: 0;
     border: solid 1px var(--border);
 
@@ -72,14 +72,16 @@
     justify-content: center;
     width: 100%;
     padding-block: $space-16;
-    color: var(--text-primary);
-    font-size: $font-size-16;
-    font-weight: $fw-bold;
+    color: var(--text-secondary);
+    font-size: $font-size-20;
+    font-weight: $fw-semibold;
+    font-family: $font-primary;
 
     &--active,
     &:has(&--active):is(:hover) {
       background-color: var(--background-inverse) !important;
       color: var(--text-inverse) !important;
+      font-weight: $fw-bold !important;
     }
 
     &:not(&--active):is(:hover, [data-focus-visible]) {

@@ -2,11 +2,4 @@
 
 .page__about {
   @include page;
-
-  &-container {
-    @include flex-column;
-    @include container;
-    gap: clamp($space-32, 4vw, $space-48);
-    counter-reset: counter;
-  }
 }
