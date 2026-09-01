@@ -55,15 +55,6 @@ export {
   type ProjectAction,
 } from "./projects.data";
 
-// ===== experience data & types =====
-export {
-  EXPERIENCE_DATA,
-  type ExperienceData,
-  type ExperienceEntry,
-  type ExperienceItems,
-  type ExperiencePeriod,
-} from "./experience.data";
-
 // ===== contact data & types =====
 export {
   CONTACT_FORM_DATA,

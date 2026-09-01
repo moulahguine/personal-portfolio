@@ -2,27 +2,64 @@
 
 .footer {
   @include section;
-  padding-block: $space-24 $space-32;
+  position: relative;
+  overflow: hidden;
 
   &__container {
     @include container;
-    @include flex-between;
-    gap: $space-16;
-    padding-block: $space-16;
-    margin-block: 0;
-    max-width: calc($container-width - clamp($space-8, 1vw, $space-12));
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 2.8;
+    background-image: url("../../../assets/images/footer/footer.png");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: clamp($space-16, 2vw, $space-24);
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      );
+    mask-composite: intersect;
 
-    @include down(sm) {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        color-mix(in oklab, var(--background) 85%, transparent) 100%
+      );
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme="light"])) &__logo {
+      filter: brightness(0) invert(1);
     }
   }
 
   &__copyright {
-    font-family: $font-primary;
-    font-size: $font-size-14;
-    color: var(--text-secondary);
-    line-height: $line-height-normal;
+    font-family: $font-secondary;
+    font-size: clamp($font-size-14, 2vw, $font-size-16);
+    font-weight: $fw-semibold;
+    color: var(--text-primary);
   }
 }

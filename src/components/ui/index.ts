@@ -8,19 +8,5 @@ export {
   DropdownMenuItem,
   MenuTrigger,
 } from "./DropdownMenu/DropdownMenu";
-export {
-  DisclosureAccordion,
-  DisclosureAccordionItem,
-  DisclosureAccordionPanel,
-  DisclosureAccordionHeading,
-  DisclosureAccordionButton,
-} from "./DisclosureAccordion/DisclosureAccordion";
 export { default as ThemeSelector } from "./ThemeSelector/ThemeSelector";
 export { default as SocialLinks } from "./SocialLinks/SocialLinks";
-export type {
-  DisclosureAccordionProps,
-  DisclosureAccordionItemProps,
-  DisclosureAccordionPanelProps,
-  DisclosureAccordionHeadingProps,
-  DisclosureAccordionButtonProps,
-} from "./DisclosureAccordion/DisclosureAccordion";

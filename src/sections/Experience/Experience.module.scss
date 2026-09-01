@@ -1,9 +1,0 @@
-@use "../../assets/styles" as *;
-
-.experience {
-  @include section;
-
-  &__container {
-    @include container;
-  }
-}
