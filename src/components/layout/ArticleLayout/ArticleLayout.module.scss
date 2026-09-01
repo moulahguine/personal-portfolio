@@ -18,11 +18,7 @@
     @include flex-column;
     @include container;
     gap: clamp($space-32, 4vw, $space-48);
-    /*
-    this is for the counter of the sections 
-    you can check this in the mdx-components.module.scss file 
-    where you will find counter-increment: counter;
-    */
+    order: 3;
     counter-reset: counter;
 
     // this is for the scroll-margin-block-start of the sections
@@ -33,6 +29,8 @@
 
   // ---- aside (table of contents) ----
   &__aside {
+    order: 2;
+
     @include up(xl) {
       position: absolute;
       inset-block: $space-32 0;

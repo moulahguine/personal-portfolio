@@ -14,6 +14,7 @@ export default function Home() {
             jobTitle: profileInfo.role,
             location: profileInfo.location,
             techStack: profileInfo.techStack,
+            nationality: profileInfo.origin,
             sameAs: SOCIAL_LINKS.filter((link) => link.external).map(
               (link) => link.href,
             ),

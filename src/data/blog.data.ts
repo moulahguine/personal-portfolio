@@ -1,4 +1,5 @@
 import { getBlogPosts } from "@/server/blog.server";
+import type { AuthorId } from "./authors.data";
 
 export interface Blog {
   id: string;
@@ -7,7 +8,12 @@ export interface Blog {
   description: string;
   date: string;
   dateTime: string;
+  updated?: string;
   readingTime: number;
+  wordCount: number;
+  authorId: AuthorId;
+  tags?: string[];
+  section?: string;
 }
 
 const BLOGS = getBlogPosts();

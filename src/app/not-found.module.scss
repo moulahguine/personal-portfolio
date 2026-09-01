@@ -1,0 +1,20 @@
+@use "../assets/styles" as *;
+
+.page {
+  @include page;
+
+  &__container {
+    @include container;
+    @include flex-column;
+    align-items: center;
+    gap: clamp($space-16, 2vw, $space-24);
+    text-align: center;
+  }
+
+  &__hint {
+    font-family: $font-secondary;
+    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    color: var(--text-secondary);
+    max-width: 55ch;
+  }
+}

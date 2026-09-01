@@ -3,7 +3,7 @@ export const ROUTES = {
   about: { label: "About", href: "/about" },
   skills: { label: "Skills", href: "/skills" },
   projects: { label: "Projects", href: "/projects" },
-  blogs: { label: "Blogs", href: "/blogs" },
+  blogs: { label: "Blog", href: "/blog" },
   contact: { label: "Contact", href: "/contact" },
 } as const;
 

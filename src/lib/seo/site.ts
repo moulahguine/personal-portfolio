@@ -1,9 +1,11 @@
 export const SITE_URL = "https://mohamedoulahguine.dev";
 
-export const SITE_NAME = "Mohamed Oulahguine • Frontend Developer";
+export const SITE_NAME = "Mohamed Oulahguine";
 export const SITE_SHORT_NAME = "oulahguine";
 export const SITE_DEFAULT_TITLE = "Mohamed Oulahguine • Frontend Developer";
 export const SITE_TITLE_TEMPLATE = "%s | Mohamed Oulahguine";
+
+export const BLOG_RSS_PATH = "/blog/feed.xml";
 
 export const SITE_DEFAULT_DESCRIPTION =
   "I’m a frontend engineer focused on building accessible, performant, and well-crafted web experiences with React and Next.js.";

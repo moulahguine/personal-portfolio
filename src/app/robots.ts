@@ -1,4 +1,4 @@
-import { getRobots } from "@/lib";
+import { getRobots } from "@/lib/seo/robots";
 
 export const dynamic = "force-static";
 

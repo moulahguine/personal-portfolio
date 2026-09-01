@@ -1,4 +1,4 @@
-import { getSitemap } from "@/lib/seo";
+import { getSitemap } from "@/lib/seo/sitemap";
 
 export const dynamic = "force-static";
 

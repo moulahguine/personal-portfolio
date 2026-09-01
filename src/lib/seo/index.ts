@@ -15,6 +15,7 @@ export {
   PWA_ICON_192,
   PWA_ICON_512,
   MANIFEST_PATH,
+  BLOG_RSS_PATH,
   PWA_CATEGORIES,
   isNetlifyPreview,
 } from "./site";
@@ -25,11 +26,19 @@ export {
   createPageMetadata,
 } from "./metadata";
 
-export { getPersonJsonLd, getWebSiteJsonLd } from "./json-ld";
+export { rootViewport } from "./viewport";
+
+export {
+  getPersonJsonLd,
+  getWebSiteJsonLd,
+  getBlogPostingJsonLd,
+  getBreadcrumbListJsonLd,
+  getRouteBreadcrumbJsonLd,
+  getProfilePageJsonLd,
+  getContactPageJsonLd,
+  getCollectionPageJsonLd,
+} from "./json-ld";
 
 export { default as JsonLd } from "./JsonLd";
 export { default as SkipLink } from "./SkipLink";
-
-export { getRobots } from "./robots";
-export { getSitemap } from "./sitemap";
-export { getManifest } from "./manifest";
+export { default as IndieAuthLinks } from "./IndieAuthLinks";

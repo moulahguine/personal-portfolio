@@ -18,6 +18,17 @@ export {
   type SocialLinkId,
 } from "./social-links.data";
 
+// ===== authors data & types =====
+export {
+  AUTHORS,
+  AUTHOR_IDS,
+  DEFAULT_AUTHOR_ID,
+  getAuthor,
+  isAuthorId,
+  type Author,
+  type AuthorId,
+} from "./authors.data";
+
 // ===== about data =====
 export {
   ABOUT_SECTION_DATA,

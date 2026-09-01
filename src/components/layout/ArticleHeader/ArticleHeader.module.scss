@@ -1,0 +1,94 @@
+@use "../../../assets/styles" as *;
+
+.articleHeader {
+  @include container;
+  @include flex-column;
+  gap: clamp($space-16, 2.5vw, $space-32);
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+
+  // ---- breadcrumb ----
+  &__breadcrumb {
+    display: flex;
+    width: fit-content;
+
+    &-link {
+      font-family: $font-primary;
+      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-weight: $fw-bold;
+      color: var(--text-secondary);
+      gap: $space-8;
+
+      @include button-hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  // ---- title ----
+  &__title {
+    font-family: $font-primary;
+    font-size: clamp($font-size-28, 5vw, $font-size-48);
+    font-weight: $fw-semibold;
+    line-height: $line-height-tight;
+    color: var(--text-primary);
+    max-width: 30ch;
+  }
+
+  // ---- author ----
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: clamp($space-12, 1.5vw, $space-16);
+    font-style: normal;
+  }
+
+  &__author-avatar {
+    @include square(clamp(48px, 5vw, 60px));
+    border-radius: 50%;
+    object-fit: cover;
+    @include unselectable-media;
+    border: 1px solid var(--border);
+  }
+
+  &__author-info {
+    @include flex-column;
+  }
+
+  &__author-name {
+    font-family: $font-primary;
+    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+    font-weight: $fw-semibold;
+    color: var(--text-primary);
+    line-height: $line-height-tight;
+  }
+
+  &__author-role {
+    font-family: $font-primary;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    font-weight: $fw-regular;
+    color: var(--text-secondary);
+    line-height: $line-height-tight;
+  }
+
+  &__author-socials {
+    margin-block-start: $space-4;
+  }
+
+  // ---- details (reading time + published) ----
+  &__details {
+    @include flex-between;
+    gap: $space-8;
+  }
+
+  &__details-item {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-8;
+    font-family: $font-secondary;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    font-weight: $fw-regular;
+    color: var(--text-tertiary);
+    line-height: $line-height-tight;
+  }
+}

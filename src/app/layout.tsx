@@ -1,11 +1,11 @@
 import { Comic_Neue, Inter, Sour_Gummy } from "next/font/google";
 import { Footer, Header } from "@/components";
-import { SkipLink } from "@/lib";
+import { IndieAuthLinks, SkipLink } from "@/lib";
 import { ThemeProvider } from "@/providers";
 
 import "@/assets/styles/main.scss";
 
-export { generateMetadata } from "./metadata";
+export { generateMetadata, viewport } from "./metadata";
 
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
@@ -40,6 +40,7 @@ export default function RootLayout({
       className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable}`}
     >
       <body>
+        <IndieAuthLinks />
         <ThemeProvider>
           <SkipLink />
           <Header />

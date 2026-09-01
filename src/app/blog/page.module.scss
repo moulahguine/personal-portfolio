@@ -8,4 +8,9 @@
     @include flex-column;
     gap: clamp($space-24, 3vw, $space-32);
   }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
 }

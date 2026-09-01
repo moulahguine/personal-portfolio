@@ -1,7 +1,11 @@
 import { HeaderPage } from "@/components";
 import { SkillsGrid } from "@/features";
 import { ROUTES, SKILLS_META_DATA, SKILLS_PAGE_DATA } from "@/data";
-import { createPageMetadata } from "@/lib";
+import {
+  createPageMetadata,
+  getRouteBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib";
 
 import styles from "./page.module.scss";
 
@@ -15,6 +19,7 @@ export default function SkillsPage() {
 
   return (
     <div className={styles.page}>
+      <JsonLd data={getRouteBreadcrumbJsonLd("skills")} />
       <HeaderPage title={title} description={description} />
       <main id="main-content" className={styles.page__container}>
         <SkillsGrid />

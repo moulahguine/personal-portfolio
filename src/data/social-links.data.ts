@@ -1,8 +1,14 @@
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
 import { FaBluesky } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-export type SocialLinkId = "linkedin" | "bluesky" | "github" | "email";
+// ---- types ----
+export type SocialLinkId =
+  | "linkedin"
+  | "bluesky"
+  | "github"
+  | "email"
+  | "website";
 
 export interface SocialLink {
   id: SocialLinkId;
@@ -12,33 +18,41 @@ export interface SocialLink {
   icon: IconType;
 }
 
-export const SOCIAL_LINKS = [
-  {
-    id: "linkedin",
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/moulahguine",
-    external: true,
-    icon: FaLinkedin,
-  },
-  {
-    id: "bluesky",
-    label: "BlueSky",
-    href: "https://bsky.app/profile/mohamedoulahguine.dev",
-    external: true,
-    icon: FaBluesky,
-  },
-  {
-    id: "github",
-    label: "GitHub",
-    href: "https://github.com/moulahguine",
-    external: true,
-    icon: FaGithub,
-  },
-  {
-    id: "email",
-    label: "Email",
-    href: "mailto:hello@mohamedoulahguine.com",
-    external: false,
-    icon: FaEnvelope,
-  },
-] satisfies SocialLink[];
+interface SocialProfileConfig {
+  label: string;
+  icon: IconType;
+  external: boolean;
+}
+
+const SOCIAL_PROFILES: Record<SocialLinkId, SocialProfileConfig> = {
+  linkedin: { label: "LinkedIn", icon: FaLinkedin, external: true },
+  bluesky: { label: "BlueSky", icon: FaBluesky, external: true },
+  github: { label: "GitHub", icon: FaGithub, external: true },
+  email: { label: "Email", icon: FaEnvelope, external: false },
+  website: { label: "Website", icon: FaGlobe, external: true },
+};
+
+// ---- factory ----
+export function createSocialLink(
+  id: SocialLinkId,
+  href: string,
+  label?: string,
+): SocialLink {
+  const profile = SOCIAL_PROFILES[id];
+
+  return {
+    id,
+    href,
+    label: label ?? profile.label,
+    icon: profile.icon,
+    external: profile.external,
+  };
+}
+
+// ---- site-owner social links ----
+export const SOCIAL_LINKS: SocialLink[] = [
+  createSocialLink("linkedin", "https://linkedin.com/in/moulahguine"),
+  createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
+  createSocialLink("github", "https://github.com/moulahguine"),
+  createSocialLink("email", "mailto:hello@mohamedoulahguine.com"),
+];

@@ -2,19 +2,28 @@ import fs from "node:fs";
 import path from "node:path";
 
 import type { Blog } from "@/data/blog.data";
+import {
+  DEFAULT_AUTHOR_ID,
+  isAuthorId,
+  type AuthorId,
+} from "@/data/authors.data";
 
 const BLOGS_DIR = path.join(process.cwd(), "src/content/blogs");
 const WORDS_PER_MINUTE = 200;
 
-function getReadingTime(content: string): number {
+function getContentStats(content: string): {
+  wordCount: number;
+  readingTime: number;
+} {
   const body = content.replace(/^---[\s\S]*?---/, "");
   const text = body
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/[#>*_\[\]()`~-]/g, " ")
     .trim();
-  const words = text.split(/\s+/).filter(Boolean).length;
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
 
-  return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+  return { wordCount, readingTime };
 }
 
 function readBlogMetadata(filename: string): Blog {
@@ -55,15 +64,67 @@ function readBlogMetadata(filename: string): Blog {
     metadata[key] = value;
   }
 
+  const { wordCount, readingTime } = getContentStats(fileContent);
+
   return {
     id: slug,
     slug,
     title: metadata.title,
     description: metadata.description,
     date: metadata.date,
-    dateTime: metadata.dateTime,
-    readingTime: getReadingTime(fileContent),
+    dateTime: assertValidDate(metadata.dateTime, "dateTime", filename),
+    ...(metadata.updated
+      ? { updated: assertValidDate(metadata.updated, "updated", filename) }
+      : {}),
+    readingTime,
+    wordCount,
+    authorId: resolveAuthorId(metadata.author, filename),
+    ...(metadata.tags ? { tags: parseTags(metadata.tags) } : {}),
+    ...(metadata.section ? { section: metadata.section } : {}),
   };
+}
+
+function assertValidDate(
+  value: string | undefined,
+  field: string,
+  filename: string,
+): string {
+  if (!value) {
+    throw new Error(
+      `Missing required frontmatter field "${field}" in ${filename}.`,
+    );
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(
+      `Invalid date "${value}" for field "${field}" in ${filename}. Use ISO format like "2026-08-24".`,
+    );
+  }
+
+  return value;
+}
+
+function parseTags(value: string): string[] {
+  return value
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+function resolveAuthorId(value: string | undefined, filename: string): AuthorId {
+  if (!value) {
+    return DEFAULT_AUTHOR_ID;
+  }
+
+  if (!isAuthorId(value)) {
+    throw new Error(
+      `Unknown author "${value}" in ${filename}. Add them to AUTHORS in src/data/authors.data.ts first.`,
+    );
+  }
+
+  return value;
 }
 
 const BLOGS = fs
