@@ -9,7 +9,10 @@ export const CONTACT_FORM_DATA: ContactFormConfig = {
   submitLabel: "Send message",
   sendingLabel: "Sending...",
   successMessage: "Thanks for reaching out. I’ll get back to you soon.",
-  errorMessage: "Something went wrong. Please try again.",
+  errorMessage: "Something went wrong while sending your message. Please try again.",
+  validationMessage: "Please fix the highlighted fields and try again.",
+  networkErrorMessage:
+    "Could not reach the server. Check your connection or disable ad blockers for this site, then try again.",
   notConfiguredMessage: "Contact form is not configured yet.",
 };
 

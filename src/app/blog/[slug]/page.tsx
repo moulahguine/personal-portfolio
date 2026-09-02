@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   ];
 
   return (
-    <div className={styles.page}>
+    <>
       <JsonLd data={jsonLd} />
       <ArticleLayout
         header={
@@ -99,6 +99,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       >
         <Content />
       </ArticleLayout>
-    </div>
+    </>
   );
 }

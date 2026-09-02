@@ -14,7 +14,7 @@ export default function ArticleLayout({
   header,
 }: ArticleLayoutProps) {
   return (
-    <main className={styles.layout}>
+    <div className={styles.layout}>
       {/* ---- header ---- */}
       {header ? <>{header}</> : null}
 
@@ -27,6 +27,6 @@ export default function ArticleLayout({
       <article id="main-content" className={styles.layout__content}>
         {children}
       </article>
-    </main>
+    </div>
   );
 }

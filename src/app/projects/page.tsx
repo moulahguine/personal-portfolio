@@ -38,12 +38,12 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className={styles.page}>
+    <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <main id="main-content" className={styles.page__container}>
+      <div className={styles.page__container}>
         <ProjectsGrid />
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

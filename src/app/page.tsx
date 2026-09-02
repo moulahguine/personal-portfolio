@@ -22,14 +22,14 @@ export default function Home() {
           getWebSiteJsonLd(),
         ]}
       />
-      <main id="main-content">
+      <>
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Blog />
         <Contact />
-      </main>
+      </>
     </>
   );
 }

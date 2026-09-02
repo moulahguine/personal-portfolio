@@ -14,6 +14,8 @@ export interface ContactFormConfig {
   sendingLabel: string;
   successMessage: string;
   errorMessage: string;
+  validationMessage: string;
+  networkErrorMessage: string;
   notConfiguredMessage: string;
 }
 

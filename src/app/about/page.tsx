@@ -8,8 +8,6 @@ import {
 } from "@/lib";
 import AboutContent from "@/content/about/about.mdx";
 
-import styles from "./page.module.scss";
-
 export const metadata = createPageMetadata(ROUTES.about.href, ABOUT_METADATA);
 
 // ------ about page ------
@@ -22,13 +20,13 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className={styles.page__about}>
+    <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
 
       <ArticleLayout>
         <AboutContent />
       </ArticleLayout>
-    </div>
+    </>
   );
 }

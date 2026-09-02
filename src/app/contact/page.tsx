@@ -10,7 +10,10 @@ import { CONTACT_META_DATA, CONTACT_PAGE_DATA, ROUTES } from "@/data";
 
 import styles from "./page.module.scss";
 
-export const metadata = createPageMetadata(ROUTES.contact.href, CONTACT_META_DATA);
+export const metadata = createPageMetadata(
+  ROUTES.contact.href,
+  CONTACT_META_DATA,
+);
 
 export default function ContactPage() {
   const {
@@ -23,12 +26,12 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className={styles.page}>
+    <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <main id="main-content" className={styles.page__container}>
+      <div className={styles.page__container}>
         <Contact />
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

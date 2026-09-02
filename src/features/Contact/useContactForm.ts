@@ -8,7 +8,7 @@ import { CONTACT_FORM_DATA } from "@/data";
 import { contactSchema, type ContactFormData } from "./contact.schema";
 import type { ContactFieldName } from "./contact.types";
 
-const CONTACT_SUBMIT_ROUTE = "/api/contact";
+const CONTACT_SUBMIT_ROUTE = "/api/inquiry";
 
 const INITIAL_VALUES: ContactFormData = {
   fullName: "",
@@ -34,6 +34,7 @@ export function useContactForm() {
     reset,
     watch,
     setFocus,
+    setError,
     formState: { errors, touchedFields, isSubmitting, isSubmitted },
   } = form;
 
@@ -71,15 +72,33 @@ export function useContactForm() {
           return;
         }
 
+        if (response.status === 400) {
+          const body = (await response.json()) as {
+            errors?: Partial<Record<ContactFieldName, string>>;
+          };
+
+          if (body.errors) {
+            for (const [field, message] of Object.entries(body.errors)) {
+              if (message) {
+                setError(field as ContactFieldName, { message });
+              }
+            }
+          }
+
+          addToast(CONTACT_FORM_DATA.validationMessage, "error");
+          return;
+        }
+
         if (!response.ok) {
-          throw new Error("Contact submission failed");
+          addToast(CONTACT_FORM_DATA.errorMessage, "error");
+          return;
         }
 
         reset(INITIAL_VALUES);
         formRef.current?.reset();
         addToast(CONTACT_FORM_DATA.successMessage, "success");
       } catch {
-        addToast(CONTACT_FORM_DATA.errorMessage, "error");
+        addToast(CONTACT_FORM_DATA.networkErrorMessage, "error");
       }
     },
     (fieldErrors) => {

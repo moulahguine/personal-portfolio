@@ -52,6 +52,7 @@
 
   &__image {
     @include cover-image;
+
     position: absolute;
     object-position: bottom;
     inset: 0;

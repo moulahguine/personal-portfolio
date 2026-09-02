@@ -1,19 +1,18 @@
 @use "../assets/styles" as *;
 
 .page {
-  @include page;
-
   &__container {
     @include container;
-    @include flex-column;
-    align-items: center;
+    @include flex-center;
+    flex-direction: column;
     gap: clamp($space-16, 2vw, $space-24);
     text-align: center;
+    height: 100%;
   }
 
   &__hint {
     font-family: $font-secondary;
-    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-size: clamp(rem(30), 4vw, rem(50));
     color: var(--text-secondary);
     max-width: 55ch;
   }

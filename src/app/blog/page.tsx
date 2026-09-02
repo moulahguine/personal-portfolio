@@ -39,10 +39,10 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className={styles.page}>
+    <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <main id="main-content" className={styles.page__container}>
+      <div className={styles.page__container}>
         <div className={styles.page__actions}>
           <Link
             href={BLOG_RSS_PATH}
@@ -55,7 +55,7 @@ export default function BlogPage() {
           />
         </div>
         <BlogsGrid />
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

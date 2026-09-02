@@ -44,7 +44,7 @@ export default function RootLayout({
         <ThemeProvider>
           <SkipLink />
           <Header />
-          {children}
+          <main id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
