@@ -4,8 +4,6 @@ import { Link } from "@/components";
 
 import styles from "./mdx-components.module.scss";
 
-const MDX_IMAGE_SIZE = 700;
-
 const defaultMdxComponents = {
   section: ({ children, ...props }) => (
     <section {...props} className={styles["mdx__section"]}>
@@ -70,9 +68,8 @@ const defaultMdxComponents = {
         <Image
           src={src}
           alt={alt}
-          width={MDX_IMAGE_SIZE}
-          height={MDX_IMAGE_SIZE}
-          sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, (max-width: 1200px) 500px"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,800px"
+          quality={100}
           className={styles["mdx__media-img"]}
         />
         <figcaption className={styles["mdx__media-caption"]}>{alt}</figcaption>

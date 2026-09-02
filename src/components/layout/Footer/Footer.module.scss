@@ -7,18 +7,12 @@
 
   &__container {
     @include container;
+    display: flex;
+    align-items: end;
+    padding-bottom: 0;
     position: relative;
     isolation: isolate;
     aspect-ratio: 2.8;
-    background-image: url("../../../assets/images/footer/footer.png");
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-    gap: clamp($space-16, 2vw, $space-24);
     mask-image:
       linear-gradient(
         to bottom,
@@ -40,7 +34,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 1;
       pointer-events: none;
       background: linear-gradient(
         to bottom,
@@ -54,6 +48,24 @@
     :global(html:not([data-theme="light"])) &__logo {
       filter: brightness(0) invert(1);
     }
+  }
+
+  &__image {
+    @include cover-image;
+    position: absolute;
+    object-position: bottom;
+    inset: 0;
+    z-index: -1;
+  }
+
+  &__content {
+    @include container;
+    position: relative;
+    z-index: 2;
+    @include flex-center;
+    flex-direction: column;
+    margin-top: auto;
+    gap: clamp($space-16, 2vw, $space-24);
   }
 
   &__copyright {

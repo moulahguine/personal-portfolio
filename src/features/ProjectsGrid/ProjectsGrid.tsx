@@ -40,17 +40,13 @@ export default function ProjectsGrid({
             <Image
               src={project.images.light}
               alt={`Screenshot of ${project.title}`}
-              width={500}
-              height={500}
-              sizes="(max-width: 768px) 350px, (max-width: 1200px) 500px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
               className={`${styles["projects__card-image"]} ${styles["projects__card-image--light"]}`}
             />
             <Image
               src={project.images.dark}
               alt={`Screenshot of ${project.title}`}
-              width={500}
-              height={500}
-              sizes="(max-width: 768px) 350px, (max-width: 1200px) 500px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
               className={`${styles["projects__card-image"]} ${styles["projects__card-image--dark"]}`}
             />
           </figure>

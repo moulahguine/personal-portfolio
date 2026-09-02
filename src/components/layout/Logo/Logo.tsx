@@ -19,7 +19,7 @@ export default function Logo({ className }: { className?: string }) {
         aria-hidden="true"
         width={50}
         height={50}
-        sizes="80px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,50px"
         preload
         fetchPriority="high"
       />

@@ -117,17 +117,15 @@
 
   &__media {
     margin-block: clamp($space-24, 4vw, $space-32);
-    max-width: 850px;
+    width: 100%;
     aspect-ratio: 2;
-    background-color: var(--image-background);
-    margin-bottom: rem(50);
 
     &-img {
       @include cover-image;
-      object-position: bottom;
       width: 100%;
       height: 100%;
-      border-radius: $radius-md;
+      border-radius: $radius-lg;
+      background-color: var(--image-background);
     }
 
     &-caption {
