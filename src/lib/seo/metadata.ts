@@ -23,6 +23,7 @@ const RSS_ALTERNATE_TYPES = {
 const GOOGLE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
 const BING_VERIFICATION = process.env.BING_SITE_VERIFICATION;
 const NAVER_VERIFICATION = process.env.NAVER_SITE_VERIFICATION;
+const YANDEX_VERIFICATION = process.env.YANDEX_SITE_VERIFICATION;
 
 const otherVerification = {
   ...(BING_VERIFICATION ? { "msvalidate.01": BING_VERIFICATION } : {}),
@@ -32,9 +33,12 @@ const otherVerification = {
 };
 
 const verification: Metadata["verification"] | undefined =
-  GOOGLE_VERIFICATION || Object.keys(otherVerification).length > 0
+  GOOGLE_VERIFICATION ||
+  YANDEX_VERIFICATION ||
+  Object.keys(otherVerification).length > 0
     ? {
         ...(GOOGLE_VERIFICATION ? { google: GOOGLE_VERIFICATION } : {}),
+        ...(YANDEX_VERIFICATION ? { yandex: YANDEX_VERIFICATION } : {}),
         ...(Object.keys(otherVerification).length > 0
           ? { other: otherVerification }
           : {}),
