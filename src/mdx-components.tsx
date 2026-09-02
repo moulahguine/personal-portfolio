@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { type StaticImageData } from "next/image";
 import { Link } from "@/components";
+
 import styles from "./mdx-components.module.scss";
 
 const MDX_IMAGE_SIZE = 700;
@@ -12,7 +13,9 @@ const defaultMdxComponents = {
     </section>
   ),
 
-  h2: ({ children }) => <h2 className={styles["mdx__heading"]}>{children}</h2>,
+  h2: ({ children }) => (
+    <h2 className={styles["mdx__heading"]}>{`- ${children}`}</h2>
+  ),
 
   p: ({ children }) => <p className={styles["mdx__paragraph"]}>{children}</p>,
 
@@ -69,9 +72,10 @@ const defaultMdxComponents = {
           alt={alt}
           width={MDX_IMAGE_SIZE}
           height={MDX_IMAGE_SIZE}
-          sizes="(max-width: 768px) 500px, (max-width: 1200px) 700px"
+          sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, (max-width: 1200px) 500px"
           className={styles["mdx__media-img"]}
         />
+        <figcaption className={styles["mdx__media-caption"]}>{alt}</figcaption>
       </figure>
     );
   },

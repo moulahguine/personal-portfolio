@@ -7,9 +7,13 @@
   @include flex-column;
   gap: clamp($space-24, 3vw, $space-32);
   padding: clamp($space-12, 2vw, $space-16);
-  border: 1px solid var(--border);
+  border: 1px solid;
+  border-color: transparent;
+  max-width: rem(300);
+  width: 100%;
 
   @include up(xl) {
+    border-color: var(--border);
     position: sticky;
     top: 120px;
   }
@@ -63,7 +67,6 @@
 
     @include button-hover {
       color: var(--text-primary);
-      font-weight: $fw-semibold;
     }
 
     // ---- current scroll target ----

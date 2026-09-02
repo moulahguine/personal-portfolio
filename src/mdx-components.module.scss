@@ -10,21 +10,21 @@
     counter-increment: counter;
 
     &::before {
-      content: counter(counter, decimal-leading-zero) "-";
+      content: counter(counter, decimal-leading-zero);
       font-family: $font-secondary;
       background-color: var(--primary);
-      color: #000;
+      color: var(--primary-on);
       display: inline-block;
       margin-inline-end: 0.15em;
+      padding-inline: $space-4;
+      border-radius: $radius-md;
     }
 
     font-family: $font-primary;
     font-size: clamp($font-size-20, 3vw, rem(30));
     font-weight: $fw-bold;
-    line-height: $line-height-tight;
     color: var(--text-primary);
-    margin-block: clamp($space-32, 4vw, $space-48)
-      clamp($space-16, 2.5vw, $space-24);
+    margin-block: clamp($space-16, 2.5vw, $space-24);
     letter-spacing: -0.01em;
   }
 
@@ -118,31 +118,26 @@
   &__media {
     margin-block: clamp($space-24, 4vw, $space-32);
     max-width: 850px;
-    aspect-ratio: 1.7;
-    mask-image:
-      linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-      );
-    mask-composite: intersect;
+    aspect-ratio: 2;
     background-color: var(--image-background);
-    overflow: hidden;
+    margin-bottom: rem(50);
 
     &-img {
       @include cover-image;
       object-position: bottom;
       width: 100%;
       height: 100%;
+      border-radius: $radius-md;
+    }
+
+    &-caption {
+      display: block;
+      font-family: $font-secondary;
+      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-weight: $fw-regular;
+      color: var(--text-secondary);
+      text-align: center;
+      padding-block: $space-8;
     }
   }
 }
