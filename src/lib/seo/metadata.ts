@@ -22,13 +22,21 @@ const RSS_ALTERNATE_TYPES = {
 // ---- verification ----
 const GOOGLE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
 const BING_VERIFICATION = process.env.BING_SITE_VERIFICATION;
+const NAVER_VERIFICATION = process.env.NAVER_SITE_VERIFICATION;
+
+const otherVerification = {
+  ...(BING_VERIFICATION ? { "msvalidate.01": BING_VERIFICATION } : {}),
+  ...(NAVER_VERIFICATION
+    ? { "naver-site-verification": NAVER_VERIFICATION }
+    : {}),
+};
 
 const verification: Metadata["verification"] | undefined =
-  GOOGLE_VERIFICATION || BING_VERIFICATION
+  GOOGLE_VERIFICATION || Object.keys(otherVerification).length > 0
     ? {
         ...(GOOGLE_VERIFICATION ? { google: GOOGLE_VERIFICATION } : {}),
-        ...(BING_VERIFICATION
-          ? { other: { "msvalidate.01": BING_VERIFICATION } }
+        ...(Object.keys(otherVerification).length > 0
+          ? { other: otherVerification }
           : {}),
       }
     : undefined;
