@@ -39,6 +39,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable}`}
     >
+      <head>
+        <link rel="describedby" href="/llms.txt" />
+      </head>
       <body>
         <IndieAuthLinks />
         <ThemeProvider>
