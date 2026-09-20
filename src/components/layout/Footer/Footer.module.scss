@@ -4,6 +4,7 @@
   @include section;
   position: relative;
   overflow: hidden;
+  padding: 0 !important;
 
   &__container {
     @include container;
@@ -39,7 +40,7 @@
       background: linear-gradient(
         to bottom,
         transparent 0%,
-        color-mix(in oklab, var(--background) 75%, transparent) 100%
+        color-mix(in oklab, var(--background) 50%, transparent) 100%
       );
     }
   }
@@ -52,11 +53,14 @@
 
   &__image {
     @include cover-image;
-
     position: absolute;
     object-position: bottom;
     inset: 0;
     z-index: -1;
+
+    @include down(sm) {
+      transform: translate(-20%, -20%) scale(2);
+    }
   }
 
   &__content {

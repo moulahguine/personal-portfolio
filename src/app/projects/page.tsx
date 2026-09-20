@@ -8,7 +8,7 @@ import {
   JsonLd,
 } from "@/lib";
 
-import styles from "./page.module.scss";
+import "../../assets/styles/main.scss";
 
 export const metadata = createPageMetadata(
   ROUTES.projects.href,
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
     <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <div className={styles.page__container}>
+      <div className="page__container">
         <ProjectsGrid />
       </div>
     </>

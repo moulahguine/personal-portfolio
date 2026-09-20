@@ -7,3 +7,5 @@ export { default as ArticleHeader } from "./ArticleHeader/ArticleHeader";
 export { default as Logo } from "./Logo/Logo";
 export { default as Navigation } from "./Navigation/Navigation";
 export { default as Menu } from "./Menu/Menu";
+export { default as PageTransition } from "./PageTransition/PageTransition";
+export { default as IntroAnimation } from "./IntroAnimation/IntroAnimation";

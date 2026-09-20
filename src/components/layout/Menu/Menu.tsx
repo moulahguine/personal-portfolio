@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Button,
   DropdownMenu,
@@ -20,7 +20,6 @@ interface MenuProps {
 // ---- mobile menu  ----
 export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
   const pathname = usePathname();
-  const router = useRouter();
 
   // ---- is active ----
   const isActive = (href: string) =>
@@ -33,6 +32,10 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
   ]
     .filter(Boolean)
     .join(" ");
+
+  const handleNavigate = () => {
+    onOpenChange(false);
+  };
 
   return (
     <>
@@ -62,16 +65,14 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
             <DropdownMenuItem
               key={item.href}
               id={item.href}
+              href={item.href}
               className={[
                 styles.menu__item,
                 isActive(item.href) ? styles["menu__item--active"] : "",
               ]
                 .filter(Boolean)
                 .join(" ")}
-              onAction={() => {
-                onOpenChange(false);
-                router.push(item.href);
-              }}
+              onAction={handleNavigate}
             >
               {item.label}
             </DropdownMenuItem>

@@ -1,11 +1,18 @@
 @use "../../../assets/styles" as *;
 
-// ---- logo ----
 .logo {
-  flex-shrink: 0;
   overflow: hidden;
 
   &[data-pressed] {
     transform: none !important;
+  }
+
+  &__container {
+    width: clamp(50px, 4vw, 60px);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }

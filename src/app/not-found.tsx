@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Link } from "@/components";
 import { ROUTES } from "@/data";
 
-import styles from "./not-found.module.scss";
-
 export const metadata: Metadata = {
   title: "Page not found",
   description: "The page you're looking for doesn't exist or has been moved.",
@@ -13,8 +11,8 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <div className={styles.page__container}>
-        <p className={styles.page__hint}>{metadata.description} </p>
+      <div className="not-found__container">
+        <p className="not-found__hint">{metadata.description} </p>
         <Link
           href={ROUTES.home.href}
           variant="primary"

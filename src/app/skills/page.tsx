@@ -3,7 +3,7 @@ import { SkillsGrid } from "@/features";
 import { ROUTES, SKILLS_META_DATA, SKILLS_PAGE_DATA } from "@/data";
 import { createPageMetadata, getRouteBreadcrumbJsonLd, JsonLd } from "@/lib";
 
-import styles from "./page.module.scss";
+import "../../assets/styles/main.scss";
 
 export const metadata = createPageMetadata(
   ROUTES.skills.href,
@@ -20,7 +20,7 @@ export default function SkillsPage() {
     <>
       <JsonLd data={getRouteBreadcrumbJsonLd("skills")} />
       <HeaderPage title={title} description={description} />
-      <div className={styles.page__container}>
+      <div className="page__container">
         <SkillsGrid />
       </div>
     </>

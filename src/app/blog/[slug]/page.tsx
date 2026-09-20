@@ -10,8 +10,6 @@ import {
   JsonLd,
 } from "@/lib";
 
-import styles from "./page.module.scss";
-
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }

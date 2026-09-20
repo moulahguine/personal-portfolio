@@ -1,5 +1,5 @@
-import { Comic_Neue, Inter, Sour_Gummy } from "next/font/google";
-import { Footer, Header } from "@/components";
+import { Comic_Neue, Inter, Playfair_Display, Sour_Gummy } from "next/font/google";
+import { Footer, Header, IntroAnimation, PageTransition } from "@/components";
 import { IndieAuthLinks, SkipLink } from "@/lib";
 import { ThemeProvider } from "@/providers";
 
@@ -28,6 +28,13 @@ const sourGummy = Sour_Gummy({
   display: "swap",
 });
 
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,7 +44,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable}`}
+      className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable} ${playfairDisplay.variable}`}
     >
       <head>
         <link rel="describedby" href="/llms.txt" />
@@ -45,10 +52,13 @@ export default function RootLayout({
       <body>
         <IndieAuthLinks />
         <ThemeProvider>
-          <SkipLink />
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
+          <IntroAnimation />
+          <PageTransition>
+            <SkipLink />
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </PageTransition>
         </ThemeProvider>
       </body>
     </html>

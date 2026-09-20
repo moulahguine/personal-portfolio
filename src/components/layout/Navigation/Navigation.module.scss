@@ -22,18 +22,6 @@
   &__item {
     position: relative;
     isolation: isolate;
-
-    // ---- indicator ----
-    &--indicator {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--primary-on);
-
-      @include down(md) {
-        display: none;
-      }
-    }
   }
 
   // ---- link ----
@@ -54,6 +42,7 @@
     // ---- active ----
     &--active {
       color: var(--primary) !important;
+      background-color: var(--primary-on);
     }
   }
 }

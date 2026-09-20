@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { Link } from "@/components";
 import { NAV_ITEMS } from "@/data";
 import type { ClassNameProps } from "@/types";
-import { motion } from "motion/react";
 
 import styles from "./Navigation.module.scss";
 
@@ -58,19 +57,6 @@ export default function Navigation({
               >
                 {item.label}
               </Link>
-
-              {/* ---- indicator ---- */}
-              {active ? (
-                <motion.span
-                  layoutId="indicator"
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className={styles["navigation__item--indicator"]}
-                />
-              ) : null}
             </li>
           );
         })}

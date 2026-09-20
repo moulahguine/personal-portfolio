@@ -1,5 +1,6 @@
 @use "../tokens/bundle" as *;
 @use "../functions" as *;
+@use "../utilities" as *;
 
 // ---- html ----
 html {
@@ -36,6 +37,60 @@ body {
   background-color: var(--background);
   color: var(--text-primary);
   -webkit-overflow-scrolling: touch;
+}
+
+// ---- page content entrance ----
+body[data-content-state="hidden"] main {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+body[data-content-state="entering"] main {
+  animation: page-content-fade-up 300ms ease-in-out 2ms both;
+}
+
+@keyframes page-content-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-content-state] main {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+.page__container {
+  @include container;
+  @include flex-column;
+  gap: clamp($space-24, 3vw, $space-32);
+}
+
+.not-found {
+  &__container {
+    @include container;
+    @include flex-center;
+    flex-direction: column;
+    gap: clamp($space-16, 2vw, $space-24);
+    text-align: center;
+    height: 100%;
+  }
+
+  &__hint {
+    font-family: $font-secondary;
+    font-size: clamp(rem(30), 4vw, rem(50));
+    color: var(--text-secondary);
+    max-width: 55ch;
+  }
 }
 
 // ---- headings ----

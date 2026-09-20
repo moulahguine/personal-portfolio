@@ -1,6 +1,13 @@
-import { FaEnvelope, FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaGlobe,
+  FaLinkedin,
+  FaRss,
+} from "react-icons/fa";
 import { FaBluesky } from "react-icons/fa6";
 import type { IconType } from "react-icons";
+import { BLOG_RSS_PATH } from "@/lib/seo/site";
 
 // ---- types ----
 export type SocialLinkId =
@@ -8,7 +15,8 @@ export type SocialLinkId =
   | "bluesky"
   | "github"
   | "email"
-  | "website";
+  | "website"
+  | "rss";
 
 export interface SocialLink {
   id: SocialLinkId;
@@ -30,6 +38,7 @@ const SOCIAL_PROFILES: Record<SocialLinkId, SocialProfileConfig> = {
   github: { label: "GitHub", icon: FaGithub, external: true },
   email: { label: "Email", icon: FaEnvelope, external: false },
   website: { label: "Website", icon: FaGlobe, external: true },
+  rss: { label: "RSS", icon: FaRss, external: false },
 };
 
 // ---- factory ----
@@ -55,4 +64,5 @@ export const SOCIAL_LINKS: SocialLink[] = [
   createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
   createSocialLink("github", "https://github.com/moulahguine"),
   createSocialLink("email", "mailto:hello@mohamedoulahguine.com"),
+  createSocialLink("rss", BLOG_RSS_PATH, "Subscribe via RSS"),
 ];

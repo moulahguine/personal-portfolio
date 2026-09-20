@@ -24,9 +24,7 @@ export default function ArticleLayout({
       </aside>
 
       {/* ---- main content ---- */}
-      <article id="main-content" className={styles.layout__content}>
-        {children}
-      </article>
+      <article className={styles.layout__content}>{children}</article>
     </div>
   );
 }

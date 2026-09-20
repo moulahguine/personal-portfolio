@@ -1,19 +1,19 @@
-import { FaRss } from "react-icons/fa";
-import { HeaderPage, Link } from "@/components";
+import { HeaderPage, SocialLinks } from "@/components";
 import { BlogsGrid } from "@/features";
-import { ROUTES } from "@/data";
+import { ROUTES, SOCIAL_LINKS } from "@/data";
 import { BLOG_META_DATA, BLOG_PAGE_DATA } from "@/data/blog.data";
 import {
-  BLOG_RSS_PATH,
   createPageMetadata,
   getCollectionPageJsonLd,
   getRouteBreadcrumbJsonLd,
   JsonLd,
 } from "@/lib";
 
-import styles from "./page.module.scss";
+import "../../assets/styles/main.scss";
 
 export const metadata = createPageMetadata(ROUTES.blogs.href, BLOG_META_DATA);
+
+const rssLink = SOCIAL_LINKS.find((link) => link.id === "rss");
 
 // ---- blog page ----
 export default function BlogPage() {
@@ -42,18 +42,8 @@ export default function BlogPage() {
     <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <div className={styles.page__container}>
-        <div className={styles.page__actions}>
-          <Link
-            href={BLOG_RSS_PATH}
-            variant="ghost"
-            size="sm"
-            icon={<FaRss aria-hidden="true" />}
-            iconPosition="left"
-            label="Subscribe via RSS"
-            aria-label="Subscribe to the blog via RSS"
-          />
-        </div>
+      <div className="page__container">
+        {rssLink ? <SocialLinks links={[rssLink]} showLabel /> : null}
         <BlogsGrid />
       </div>
     </>

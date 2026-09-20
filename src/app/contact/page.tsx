@@ -8,7 +8,7 @@ import {
 } from "@/lib";
 import { CONTACT_META_DATA, CONTACT_PAGE_DATA, ROUTES } from "@/data";
 
-import styles from "./page.module.scss";
+import "../../assets/styles/main.scss";
 
 export const metadata = createPageMetadata(
   ROUTES.contact.href,
@@ -29,7 +29,7 @@ export default function ContactPage() {
     <>
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
-      <div className={styles.page__container}>
+      <div className="page__container">
         <Contact />
       </div>
     </>
