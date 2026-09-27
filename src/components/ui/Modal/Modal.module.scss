@@ -53,6 +53,7 @@
     max-height: min(85svh, rem(720));
     border: 1px solid var(--border);
     background-color: var(--background);
+    box-shadow: 0 0 15px var(--shadow-color);
     outline: none;
     overflow: hidden;
 

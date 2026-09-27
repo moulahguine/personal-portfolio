@@ -140,15 +140,16 @@
       justify-content: flex-start;
       gap: $space-4;
       font-family: $font-primary;
-      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-size: clamp($font-size-12, 1.5vw, rem(15));
       font-weight: $fw-regular;
       color: var(--text-secondary);
 
       &--icon {
         flex-shrink: 0;
         font-size: inherit;
+        margin-top: 3px;
         color: var(--primary);
-        filter: drop-shadow(0 0 1px var(--border));
+        filter: drop-shadow(0.5px -0.5px 0 var(--border-strong));
       }
     }
   }
