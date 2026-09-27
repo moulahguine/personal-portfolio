@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 import { LOGO_PATH, LOGO_VIEWBOX } from "../Logo/logoPath";
 
+import styles from "./IntroAnimation.module.scss";
+
 const DRAW_DURATION = 1.05;
 const LOGO_HOLD_DURATION = 0.15;
 const UNDRAW_DURATION = 0.65;
@@ -40,18 +42,7 @@ export default function IntroAnimation() {
   }
 
   return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 1300,
-        display: "grid",
-        placeItems: "center",
-        overflow: "hidden",
-        pointerEvents: "auto",
-      }}
-    >
+    <div aria-hidden="true" className={styles.intro}>
       <motion.div
         initial={{ x: "0%" }}
         animate={{ x: "-100%" }}
@@ -90,12 +81,7 @@ export default function IntroAnimation() {
       <svg
         viewBox={LOGO_VIEWBOX}
         xmlns="http://www.w3.org/2000/svg"
-        style={{
-          position: "relative",
-          zIndex: 1,
-          width: "min(52vw, 260px)",
-          overflow: "visible",
-        }}
+        className={styles.intro__logo}
       >
         <motion.path
           d={LOGO_PATH}
