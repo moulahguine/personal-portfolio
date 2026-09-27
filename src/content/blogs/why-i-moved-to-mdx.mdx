@@ -1,74 +1,55 @@
 ---
-title: "I Didn't Start My About Page With MDX"
-description: "How moving from TypeScript content objects to MDX made writing my About page feel natural again."
+title: "Why I Chose MDX for Writing Content in My Next.js Project"
+description: "How moving from TypeScript content objects to MDX made writing my content feel natural again."
 date: "Aug 24, 2026"
 dateTime: "2026-08-24"
 author: "moulahguine"
 ---
 
-I didn't start my About page with MDX. Actually, I had already built the whole thing before I started thinking about it. The page was working and the content was there and also I was happy with how it looked. So technically, there wasn't a problem I needed to fix but when I looked at the code again, something felt a little strange. I wasn't really writing my About page anymore. I was building a system for describing how my About page should be written.
+<section id="intro">
 
-For example, this was one of the ways I was storing my content:
+## How I was writing the content before
 
-```json
+I didn't start using MDX from the beginning. When I first built the content for my About page, I stored everything as TypeScript data. It worked, the page looked good, and I could control pretty much everything about how the content was rendered, so at first I didn't really have a reason to change it. But after looking at the code again and adding more content, something started to feel strange. I wasn't really writing my content anymore. I was building a system for describing how my content should be written.
+
+For example, one of my paragraphs looked something like this:
+
+```ts
 {
-  "type": "paragraph",
-  "content": [
+  type: "paragraph",
+  content: [
     "After high school, I decided to start with frontend development. My first serious learning came from ",
     {
-      "text": "Elzero Web School",
-      "emphasis": "strong",
-      "link": "https://elzero.org/"
+      text: "Elzero Web School",
+      emphasis: "strong",
+      link: "https://elzero.org/"
     },
     ", where I learned ",
-    { "text": "HTML", "emphasis": "strong" },
+    { text: "HTML", emphasis: "strong" },
     ", ",
-    { "text": "CSS", "emphasis": "strong" },
+    { text: "CSS", emphasis: "strong" },
     ", and ",
-    { "text": "JavaScript", "emphasis": "strong" },
+    { text: "JavaScript", emphasis: "strong" },
     "."
   ]
 }
 ```
 
-It worked. I could make words bold, add links, create quotes, add images, and render everything exactly how I wanted. There was nothing broken about it.
+There was nothing technically wrong with this. I could make words bold, add links, create quotes, add images, and render everything exactly how I wanted. The problem was that even a simple paragraph had to become a TypeScript structure before I could actually write it. Then I needed another part of my application to understand that structure and turn it into HTML. I had an `AboutContentItem`, an `AboutContentPart`, a `renderPart()` function, a `renderEmphasis()` function, and more logic to decide what each piece of content was supposed to become.
 
-But look at it for a second.
+The more content I added, the more I started asking myself: **am I writing content, or am I building a tiny CMS?**
 
-If I just wanted to write:
-
-I learned HTML, CSS, and JavaScript.
-
-I had to turn that sentence into a TypeScript data structure. And then I needed code to understand that structure. So i had an `AboutContentItem`, an `AboutContentPart`, a `renderPart()` function, a `renderEmphasis()` function, and a component responsible for figuring out what each item was supposed to become. And also the more content I added, the more obvious it became. I wasn't just writing content anymore. I was writing content through a system I had built to describe content.
-
-At some point I started asking myself:
-
-Am I building an About page, or am I building a tiny CMS?
-
-And that was probably the moment I started looking for a different way to do it.
+</section>
 
 <section id="the-problem">
 
 ## The problem wasn't that the code was wrong
 
-This is important because I don't think my original approach was bad. In fact, there are situations where representing content as data makes a lot of sense. If I had a large collection of structured content that needed to be filtered, sorted, transformed, searched, or consumed by different parts of an application, having everything represented as objects could actually be useful. In that situation, the fact that my content is data is a feature.
+I don't think my original approach was bad. There are definitely situations where representing content as data makes a lot of sense. If you have structured information that needs to be filtered, sorted, transformed, searched, or consumed by different parts of an application, having everything represented as objects can actually be useful. In that case, the fact that your content is data is a feature.
 
-Something like this:
+But that wasn't really what I was doing. I was writing stories and explanations. I wanted to sit down and write about how I got into programming, what I learned, and the things I wanted to share. I wasn't trying to build a database of paragraphs. So writing a story as a collection of TypeScript objects started feeling backwards. I had created an abstraction because I wanted more control, but eventually the abstraction itself became something I had to work around.
 
-```json
-{
-  "type": "paragraph",
-  "content": "..."
-}
-```
-
-is still perfectly valid data. But the problem was that my About page wasn't really that kind of content.
-
-It was a story.
-
-And I wasn't trying to build a database of paragraphs. I just wanted to sit down and write about how I got into programming, how I found my way into frontend development, my first client, and everything in between. You can read the [full story here](/about).
-
-So writing a story as a collection of TypeScript objects started feeling backwards. So i had created an abstraction because I wanted more control, but eventually the abstraction itself became something I had to work around.
+That was when I started looking for another way to write the content.
 
 </section>
 
@@ -76,121 +57,140 @@ So writing a story as a collection of TypeScript objects started feeling backwar
 
 ## Then I started looking at MDX
 
-This is where things became much simpler. Instead of describing the content using TypeScript, I could just write it.
+This is where things became much simpler. Instead of describing the content using TypeScript, I could just write it:
 
-```md
-After high school, I decided to start with frontend development. My first serious learning came from
-[**Elzero Web School**](https://elzero.org/), where I learned **HTML**, **CSS**, and **JavaScript**.
+```mdx
+After high school, I decided to start with frontend development.
+My first serious learning came from
+[**Elzero Web School**](https://elzero.org/), where I learned
+**HTML**, **CSS**, and **JavaScript**.
 ```
 
-That's it.
+That's a completely different way of thinking about the same content. There is no object, no `type`, no `content` property, and no renderer trying to figure out what I meant. If I want something bold, I use Markdown. If I want a link, I use a Markdown link. If I want a quote, I can just write a quote. The content looks like the content I'm actually trying to write.
 
-No object.
+That's the part of MDX that really clicked for me. It doesn't force me to choose between Markdown and React. I can write normal content, but I can still bring React into that content whenever I actually need it. MDX lets me use Markdown together with JSX, so instead of inventing my own little language for writing content, I could use something that already existed.
 
-No type.
-
-No content property.
-
-No renderer trying to figure out what I meant.
-
-If I want something bold, I use Markdown.
-
-If I want a link, I use a Markdown link.
-
-If I want a quote, I can write:
-
-> Does anyone know which language Android was built with?
-
-And if I want to use a React component, I can. That's basically the part of MDX that clicked for me. It doesn't force me to choose between Markdown and React. I can write normal content, but I can still bring React into that content when I actually need it. That was exactly what I wanted. The official [Next.js documentation](https://nextjs.org/docs/app/guides/mdx) describes MDX as a way to use Markdown together with JSX, which is what makes it different from simply writing Markdown and nothing else. So instead of inventing my own little language for writing my About page, I could use something that already existed.
-
-That felt like a pretty good deal.
+And honestly, that felt like a pretty good deal.
 
 </section>
 
 <section id="paragraphs-again">
 
-## And my paragraphs became paragraphs again 😅
+## My paragraphs became paragraphs again
 
-There was another small thing I noticed while moving the content, and honestly, this one bothered me more than I expected. My old system encouraged me to create a separate object for every paragraph.
+There was another small thing I noticed while moving the content, and this one bothered me more than I expected. My old system encouraged me to create a separate object for every paragraph, so I ended up with things like this:
 
-So I had things like:
-
-```json
+```ts
 {
-  "type": "paragraph",
-  "content": "We started with Scratch."
+  type: "paragraph",
+  content: "We started with Scratch."
 },
 {
-  "type": "paragraph",
-  "content": "It was a very simple way to learn programming..."
+  type: "paragraph",
+  content: "It was a very simple way to learn programming..."
 },
 {
-  "type": "paragraph",
-  "content": "One day, our teacher asked:"
+  type: "paragraph",
+  content: "One day, our teacher asked:"
 }
 ```
 
-Again, there was nothing technically wrong with this. But when I was actually writing the story, I didn't want every thought to become its own separate paragraph. Sometimes a few sentences naturally belonged together. They were part of the same thought, the same moment in the story, and splitting them apart just because my data structure expected another paragraph object didn't feel natural.
+Again, there was nothing technically wrong with this. But when I was actually writing the story, I didn't want every thought to become its own separate object. Sometimes a few sentences naturally belong together because they're part of the same thought, the same moment, or the same explanation. With MDX, I can simply write those sentences together and decide where the paragraph should end while I'm actually writing.
 
-With MDX, I can simply write them together:
+```mdx
+We started with Scratch. It was a very simple way to learn programming.
+Instead of writing lots of code, we had these blocks that we could put
+together to make something happen. And I loved it.
+```
 
-We started with Scratch. It was a very simple way to learn programming. Instead of writing lots of code, we had these blocks that we could put together to make something happen. And I loved it. There is one small memory from that time that I still remember.
+That sounds like a small change, but it made a big difference to me. I wasn't thinking, "Okay, this is another `AboutContentItem` of type paragraph." I was just thinking, "This thought ends here." And that's how I wanted to write in the first place.
 
-Now, the decision about where a paragraph starts and ends is made while I'm actually writing. That sounds like a small change, but it made a big difference to me. I wasn't thinking, "Okay, this is another AboutContentItem of type paragraph." I was just thinking, "This thought ends here." And that's how I wanted to write in the first place.
+</section>
+
+<section id="react-components">
+
+## But what about React components?
+
+One of the things I like about MDX is that it isn't just Markdown. I can still use React components when I need something more than normal text. For example, if I want to add an image, I can use the component directly:
+
+```mdx
+<Image src={myimage} alt="" width={300} height={300} />
+```
+
+I don't need to create a special `image` content type and then teach my renderer what an image is. I can just use the component. The same idea can apply to other components I might want to use inside my content.
+
+That's what makes MDX interesting to me. Content can stay readable like normal writing, while I still have access to React when the content needs something more. I don't have to turn every piece of content into JavaScript data just because it lives inside a React application.
 
 </section>
 
 <section id="styling-question">
 
-## But then I had another question
+## But how do I style the MDX?
 
-Once I moved the content into MDX, I ran into another problem: if MDX gives me normal HTML elements like `h2`, `p`, `blockquote`, and `a`, how was I supposed to style them without affecting the rest of my application? My About page has its own design, so I didn't want every `h2`, paragraph, link, or quote across the site to suddenly inherit the styles meant for this page. That's when I started looking into how Next.js handles MDX components and found `mdx-components.tsx`, which is the file Next.js uses with `@next/mdx` and the App Router to map MDX elements to the components I want to render.
+Once I moved the content into MDX, I ran into another question. If MDX gives me normal elements like `h2`, `p`, `blockquote`, and `a`, how was I supposed to style them without turning every route into a one-off?
 
-At first, I thought:
+My About page and my blog posts both use long-form MDX inside `ArticleLayout`, so I wanted one consistent typography system for that reading experience, not separate renderers per page. That's when I started using Next.js `mdx-components.tsx` together with a dedicated `mdx-components.module.scss`.
 
-Okay, so I guess all my About page components and styles need to go in here.
+The structure in my project looks like this now:
 
-But that wasn't really what I wanted either. I didn't want my global MDX configuration to know that my About page exists. What I actually wanted was global MDX defaults plus page-specific overrides. And once I separated those two ideas, the structure became much cleaner.
-
-So I ended up with something like this:
-
-```
+```text
 src/
 ├── mdx-components.tsx
+├── mdx-components.module.scss
 ├── content/
-│   └── about/
-│       └── about.mdx
+│   ├── about/
+│   │   └── about.mdx
+│   └── blogs/
+│       ├── index.ts
+│       └── *.mdx
+├── server/
+│   └── blog.server.ts
 └── app/
-    └── about/
+    ├── about/
+    │   └── page.tsx
+    └── blog/
         ├── page.tsx
-        └── page.module.scss
+        └── [slug]/
+            └── page.tsx
 ```
 
-The global `mdx-components.tsx` stays minimal.
+Blog metadata (title, description, date) lives in each file's frontmatter and is read by `blog.server.ts`. The MDX files themselves are just content.
 
-The About page can then provide its own components:
+Shared MDX styling lives in one place. For example:
 
 ```tsx
-const aboutComponents = {
-  h2: ({ children }) => (
-    <h2 className={styles["page__section-title"]}>{children}</h2>
-  ),
+h2: ({ children }) => (
+  <h2 className={styles["mdx__heading"]}>{`- ${children}`}</h2>
+),
 
-  p: ({ children }) => <p className={styles.page__paragraph}>{children}</p>,
+p: ({ children }) => <p className={styles["mdx__paragraph"]}>{children}</p>,
 
-  blockquote: (props) => (
-    <blockquote {...props} className={styles.page__quote} />
-  ),
-} satisfies MDXComponents;
+blockquote: (props) => (
+  <blockquote {...props} className={styles["mdx__quote"]} />
+),
 ```
 
-And then the MDX content can be rendered with those components:
+Each route only decides how to **mount** the MDX. About imports the file directly; blog posts pick the right component by slug:
 
 ```tsx
-<AboutContent components={aboutComponents} />
+import AboutContent from "@/content/about/about.mdx";
+
+<ArticleLayout>
+  <AboutContent />
+</ArticleLayout>;
 ```
 
-This was probably the part that made the whole thing finally make sense to me. The MDX file is responsible for what I'm saying. The page can decide how that content should look. And the global `mdx-components.tsx` doesn't need to know anything specifically about my About page. That separation is what I was missing before.
+```tsx
+const Content = blogComponents[slug];
+
+<ArticleLayout header={<ArticleHeader ... />}>
+  <Content />
+</ArticleLayout>
+```
+
+The important part for me was the separation. The `.mdx` file is responsible for **what I'm saying**. `mdx-components.tsx` is responsible for **how MDX elements look** when they're rendered as articles. The App Router page is responsible for **where** that content appears (header, layout, metadata).
+
+That separation was what I was missing before.
 
 </section>
 
@@ -198,22 +198,20 @@ This was probably the part that made the whole thing finally make sense to me. T
 
 ## So what actually changed?
 
-The biggest change wasn't really the folder structure.
+The biggest change wasn't really the folder structure. It was **where I put the responsibility**.
 
-It was where I put the responsibility. Before, my TypeScript data was responsible for describing the content, and then my React code was responsible for figuring out how to render that description.
+Before, my TypeScript data was responsible for describing the content, and then my React code was responsible for figuring out how to render that description. So I had one layer describing the content:
 
-So I had one layer describing the content:
-
-```json
+```ts
 {
-  "type": "paragraph",
-  "content": [...]
+  type: "paragraph",
+  content: [...]
 }
 ```
 
 and another layer interpreting it:
 
-```tsx
+```ts
 if (item.type === "paragraph") {
   // render paragraph
 }
@@ -221,23 +219,18 @@ if (item.type === "paragraph") {
 
 Then I needed more logic for emphasis, links, quotes, images, and everything else.
 
-After moving to MDX, the content can just describe itself.
+With MDX, the content can describe itself:
 
-```md
+```mdx
 ## Starting with the frontend
 
-After high school, I decided to start with frontend development. I learned **HTML**, **CSS**, and **JavaScript**.
+After high school, I decided to start with frontend development.
+I learned **HTML**, **CSS**, and **JavaScript**.
 ```
 
-There is much less distance between what I want to say and what I write. And React only gets involved when I actually need React.
+There is much less distance between what I want to say and what I actually write. And React only gets involved when I actually need React. That was the biggest change for me.
 
-For example, my image can still be:
-
-```tsx
-<Image src={myimage} alt="" width={300} height={300} />
-```
-
-I don't need to invent an image content type just so my renderer knows what to do with it. I can simply use the component directly, and that's one of the things I really like about MDX. I'm still inside my React application, but I don't have to turn every piece of written content into JavaScript data before I can use it.
+It's not that my application suddenly became completely different. I just stopped making my written content look like application logic.
 
 </section>
 
@@ -245,56 +238,49 @@ I don't need to invent an image content type just so my renderer knows what to d
 
 ## What I actually gained from the change
 
-I didn't move to MDX because my old approach was slow or because MDX was going to magically make my website better. The biggest improvement for me was how the content is authored and maintained. Before, if I wanted to change a sentence, I was editing a TypeScript object. If I wanted to make one word bold, I needed the right content structure. If I wanted to add a link, I needed another object inside the content array, and if I wanted to add another content type, I had to think about the type, the renderer, and the UI for it. Now I can open `about.mdx` and just write. That is a much smaller mental load for a page whose main purpose is telling a story, and there's something else I really like about it: the content file doesn't look like application logic anymore. When I open it, I immediately understand what I'm looking at. It's my story, not a data model representing my story.
+I didn't choose MDX because my old approach was slow, and I didn't choose it because it was going to magically make my website better either. The biggest improvement for me was how the content is written and maintained.
+
+Before, if I wanted to change a sentence, I was editing a TypeScript object. If I wanted to make one word bold, I needed the right content structure. If I wanted to add a link, I needed another object inside the content array. And if I wanted to add another content type, I had to think about the type, the renderer, and how it should be displayed.
+
+Now I can open an `.mdx` file and just write.
+
+That's a much smaller mental load for content whose main purpose is being read by people. When I open the content file now, I immediately understand what I'm looking at. It's the actual content, not a data model representing the content.
+
+And I think that's the biggest reason I chose MDX.
 
 </section>
 
-<section id="what-it-looks-like-now">
+<section id="where-i-ended-up">
 
-## What my About page looks like now
+## Where I ended up
 
-The final structure is pretty small:
+After all of this, my content structure became much simpler. I don't need to create a custom object every time I want to write a paragraph, and I don't need to create a renderer for every type of content. I can just write:
 
-```
-src/
-├── mdx-components.tsx
-├── content/
-│   └── about/
-│       └── about.mdx
-└── app/
-    └── about/
-        ├── page.tsx
-        └── page.module.scss
+```mdx
+## Something I learned
+
+This is a normal paragraph with **some bold text** and
+[a link](https://example.com).
+
+> And this is a quote.
 ```
 
-`about.mdx` contains the story.
+And when I need React, I can use React.
 
-`page.tsx` contains the page shell.
+That's really what I wanted from the beginning.
 
-`page.module.scss` contains the About page layout styles.
+The funny thing is that I spent time building all of those things before realizing that the thing I wanted was already called **MDX**. I basically built a small system for writing content and then discovered that I could have just written the content.
 
-And `mdx-components.tsx` stays shared.
+And now I'm using the same idea for the content I'm writing here.
 
-That's it.
+This article is written with MDX too.
 
-No `AboutContentItem`.
+So I guess I finally took my own advice.
 
-No `AboutContentPart`.
+Maybe that's the best test I could have given it.
 
-No `renderPart()`.
+Sometimes the solution isn't about building a better abstraction. Sometimes it's about realizing that the abstraction you need already exists.
 
-No `renderEmphasis()`.
-
-No custom content renderer.
-
-And honestly, that feels much better.
-
-The funny thing is that I spent time building all of those things before realizing that the thing I wanted was already called MDX. And I basically built a small system for writing content and then discovered that I could have just written the content. And now, if you're reading this article on my website, there is another slightly funny part:
-
-this article is written with MDX too.
-
-So I guess I finally took my own advice. The page where I'm explaining why I wanted to stop treating my writing like TypeScript data is now being written in the same kind of content format I wanted to use in the first place. Maybe that's the best test I could have given it.
-
-And honestly, sometimes reading the [MDX documentation](https://mdxjs.com/) for a while is faster than trying to design the solution yourself.
+And in my case, it was MDX.
 
 </section>

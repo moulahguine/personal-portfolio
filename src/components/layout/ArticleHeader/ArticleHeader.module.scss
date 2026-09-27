@@ -3,9 +3,14 @@
 .articleHeader {
   @include container;
   @include flex-column;
-  gap: clamp($space-16, 2.5vw, $space-32);
+  gap: clamp($space-24, 2.5vw, $space-32);
   width: 100%;
+  padding-bottom: $space-4;
   border-bottom: 1px solid var(--border);
+
+  @include down(md) {
+    padding-top: $space-8;
+  }
 
   // ---- breadcrumb ----
   &__breadcrumb {
@@ -22,13 +27,17 @@
       @include button-hover {
         color: var(--text-primary);
       }
+
+      &[data-pressed] {
+        transform: translateY(0) translateX(-2px);
+      }
     }
   }
 
   // ---- title ----
   &__title {
     font-family: $font-primary;
-    font-size: clamp($font-size-28, 5vw, $font-size-48);
+    font-size: clamp(rem(26), 5vw, $font-size-48);
     font-weight: $fw-semibold;
     line-height: $line-height-tight;
     color: var(--text-primary);
@@ -57,14 +66,20 @@
 
   &__author-name {
     font-family: $font-primary;
-    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+    font-size: clamp(rem(13), 1.8vw, $font-size-16);
     font-weight: $fw-semibold;
     color: var(--text-primary);
     line-height: $line-height-tight;
+
+    &-prefix {
+      font-family: $font-secondary;
+      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      color: var(--text-secondary);
+    }
   }
 
   &__author-role {
-    font-family: $font-primary;
+    font-family: $font-accent;
     font-size: clamp($font-size-12, 1.5vw, $font-size-14);
     font-weight: $fw-regular;
     color: var(--text-secondary);
@@ -73,12 +88,27 @@
 
   &__author-socials {
     margin-block-start: $space-4;
+    & > * {
+      gap: $space-4;
+      & > * {
+        font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+      }
+    }
   }
 
   // ---- details (reading time + published) ----
   &__details {
-    @include flex-between;
+    @include flex-center;
+    justify-content: flex-start;
     gap: $space-8;
+    width: fit-content;
+
+    &-separator {
+      font-family: $font-secondary;
+      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+      font-weight: $fw-regular;
+      color: var(--text-tertiary);
+    }
   }
 
   &__details-item {
@@ -88,7 +118,7 @@
     font-family: $font-secondary;
     font-size: clamp($font-size-12, 1.5vw, $font-size-14);
     font-weight: $fw-regular;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     line-height: $line-height-tight;
   }
 }

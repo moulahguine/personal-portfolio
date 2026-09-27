@@ -25,7 +25,7 @@
     @include flex-center;
     gap: $space-4;
     text-decoration: none;
-    font-size: $font-size-18;
+    font-size: clamp($font-size-16, 1.5vw, $font-size-18);
     color: inherit;
 
     @include button-hover {

@@ -1,6 +1,6 @@
-import { HeaderPage, SocialLinks } from "@/components";
+import { HeaderPage } from "@/components";
 import { BlogsGrid } from "@/features";
-import { ROUTES, SOCIAL_LINKS } from "@/data";
+import { ROUTES } from "@/data";
 import { BLOG_META_DATA, BLOG_PAGE_DATA } from "@/data/blog.data";
 import {
   createPageMetadata,
@@ -12,8 +12,6 @@ import {
 import "../../assets/styles/main.scss";
 
 export const metadata = createPageMetadata(ROUTES.blogs.href, BLOG_META_DATA);
-
-const rssLink = SOCIAL_LINKS.find((link) => link.id === "rss");
 
 // ---- blog page ----
 export default function BlogPage() {
@@ -43,7 +41,6 @@ export default function BlogPage() {
       <JsonLd data={jsonLd} />
       <HeaderPage title={title} description={description} />
       <div className="page__container">
-        {rssLink ? <SocialLinks links={[rssLink]} showLabel /> : null}
         <BlogsGrid />
       </div>
     </>

@@ -13,7 +13,7 @@
     padding-bottom: 0;
     position: relative;
     isolation: isolate;
-    aspect-ratio: 2.8;
+    aspect-ratio: 2.7;
     mask-image:
       linear-gradient(
         to bottom,
@@ -40,8 +40,13 @@
       background: linear-gradient(
         to bottom,
         transparent 0%,
-        color-mix(in oklab, var(--background) 50%, transparent) 100%
+        color-mix(in oklab, var(--background) 70%, transparent) 100%
       );
+    }
+
+    @include down(md) {
+      mask-image: none;
+      mask-composite: none;
     }
   }
 
@@ -57,10 +62,6 @@
     object-position: bottom;
     inset: 0;
     z-index: -1;
-
-    @include down(sm) {
-      transform: translate(-20%, -20%) scale(2);
-    }
   }
 
   &__content {

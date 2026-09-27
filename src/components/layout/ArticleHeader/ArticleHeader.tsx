@@ -67,7 +67,12 @@ export default function ArticleHeader({
         />
 
         <div className={styles["articleHeader__author-info"]}>
-          <p className={styles["articleHeader__author-name"]}>{author.name}</p>
+          <p className={styles["articleHeader__author-name"]}>
+            <span className={styles["articleHeader__author-name-prefix"]}>
+              by
+            </span>{" "}
+            {author.name}
+          </p>
           <p className={styles["articleHeader__author-role"]}>{author.role}</p>
           <SocialLinks
             links={author.socials}
@@ -82,9 +87,14 @@ export default function ArticleHeader({
         <ul className={styles.articleHeader__details}>
           {publishedAt ? (
             <li className={styles["articleHeader__details-item"]}>
-              <span>Published</span>
+              <span>Published:</span>
               <time dateTime={publishedAt.iso}>{publishedAt.display}</time>
             </li>
+          ) : null}
+          {readingTime && publishedAt ? (
+            <span className={styles["articleHeader__details-separator"]}>
+              |
+            </span>
           ) : null}
           {readingTime ? (
             <li className={styles["articleHeader__details-item"]}>

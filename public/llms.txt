@@ -12,7 +12,7 @@ This site is the canonical source for Mohamed's professional profile, projects, 
 
 ## Writing
 - [Blog](https://mohamedoulahguine.dev/blog): Notes and lessons about software development and Mohamed's growth as a developer.
-- [I Didn't Start My About Page With MDX](https://mohamedoulahguine.dev/blog/why-i-moved-to-mdx): How moving from TypeScript content objects to MDX made writing and maintaining long-form content simpler.
+- [Why I Chose MDX for Writing Content in My Next.js Project](https://mohamedoulahguine.dev/blog/why-i-moved-to-mdx): How moving from TypeScript content objects to MDX made writing my content feel natural again.
 
 ## Featured project
 - [Personal portfolio](https://mohamedoulahguine.dev/projects): This Next.js portfolio, built with TypeScript, Sass, Motion, and MDX.

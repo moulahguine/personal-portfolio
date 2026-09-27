@@ -73,7 +73,7 @@
     width: 100%;
     padding-block: $space-16;
     color: var(--text-secondary);
-    font-size: $font-size-20;
+    font-size: clamp($font-size-16, 1.5vw, $font-size-18);
     font-weight: $fw-semibold;
     font-family: $font-primary;
 
