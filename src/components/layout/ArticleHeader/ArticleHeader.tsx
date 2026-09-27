@@ -92,7 +92,10 @@ export default function ArticleHeader({
             </li>
           ) : null}
           {readingTime && publishedAt ? (
-            <span className={styles["articleHeader__details-separator"]}>
+            <span
+              className={styles["articleHeader__details-separator"]}
+              aria-hidden="true"
+            >
               |
             </span>
           ) : null}

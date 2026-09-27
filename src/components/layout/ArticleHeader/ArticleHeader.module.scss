@@ -44,7 +44,15 @@
     max-width: 30ch;
   }
 
-  // ---- author ----
+  // ---- authors ----
+  &__authors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp($space-16, 2vw, $space-20);
+  }
+
   &__author {
     display: flex;
     align-items: center;
@@ -114,7 +122,7 @@
   &__details-item {
     display: inline-flex;
     align-items: center;
-    gap: $space-8;
+    gap: $space-4;
     font-family: $font-secondary;
     font-size: clamp($font-size-12, 1.5vw, $font-size-14);
     font-weight: $fw-regular;

@@ -113,7 +113,10 @@ function parseTags(value: string): string[] {
     .filter(Boolean);
 }
 
-function resolveAuthorId(value: string | undefined, filename: string): AuthorId {
+function resolveAuthorId(
+  value: string | undefined,
+  filename: string,
+): AuthorId {
   if (!value) {
     return DEFAULT_AUTHOR_ID;
   }
