@@ -4,13 +4,14 @@
   @include section;
   position: relative;
   overflow: hidden;
-  padding: 0 !important;
+  padding: 0;
 
   &__container {
     @include container;
     display: flex;
     align-items: end;
-    padding-bottom: 0;
+    padding: 0;
+    margin-bottom: 0;
     position: relative;
     isolation: isolate;
     aspect-ratio: 2.7;

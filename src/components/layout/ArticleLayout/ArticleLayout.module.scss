@@ -5,11 +5,11 @@
 .layout {
   @include section;
   @include flex-column;
-  gap: clamp($space-24, 3vw, $space-48);
   position: relative;
 
   @include down(xl) {
     @include container;
+    padding-block: 0;
   }
 
   // ---- content ----
