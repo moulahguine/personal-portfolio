@@ -1,14 +1,15 @@
 @use "../../../assets/styles" as *;
 
 .logo {
-  overflow: hidden;
+  // overflow: hidden;
 
   &[data-pressed] {
     transform: none !important;
   }
 
   &__container {
-    width: clamp(50px, 4vw, 60px);
+    width: clamp(45px, 4vw, 55px);
+    transform: translateY(3px);
   }
 
   svg {
