@@ -9,7 +9,8 @@ import type {
 export type DropdownMenuOrientation = "vertical" | "horizontal";
 
 export interface DropdownMenuProps
-  extends Omit<MenuProps<object>, "className" | "children">,
+  extends
+    Omit<MenuProps<object>, "className" | "children">,
     Pick<PopoverProps, "placement" | "offset"> {
   children: ReactNode;
   orientation?: DropdownMenuOrientation;

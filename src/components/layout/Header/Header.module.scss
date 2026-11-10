@@ -6,18 +6,18 @@
   position: sticky;
   top: 0;
   z-index: $z-header;
-  padding-inline: clamp($space-4, 1vw, $space-8);
 
   // ---- container ----
   &__container {
     @include container;
     @include flex-between;
-    background-color: var(--primary);
+    background-color: var(--background-overlay);
+    backdrop-filter: blur(7px);
+    border: 1px solid var(--border);
     padding: clamp($space-4, 1vw, $space-8);
     margin-top: clamp($space-8, 1.5vw, $space-12);
+    margin-bottom: 0;
     overflow: hidden;
-    outline: 1px solid var(--background-inverse);
-    max-width: calc($container-width - clamp($space-8, 1vw, $space-12) * 2);
 
     @include down(sm) {
       padding-inline: $space-12;

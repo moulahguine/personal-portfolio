@@ -72,7 +72,7 @@ export default function Actions({
   if (!tooltipLabel) return control;
 
   return (
-    <TooltipTrigger delay={300} closeDelay={0}>
+    <TooltipTrigger delay={700} closeDelay={100}>
       {control}
       <Tooltip>{tooltipLabel}</Tooltip>
     </TooltipTrigger>

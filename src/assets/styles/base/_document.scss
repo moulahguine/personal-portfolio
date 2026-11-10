@@ -39,6 +39,11 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+// ---- main landmark ----
+#main-content {
+  // margin-top: rem(15);
+}
+
 // ---- page content entrance ----
 body[data-content-state="hidden"] main {
   opacity: 0;
@@ -95,7 +100,7 @@ body[data-content-state="entering"] main {
 
 // ---- headings ----
 :where(h1, h2, h3, h4, h5, h6) {
-  font-family: $font-accent;
+  font-family: $font-tertiary;
   font-weight: $fw-medium;
   color: var(--text-primary);
 }

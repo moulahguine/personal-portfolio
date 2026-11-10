@@ -17,4 +17,5 @@ export interface ModalProps {
   "aria-label"?: string;
   className?: string;
   isDismissable?: boolean;
+  layoutId?: string;
 }

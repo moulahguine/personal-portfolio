@@ -3,15 +3,26 @@
 .skills {
   &__grid {
     @include responsive-grid(
-      repeat(4, 1fr),
-      clamp($space-8, 2vw, $space-12),
+      repeat(4, minmax(0, 1fr)),
+      1px,
       (
-        sm: repeat(3, 1fr),
+        sm: repeat(3, minmax(0, 1fr)),
       )
     );
+
+    background-color: var(--border);
+
+    @supports (row-rule: 1px solid var(--border)) {
+      background-color: transparent;
+      column-rule: 1px solid var(--border);
+      row-rule: 1px solid var(--border);
+    }
   }
 
   &__list {
+    min-width: 0;
+    display: flex;
+
     @include up(sm) {
       &:last-child {
         display: none;
@@ -20,57 +31,34 @@
   }
 
   &__item {
-    all: unset;
     @include flex-center;
+    background-color: var(--background);
     flex-direction: column;
-    width: 100%;
+    flex: 1;
+    align-self: stretch;
     aspect-ratio: 1.3;
-    background-color: var(--background-muted);
     gap: $space-12;
-    border: 1px solid var(--border);
     cursor: pointer;
     overflow: hidden;
-    transition:
-      transform $duration-base ease-in,
-      background-color $duration-base ease-in;
+    transition-property:
+      background-color, border-color, color, opacity !important;
 
     @include down(sm) {
       aspect-ratio: 1.1;
     }
-
-    @media (hover: hover) {
-      &:hover,
-      &[data-pressed],
-      &[data-focus-visible] {
-        background-color: var(--background-elevated) !important;
-
-        .skills__icon {
-          color: var(--skill-color);
-          filter: drop-shadow(10px 10px 3px var(--shadow-color));
-          transform: translateY(-10px);
-        }
-      }
-    }
   }
 
   &__icon {
+    display: inline-flex;
     font-size: clamp($font-size-28, 5vw, $font-size-36);
     flex-shrink: 0;
-    color: var(--text-primary);
-    filter: drop-shadow(3px 3px 0px var(--shadow-color));
-    transition:
-      color $duration-base ease-in,
-      filter $duration-base ease-in,
-      transform $duration-base ease-in;
   }
 
   &__name {
     text-transform: capitalize;
-    font-family: $font-secondary;
-    font-size: clamp($font-size-14, 2vw, $font-size-16);
-    font-weight: $fw-bold;
-    color: var(--text-secondary);
-    text-align: center;
+    font-family: $font-secondary !important;
+    font-size: clamp($font-size-14, 2vw, $font-size-16) !important;
+    font-weight: $fw-semibold !important;
   }
 
   &__modal {
@@ -81,6 +69,13 @@
       font-size: clamp($font-size-14, 1.6vw, $font-size-16);
       line-height: $line-height-relaxed;
       color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: clamp($space-10, 2vw, $space-12);
+    }
+
+    &-projects {
+      margin-top: clamp($space-20, 3vw, $space-32);
+      border: 1px solid var(--border);
     }
   }
 }

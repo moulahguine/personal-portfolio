@@ -73,14 +73,27 @@
     }
   }
 
+  &__pronunciation {
+    small {
+      font-family: $font-secondary;
+      font-size: 0.85em;
+      font-weight: $fw-regular;
+      color: var(--text-tertiary);
+    }
+  }
+
   &__link {
-    display: inline;
+    display: inline-flex !important;
+    align-items: baseline;
     width: auto;
-    white-space: normal;
+    max-width: 100%;
+    padding: 0 !important;
+    white-space: normal !important;
     vertical-align: baseline;
-    text-decoration: underline;
+    text-decoration: underline !important;
     text-underline-offset: 0.15em;
     color: inherit;
+    font-weight: inherit;
 
     @include button-hover {
       color: var(--text-primary);

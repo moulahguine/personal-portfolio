@@ -4,15 +4,12 @@
   z-index: $z-dropdown;
   max-width: rem(240);
   padding: $space-10 $space-12;
-  border: 1px solid var(--border);
-  background-color: var(--surface-overlay);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface-muted);
   color: var(--text-primary);
   font-family: $font-secondary;
   font-size: clamp($font-size-12, 1.5vw, $font-size-14);
   font-weight: $fw-bold;
-  line-height: $line-height-tight;
-  box-shadow: 0 0px 5px var(--shadow-color);
-  outline: none;
 
   &[data-entering] {
     animation: tooltip-in $duration-fast $ease-out-expo;

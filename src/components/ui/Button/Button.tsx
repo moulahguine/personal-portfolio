@@ -1,8 +1,11 @@
 "use client";
 
+import { motion, type HTMLMotionProps } from "motion/react";
 import { Button as RACButton } from "react-aria-components";
 import { ActionsButton } from "@/components";
 import type { ButtonProps } from "@/types";
+
+const LAYOUT_TRANSITION = { type: "spring", bounce: 0.15, duration: 0.5 } as const;
 
 export default function Button({
   ref,
@@ -15,6 +18,7 @@ export default function Button({
   iconPosition = "left",
   type = "button",
   className = "",
+  layoutId,
   ...rest
 }: ButtonProps) {
   return (
@@ -28,7 +32,24 @@ export default function Button({
       className={className}
       aria-label={rest["aria-label"]}
       shell={(content, shellClassName) => (
-        <RACButton ref={ref} type={type} className={shellClassName} {...rest}>
+        <RACButton
+          ref={ref}
+          type={type}
+          className={shellClassName}
+          render={
+            layoutId
+              ? (domProps) => (
+                  <motion.button
+                    {...(domProps as HTMLMotionProps<"button">)}
+                    layoutId={layoutId}
+                    layoutCrossfade={false}
+                    transition={LAYOUT_TRANSITION}
+                  />
+                )
+              : undefined
+          }
+          {...rest}
+        >
           {content}
         </RACButton>
       )}

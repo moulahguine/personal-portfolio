@@ -32,7 +32,21 @@
     @include flex-column;
     gap: clamp($space-8, 1.5vw, $space-12);
     border-left: $border-width solid var(--border);
-    scroll-target-group: auto;
+  }
+
+  // ---- item ----
+  &__item {
+    position: relative;
+  }
+
+  // ---- indicator ----
+  &__indicator {
+    position: absolute;
+    top: 0;
+    left: -$border-width;
+    width: $border-width;
+    height: 100%;
+    background-color: var(--primary);
   }
 
   // ---- link ----
@@ -47,36 +61,18 @@
     color: var(--text-tertiary);
     padding-left: $space-10;
     margin-left: -$border-width;
-    overflow: hidden;
-    position: relative;
     transition:
       color $duration-base $ease-out-expo,
       font-weight $duration-base $ease-out-expo;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: $border-width;
-      height: 100%;
-      transform: translateY(-100%);
-      background-color: var(--primary);
-      transition: transform $duration-base $ease-out-expo;
-    }
 
     @include button-hover {
       color: var(--text-primary);
     }
 
-    // ---- current scroll target ----
-    &:target-current {
+    // ---- current section ----
+    &[aria-current] {
       color: var(--text-primary);
       font-weight: $fw-semibold;
-
-      &::before {
-        transform: translateY(0);
-      }
     }
   }
 }

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
 import Image, { type StaticImageData } from "next/image";
 import { Link } from "@/components";
@@ -16,6 +17,16 @@ const defaultMdxComponents = {
   ),
 
   p: ({ children }) => <p className={styles["mdx__paragraph"]}>{children}</p>,
+
+  Pronunciation: ({ children }: { children: ReactNode }) => (
+    <span
+      className={styles["mdx__pronunciation"]}
+      role="note"
+      aria-label={`Pronunciation: ${String(children)}`}
+    >
+      <small>({children})</small>
+    </span>
+  ),
 
   blockquote: (props) => (
     <blockquote {...props} className={styles["mdx__quote"]} />

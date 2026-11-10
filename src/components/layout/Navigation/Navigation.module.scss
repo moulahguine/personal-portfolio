@@ -28,7 +28,8 @@
   &__link {
     width: 100%;
     justify-self: center;
-    color: var(--primary-on) !important;
+    font-weight: $fw-regular;
+    color: var(--text-primary) !important;
 
     @include button-hover {
       background-color: transparent !important;
@@ -41,8 +42,9 @@
 
     // ---- active ----
     &--active {
-      color: var(--primary) !important;
-      background-color: var(--primary-on);
+      color: var(--text-inverse) !important;
+      background-color: var(--background-inverse);
+      font-weight: $fw-bold;
     }
   }
 }

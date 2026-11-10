@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const CARTO_TILE_BASE = "https://a.basemaps.cartocdn.com";
-const ALLOWED_STYLES = new Set(["light_all", "dark_all"]);
+const ALLOWED_STYLES = new Set(["light_nolabels", "dark_nolabels"]);
 
 function parseTilePath(segments: string[]): string | null {
   if (segments.length !== 4) {
@@ -60,8 +60,7 @@ export async function GET(
     return new NextResponse(body, {
       headers: {
         "Content-Type": response.headers.get("Content-Type") ?? "image/png",
-        "Cache-Control":
-          "public, max-age=86400, stale-while-revalidate=604800",
+        "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
       },
     });
   } catch {

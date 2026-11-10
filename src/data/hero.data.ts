@@ -1,11 +1,11 @@
 import { FiDownload } from "react-icons/fi";
-import { FaCheckCircle, FaLink, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCheckCircle, FaAt, FaMapMarkerAlt } from "react-icons/fa";
 
 import profilePhotoSrc from "@/assets/images/profilePicture/profilePicture.png";
 
 export const HERO_DATA = {
   profilePhotoSrc: profilePhotoSrc,
-  connectIcon: FaLink,
+  connectIcon: FaAt,
 
   profileInfo: {
     name: "Mohamed Oulahguine",

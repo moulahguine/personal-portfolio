@@ -51,12 +51,6 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme="light"])) &__logo {
-      filter: brightness(0) invert(1);
-    }
-  }
-
   &__image {
     @include cover-image;
     position: absolute;

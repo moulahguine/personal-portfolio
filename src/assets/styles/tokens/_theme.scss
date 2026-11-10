@@ -16,21 +16,22 @@
 
 @mixin theme($mode: null) {
   /* ----- BASE ----- */
-  --background: #{theme-value(#f8f8f6, #191917, $mode)};
-  --background-muted: #{theme-value(#f1f1ef, #1c1c18, $mode)};
-  --background-elevated: #{theme-value(#ffffff, #211f1d, $mode)};
+
+  --background: #{theme-value(#f8f8f6, #0e0e0e, $mode)};
+  --background-muted: #{theme-value(#f1f1ef, #191919, $mode)};
+  --background-elevated: #{theme-value(#ffffff, #222222, $mode)};
   --background-inverse: #{theme-value(#11110f, #f8f8f6, $mode)};
   --background-overlay: #{theme-value(
       rgba(248, 248, 246, 0.683),
-      rgba(17, 17, 15, 0.82),
+      rgba(14, 14, 14, 0.82),
       $mode
     )};
 
   /* ----- SURFACES ----- */
-  --surface: #{theme-value(#ffffff, #151513, $mode)};
-  --surface-muted: #{theme-value(#f3f3f1, #1b1b18, $mode)};
-  --surface-elevated: #{theme-value(#ffffff, #232320, $mode)};
-  --surface-overlay: #{theme-value(#ffffff, #2b2b27, $mode)};
+  --surface: #{theme-value(#ffffff, #161616, $mode)};
+  --surface-muted: #{theme-value(#f3f3f1, #1d1d1d, $mode)};
+  --surface-elevated: #{theme-value(#ffffff, #252525, $mode)};
+  --surface-overlay: #{theme-value(#ffffff, #2e2e2e, $mode)};
   --surface-inverse: #{theme-value(#0d1111, #ffffff, $mode)};
 
   /* ----- BORDERS ----- */

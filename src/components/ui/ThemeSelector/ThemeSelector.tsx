@@ -20,17 +20,26 @@ export default function ThemeSelector() {
   return (
     <Button
       type="button"
-      variant="ghost"
+      variant="secondary"
+      size="sm"
       className={styles.themeSelector}
-      aria-label="Toggle color theme"
+      aria-label="Switch theme"
       onPress={() => {
         const isLight = getResolvedThemeFromDocument() === "light";
         runThemeTransition(() => setTheme(isLight ? "dark" : "light"));
       }}
       icon={
         <>
-          <HiSun className={styles.themeSelector__iconLight} aria-hidden />
-          <HiMoon className={styles.themeSelector__iconDark} aria-hidden />
+          <HiSun
+            className={styles.themeSelector__iconLight}
+            fontSize={25}
+            aria-hidden
+          />
+          <HiMoon
+            className={styles.themeSelector__iconDark}
+            fontSize={25}
+            aria-hidden
+          />
         </>
       }
     />

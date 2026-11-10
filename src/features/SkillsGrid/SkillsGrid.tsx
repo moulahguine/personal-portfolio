@@ -1,3 +1,4 @@
+import * as motion from "motion/react-client";
 import { Button, DialogTrigger, HeaderSection, Modal } from "@/components";
 import { ProjectsGrid } from "@/features";
 import {
@@ -16,6 +17,11 @@ interface SkillsGridProps {
 const { primarySkills } = SKILLS_SECTION_DATA;
 const { skills: skillsData } = SKILLS_PAGE_DATA;
 const SKILL_MODAL_MAX_PROJECTS = 2;
+const LAYOUT_TRANSITION = {
+  type: "spring",
+  bounce: 0.15,
+  duration: 0.5,
+} as const;
 
 // ---- skills grid ----
 export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
@@ -25,6 +31,7 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
     <ul className={styles.skills__grid}>
       {skills.map((skill) => {
         const SkillIcon = skill.icon;
+        const layoutId = `skill-${variant}-${skill.id}`;
         const matchingProjects = getProjectsBySkillId(skill.id);
         const relatedProjects = matchingProjects.slice(
           0,
@@ -38,17 +45,34 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
             <DialogTrigger>
               <Button
                 variant="ghost"
+                fullWidth
+                layoutId={layoutId}
                 className={styles.skills__item}
                 aria-label={`View ${skill.name} details`}
                 style={{ "--skill-color": skill.color } as React.CSSProperties}
               >
-                <SkillIcon className={styles.skills__icon} aria-hidden="true" />
-                <span className={styles.skills__name}>{skill.name}</span>
+                <motion.span
+                  layoutId={`${layoutId}-icon`}
+                  layoutCrossfade={false}
+                  transition={LAYOUT_TRANSITION}
+                  className={styles.skills__icon}
+                  aria-hidden="true"
+                >
+                  <SkillIcon />
+                </motion.span>
+                <motion.span
+                  layoutId={`${layoutId}-title`}
+                  layoutCrossfade={false}
+                  transition={LAYOUT_TRANSITION}
+                  className={styles.skills__name}
+                >
+                  {skill.name}
+                </motion.span>
               </Button>
 
               <Modal
                 size="lg"
-                className={styles.skills__modal}
+                layoutId={layoutId}
                 icon={<SkillIcon aria-hidden="true" />}
                 title={skill.name}
                 description={skill.description}

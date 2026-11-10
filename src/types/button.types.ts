@@ -2,7 +2,7 @@ import type { Ref } from "react";
 import type { ButtonProps as RACButtonProps } from "react-aria-components";
 import type { ActionsProps } from "./actions.types";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost";
+export type ButtonVariant = "plain" | "primary" | "secondary" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps
@@ -13,4 +13,5 @@ export interface ButtonProps
   fullWidth?: boolean;
   className?: string;
   tabIndex?: number;
+  layoutId?: string;
 }

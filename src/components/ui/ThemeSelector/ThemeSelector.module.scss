@@ -1,27 +1,12 @@
 @use "../../../assets/styles" as *;
 
 .themeSelector {
-  padding: $space-8 !important;
-
   @include down(md) {
     margin-left: auto;
   }
 
-  @include button-hover {
-    background-color: #ffffffbb !important;
-  }
-
-  &[data-pressed] {
-    background-color: transparent;
-    transform: translateY(0);
-  }
-
   &__iconLight,
   &__iconDark {
-    color: var(--primary-on);
-    font-size: $font-size-24;
-
-    transform-origin: center;
     animation: theme-icon-switch $duration-base $ease-default;
 
     @include reduced-motion {

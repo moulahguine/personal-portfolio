@@ -7,13 +7,13 @@
   // ---- content container ----
   &__container {
     @include container;
-    padding-block: 0;
+    padding-bottom: clamp($space-8, 1vw, $space-12);
   }
 
   // ---- map banner wrapper ----
   &__banner {
     width: 100%;
-    height: clamp(250px, 30vw, 300px);
+    height: clamp(180px, 25vw, 240px);
     position: relative;
     z-index: 0;
     background-color: var(--image-background);
@@ -23,7 +23,6 @@
   &__map {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--border);
   }
 
   // ---- placeholder ----
@@ -37,8 +36,8 @@
   // ---- content ----
   &__content {
     @include flex-between;
+    align-items: start;
     gap: clamp($space-10, 1.8vw, $space-16);
-    transform: translateY(-50px);
     padding-inline: clamp($space-8, 2vw, $space-16);
 
     @include down(md) {
@@ -49,11 +48,15 @@
 
   // ---- avatar ----
   &__avatar {
+    position: relative;
+    z-index: 1;
+    margin-top: -60px;
+
     // ---- image ----
     &-media {
       all: unset;
       border-radius: 50%;
-      width: clamp(170px, 18vw, 200px);
+      width: clamp(120px, 20vw, 170px);
       aspect-ratio: 1;
       overflow: hidden;
       background-color: var(--image-background);
@@ -82,7 +85,7 @@
   &__info {
     flex: 1 1 auto;
     @include flex-column;
-    gap: $space-8;
+    gap: clamp($space-10, 1.5vw, $space-14);
 
     @include down(md) {
       align-items: center;
@@ -91,28 +94,29 @@
 
     // ---- name ----
     &-name {
-      font-family: $font-primary;
-      font-size: clamp($font-size-18, 4vw, $font-size-28);
-      font-weight: $fw-bold;
       display: flex;
       align-items: center;
       gap: $space-8;
-      color: var(--text-primary);
 
-      @include down(md) {
-        font-size: clamp($font-size-18, 5vw, $font-size-28);
+      // ---- text ----
+      &--text {
+        font-family: $font-primary;
+        font-size: clamp($font-size-20, 5vw, rem(26));
+        font-weight: $fw-bold;
+        color: var(--text-primary);
+        text-box: trim-both cap alphabetic;
       }
 
       // ---- icon ----
       &--icon {
         @include flex-center;
-        width: clamp(16px, 2vw, 20px);
-        height: clamp(16px, 2vw, 20px);
+        width: clamp(14px, 2vw, 18px);
+        aspect-ratio: 1;
         overflow: hidden;
 
         // ---- badge ----
         &---badge {
-          font-size: clamp($font-size-16, 1.6vw, $font-size-18);
+          font-size: clamp($font-size-16, 2vw, $font-size-18);
           color: var(--text-primary);
         }
       }
@@ -121,8 +125,10 @@
     // ---- role ----
     &-role {
       font-family: $font-primary;
-      font-size: clamp($font-size-14, 1.6vw, $font-size-16);
+      font-weight: $fw-regular;
+      font-size: clamp(rem(13), 3vw, rem(15));
       color: var(--text-secondary);
+      text-box: trim-both cap alphabetic;
 
       @include down(md) {
         text-align: center;
@@ -139,15 +145,19 @@
       @include flex-center;
       justify-content: flex-start;
       gap: $space-4;
-      font-family: $font-primary;
-      font-size: clamp($font-size-12, 1.5vw, rem(15));
-      font-weight: $fw-regular;
-      color: var(--text-secondary);
+
+      // ---- text ----
+      &--text {
+        font-family: $font-primary;
+        font-size: clamp(rem(12), 3vw, rem(14));
+        font-weight: $fw-light;
+        color: var(--text-secondary);
+        text-box: trim-both cap alphabetic;
+      }
 
       &--icon {
         flex-shrink: 0;
-        font-size: inherit;
-        margin-top: 3px;
+        font-size: clamp($font-size-10, 3vw, rem(12));
         color: var(--primary);
         filter: drop-shadow(0.5px -0.5px 0 var(--border-strong));
       }
@@ -158,51 +168,9 @@
   &__actions {
     @include flex-center;
     gap: $space-12;
-    flex-shrink: 0;
 
     @include down(md) {
-      margin-top: $space-20;
-      width: 100%;
-    }
-
-    &-resume {
-      @include down(sm) {
-        flex-grow: 1;
-      }
-    }
-
-    &-connect {
-      &--trigger {
-        padding: clamp($space-14, 1.5vw, $space-16) !important;
-        &[data-pressed] {
-          transform: none;
-        }
-
-        &---icon {
-          font-size: clamp($font-size-16, 2vw, $font-size-18);
-        }
-      }
-
-      &--menu {
-        width: 250px;
-        padding: 0;
-        margin: 0;
-        box-shadow: 0 0 5px 0 var(--shadow-color);
-        border: none;
-        border-radius: 0;
-
-        &---item {
-          @include flex-center;
-          justify-content: flex-start;
-          gap: $space-10;
-          padding: $space-12;
-          background-color: var(--background);
-          color: var(--text-secondary);
-          font-weight: $fw-bold;
-          font-size: clamp($font-size-16, 1.7vw, $font-size-18);
-          border-radius: 0;
-        }
-      }
+      margin-top: $space-10;
     }
   }
 }

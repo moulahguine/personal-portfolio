@@ -13,8 +13,8 @@ import "./InteractiveMap.scss";
 const ISTANBUL: LatLngTuple = [41.0082, 28.9784];
 const DEFAULT_ZOOM = 13;
 
-const DARK_TILES = "/api/map-tiles/dark_all/{z}/{x}/{y}{r}.png";
-const LIGHT_TILES = "/api/map-tiles/light_all/{z}/{x}/{y}{r}.png";
+const DARK_TILES = "/api/map-tiles/dark_nolabels/{z}/{x}/{y}{r}.png";
+const LIGHT_TILES = "/api/map-tiles/light_nolabels/{z}/{x}/{y}{r}.png";
 
 // ---- interactive location map ----
 export default function InteractiveMap({ className }: ClassNameProps) {
@@ -30,6 +30,7 @@ export default function InteractiveMap({ className }: ClassNameProps) {
           <span class="interactive-map__pulse-ring"></span>
           <span class="interactive-map__pulse-ring"></span>
           <span class="interactive-map__pulse-ring"></span>
+          <span class="interactive-map__label">Istanbul</span>
         `,
         iconSize: [18, 18],
         iconAnchor: [9, 9],

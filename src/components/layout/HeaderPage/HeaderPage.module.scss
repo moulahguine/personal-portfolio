@@ -7,7 +7,7 @@
   width: 100%;
   gap: clamp($space-10, 2vw, $space-16);
   padding-block: clamp($space-40, 6vw, $space-64);
-  border-bottom: 1px solid var(--border);
+  border: 0;
 
   &__title {
     font-family: $font-primary;
@@ -35,8 +35,9 @@
     font-family: $font-secondary;
     color: var(--text-secondary);
     font-size: clamp($font-size-14, 2.5vw, $font-size-20);
-    font-weight: $fw-semibold;
-    max-width: 65ch;
+    font-weight: $fw-regular !important;
+    max-width: 60ch;
+    letter-spacing: 0.5px;
     text-align: center;
   }
 }

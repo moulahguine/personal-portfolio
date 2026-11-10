@@ -41,12 +41,7 @@ export default function HeaderSection({
           size="sm"
           className={styles.headerSection__link}
           aria-label={link.ariaLabel}
-          icon={
-            <MdOutlineArrowOutward
-              className={styles.headerSection__linkIcon}
-              aria-hidden="true"
-            />
-          }
+          icon={<MdOutlineArrowOutward aria-hidden="true" />}
           label={link.label}
         />
       ) : null}

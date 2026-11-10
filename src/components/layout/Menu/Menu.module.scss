@@ -20,7 +20,7 @@
 
     &__line {
       height: 1.6px;
-      background-color: var(--primary-on);
+      background-color: var(--text-primary);
       transition:
         transform $duration-fast $ease-default,
         opacity $duration-fast $ease-default;

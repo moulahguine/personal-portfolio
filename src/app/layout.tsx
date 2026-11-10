@@ -1,4 +1,9 @@
-import { Comic_Neue, Inter, Playfair_Display, Sour_Gummy } from "next/font/google";
+import {
+  Comic_Neue,
+  Inter,
+  Playfair_Display,
+  Sour_Gummy,
+} from "next/font/google";
 import { Footer, Header, IntroAnimation, PageTransition } from "@/components";
 import { IndieAuthLinks, SkipLink } from "@/lib";
 import { ThemeProvider } from "@/providers";
@@ -7,6 +12,14 @@ import "@/assets/styles/main.scss";
 
 export { generateMetadata, viewport } from "./metadata";
 
+// ---- font primary ----
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+// ---- font secondary ----
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
@@ -14,23 +27,17 @@ const comicNeue = Comic_Neue({
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
+// ---- font tertiary ----
 const sourGummy = Sour_Gummy({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-sour-gummy",
+  variable: "--font-tertiary",
   display: "swap",
 });
 
+// ---- font quaternary ----
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-quaternary",
   display: "swap",
 });
 
@@ -43,7 +50,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${comicNeue.variable} ${inter.variable} ${sourGummy.variable} ${playfairDisplay.variable}`}
+      className={`${inter.variable} ${comicNeue.variable} ${sourGummy.variable} ${playfairDisplay.variable}`}
     >
       <head>
         <link rel="describedby" href="/llms.txt" />

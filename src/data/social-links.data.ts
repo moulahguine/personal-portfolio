@@ -63,6 +63,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   createSocialLink("linkedin", "https://linkedin.com/in/moulahguine"),
   createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
   createSocialLink("github", "https://github.com/moulahguine"),
-  createSocialLink("email", "mailto:hello@mohamedoulahguine.com"),
+  createSocialLink("email", "mailto:mohamedoulahguine@gmail.com"),
   createSocialLink("rss", BLOG_RSS_PATH, "Subscribe via RSS"),
 ];

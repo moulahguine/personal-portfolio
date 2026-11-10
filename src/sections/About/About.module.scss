@@ -6,22 +6,17 @@
 
   &__container {
     @include container;
-    padding-top: 0;
-  }
-
-  &__header {
-    display: none;
+    padding: clamp($space-10, 2vw, $space-14);
   }
 
   &__paragraph {
     font-family: $font-primary;
-    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-size: clamp($font-size-14, 1.7vw, rem(17));
     font-weight: $fw-regular;
     line-height: 2;
     color: var(--text-primary);
-    max-width: 73ch;
-    margin-inline: auto;
-    text-indent: $space-24;
+    max-width: 70ch;
+    text-indent: $space-16;
     position: relative;
     isolation: isolate;
     text-wrap: pretty;
@@ -29,10 +24,10 @@
     &::before {
       content: "";
       position: absolute;
-      top: 2px;
+      top: 2.5px;
       left: 0;
-      width: clamp(2px, 0.5vw, 4px);
-      height: clamp(20px, 3vw, 30px);
+      width: clamp(1.5px, 0.5vw, 3px);
+      height: clamp(20px, 3vw, 25px);
       background-color: var(--primary);
       z-index: -1;
     }

@@ -67,6 +67,27 @@
       background-color: var(--primary);
     }
 
+    // ---- istanbul label ----
+    .interactive-map__label {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, clamp($space-4, 0.8vw, $space-8));
+      font-family: $font-secondary;
+      font-size: clamp($font-size-16, 2.5vw, $font-size-24);
+      font-weight: $fw-semibold;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      white-space: nowrap;
+      color: var(--text-secondary);
+      text-shadow:
+        0 0 2px var(--background),
+        0 0 4px var(--background),
+        0 1px 2px var(--background);
+      pointer-events: none;
+      user-select: none;
+    }
+
     // ---- rings ----
     &-ring {
       position: absolute;

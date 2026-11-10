@@ -15,6 +15,7 @@ import styles from "./Hero.module.scss";
 
 // ---- hero ----
 export default function Hero() {
+  // ---- data ----
   const {
     profilePhotoSrc,
     connectIcon: ConnectIcon,
@@ -29,6 +30,8 @@ export default function Hero() {
     },
     resume: { href, fileName, downloadIcon: DownloadIcon },
   } = HERO_DATA;
+
+  const layoutId = "hero-avatar";
 
   return (
     <section className={styles.hero} aria-label="Hero section">
@@ -45,8 +48,9 @@ export default function Hero() {
             <DialogTrigger>
               <Button
                 className={styles["hero__avatar-media"]}
-                variant="ghost"
-                aria-label={`View larger photo of ${name}`}
+                variant="plain"
+                layoutId={layoutId}
+                aria-label={`if you click here, you will see a larger photo of ${name}`}
               >
                 <Image
                   src={profilePhotoSrc}
@@ -60,6 +64,7 @@ export default function Hero() {
 
               <Modal
                 size="fit"
+                layoutId={layoutId}
                 showHeader={false}
                 className={styles["hero__avatar-modal"]}
                 aria-label={`${name} — full-size profile photo`}
@@ -79,7 +84,7 @@ export default function Hero() {
           {/* ---- profile information ---- */}
           <div className={styles.hero__info}>
             <h1 className={styles["hero__info-name"]} aria-label={name}>
-              {name}
+              <span className={styles["hero__info-name--text"]}>{name}</span>
               <span
                 className={styles["hero__info-name--icon"]}
                 aria-hidden="true"
@@ -108,7 +113,9 @@ export default function Hero() {
               >
                 <LocationIcon />
               </span>
-              {`${location} (from ${origin})`}
+              <span className={styles["hero__info-location--text"]}>
+                {location} (from {origin})
+              </span>
             </address>
           </div>
 
@@ -119,7 +126,7 @@ export default function Hero() {
               href={href}
               download={fileName}
               variant="primary"
-              size="lg"
+              size="md"
               className={styles["hero__actions-resume"]}
               aria-label="Download resume (PDF)"
               icon={<DownloadIcon />}
@@ -130,7 +137,7 @@ export default function Hero() {
             <MenuTrigger>
               <Button
                 variant="secondary"
-                size="lg"
+                size="md"
                 className={styles["hero__actions-connect--trigger"]}
                 aria-label="Connect with me"
                 icon={
@@ -160,7 +167,6 @@ export default function Hero() {
                       href={socialHref}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                      className={styles["hero__actions-connect--menu---item"]}
                     >
                       <SocialLinkIcon aria-hidden="true" />
                       {label}

@@ -1,5 +1,30 @@
 @use "../../../assets/styles" as *;
 
+@mixin icon-revealed {
+  .actions--kind-both .actions__icon {
+    max-width: 2em;
+    margin-inline: 0 $space-8;
+    opacity: 1;
+    transform: none;
+  }
+
+  .actions--kind-both.actions--icon-right .actions__icon {
+    margin-inline: $space-8 0;
+  }
+}
+
+@mixin corners-active {
+  --corner-opacity: 1;
+  --corner-width: 2px;
+
+  &::before {
+    inset: var(--corner-inset);
+  }
+
+  @include icon-revealed;
+}
+
+// shell is the parent of the button
 .shell {
   @include rac-touch;
   @include flex-center;
@@ -9,7 +34,6 @@
   background: none;
   cursor: pointer;
   font-family: $font-primary;
-  font-weight: $fw-bold;
   white-space: nowrap;
   transition:
     background-color $duration-fast $ease-default,
@@ -18,10 +42,6 @@
     opacity $duration-fast $ease-default,
     transform $duration-fast $ease-default;
 
-  &[data-pressed] {
-    transform: translateY(1.3px);
-  }
-
   &[data-disabled] {
     cursor: pointer !important;
     opacity: 0.5;
@@ -29,6 +49,120 @@
 
   &[data-pending] {
     cursor: progress;
+  }
+
+  // ---- corner brackets ----
+  &:not(.shell--variant-plain) {
+    --corner-color: currentColor;
+    --corner-size: #{rem(8)};
+    --corner-width: 1px;
+    --corner-inset: #{$space-4};
+    --corner-opacity: 0;
+
+    position: relative;
+
+    &.shell--kind-label,
+    &.shell--kind-both {
+      --corner-opacity: 0.5;
+
+      font-weight: $fw-semibold;
+      text-transform: uppercase;
+
+      &.shell--variant-ghost {
+        border-color: var(--border);
+      }
+    }
+
+    .actions--kind-both {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    .actions--kind-both .actions__icon {
+      width: 1.4em;
+      height: 1.4em;
+      max-width: 0;
+      margin-block: -0.2em;
+      overflow: hidden;
+      border-radius: 50%;
+      background-color: currentColor;
+      opacity: 0;
+      transform: scale(0.6);
+      transition:
+        max-width $duration-base $ease-default,
+        margin $duration-base $ease-default,
+        opacity $duration-base $ease-default,
+        transform $duration-base $ease-default;
+
+      svg {
+        width: 0.8em;
+        height: 0.8em;
+        color: var(--badge-fg, var(--background));
+      }
+    }
+
+    @media (hover: none) {
+      @include icon-revealed;
+    }
+
+    &::before {
+      $corner: linear-gradient(var(--corner-color), var(--corner-color));
+
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      opacity: var(--corner-opacity);
+      background-image:
+        $corner, $corner, $corner, $corner, $corner, $corner, $corner, $corner;
+      background-repeat: no-repeat;
+      background-position:
+        top left,
+        top left,
+        top right,
+        top right,
+        bottom left,
+        bottom left,
+        bottom right,
+        bottom right;
+      background-size:
+        var(--corner-size) var(--corner-width),
+        var(--corner-width) var(--corner-size),
+        var(--corner-size) var(--corner-width),
+        var(--corner-width) var(--corner-size),
+        var(--corner-size) var(--corner-width),
+        var(--corner-width) var(--corner-size),
+        var(--corner-size) var(--corner-width),
+        var(--corner-width) var(--corner-size);
+      transition:
+        inset $duration-base $ease-default,
+        opacity $duration-base $ease-default;
+    }
+
+    @include button-hover {
+      @include corners-active;
+    }
+
+    &[data-focus-visible],
+    &[data-pressed],
+    &[aria-expanded="true"] {
+      @include corners-active;
+    }
+
+    &.shell--variant-ghost:is(.shell--kind-label, .shell--kind-both):is(
+        [data-focus-visible],
+        [data-pressed]
+      ) {
+      border-color: var(--background-inverse);
+    }
+
+    @include reduced-motion {
+      &::before,
+      .actions__icon {
+        transition: none;
+      }
+    }
   }
 
   &--link {
@@ -46,40 +180,18 @@
   // ---- size ----
   &--size {
     &-sm {
-      font-size: clamp($font-size-12, 1.5vw, $font-size-14);
-      padding: clamp($space-8, 1.5vw, $space-10)
-        clamp($space-12, 1.5vw, $space-14);
+      font-size: clamp(rem(13), 2vw, rem(15));
+      padding: clamp($space-10, 2vw, $space-12) clamp($space-14, 2vw, $space-16);
     }
 
     &-md {
-      font-size: clamp($font-size-14, 1.5vw, $font-size-16);
-      padding: clamp($space-10, 1.5vw, $space-12)
-        clamp($space-16, 1.5vw, $space-18);
+      font-size: clamp(rem(15), 2vw, rem(17));
+      padding: clamp($space-12, 2vw, $space-14) clamp($space-16, 2vw, $space-18);
     }
 
     &-lg {
-      font-size: clamp($font-size-16, 1.5vw, $font-size-18);
-      padding: clamp($space-12, 1.5vw, $space-14)
-        clamp($space-20, 1.5vw, $space-24);
-    }
-  }
-
-  &--kind-icon {
-    &.shell--size {
-      &-sm {
-        padding: clamp($space-8, 1.5vw, $space-10);
-        font-size: clamp($font-size-14, 1.8vw, $font-size-16);
-      }
-
-      &-md {
-        padding: clamp($space-10, 1.5vw, $space-12);
-        font-size: clamp($font-size-16, 2vw, $font-size-18);
-      }
-
-      &-lg {
-        padding: clamp($space-10, 1.2vw, $space-14);
-        font-size: clamp($font-size-20, 2.2vw, $font-size-24);
-      }
+      font-size: clamp(rem(17), 2vw, rem(19));
+      padding: clamp($space-14, 2vw, $space-16) clamp($space-20, 2vw, $space-24);
     }
   }
 
@@ -99,8 +211,10 @@
     }
 
     &-primary {
+      --badge-fg: var(--primary-hover);
+
       background-color: var(--primary);
-      border: 1px solid var(--primary);
+      border: 1px solid var(--border);
       color: var(--primary-on);
 
       @include button-hover {
@@ -120,31 +234,39 @@
     }
 
     &-secondary {
+      --badge-fg: var(--surface);
+
       background-color: transparent;
       border: 1px solid var(--border);
       color: var(--text-primary);
 
       @include button-hover {
         background-color: var(--surface);
-        border-color: var(--primary);
+        border-color: var(--border-hover);
       }
 
       &[data-pressed] {
-        background-color: var(--surface);
+        background-color: var(--surface-active);
       }
     }
 
     &-ghost {
+      --badge-fg: var(--background-inverse);
+
       background-color: transparent;
       border: 1px solid transparent;
       color: var(--text-primary);
 
       @include button-hover {
-        background-color: var(--surface-muted);
+        background-color: var(--background-inverse);
+        border-color: var(--background-inverse);
+        color: var(--text-inverse);
       }
 
       &[data-pressed] {
-        background-color: var(--surface-muted);
+        background-color: var(--background-active);
+        border-color: var(--background-active);
+        color: var(--text-active);
       }
     }
   }
@@ -166,12 +288,12 @@
 
   &__icon {
     @include flex-center;
-    flex-shrink: 0;
     color: inherit;
+    flex-shrink: 0;
     line-height: 1;
   }
-
   &__label {
     color: inherit;
+    text-box: trim-both cap alphabetic;
   }
 }
