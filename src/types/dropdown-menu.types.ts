@@ -17,6 +17,13 @@ export interface DropdownMenuProps
   className?: string;
 }
 
-export type DropdownMenuItemProps = MenuItemProps;
+export interface DropdownMenuItemProps extends Omit<
+  MenuItemProps,
+  "children" | "className"
+> {
+  children: ReactNode;
+  className?: string;
+  isActive?: boolean;
+}
 
 export type { MenuTriggerProps as DropdownMenuTriggerProps };

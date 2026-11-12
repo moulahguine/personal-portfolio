@@ -6,6 +6,7 @@ import {
   DialogTrigger,
   DropdownMenu,
   DropdownMenuItem,
+  DropdownTriggerIcon,
   MenuTrigger,
 } from "@/components";
 import HeroMap from "./HeroMap";
@@ -141,8 +142,14 @@ export default function Hero() {
                 className={styles["hero__actions-connect--trigger"]}
                 aria-label="Connect with me"
                 icon={
-                  <ConnectIcon
-                    className={styles["hero__actions-connect--trigger---icon"]}
+                  <DropdownTriggerIcon
+                    icon={
+                      <ConnectIcon
+                        className={
+                          styles["hero__actions-connect--trigger---icon"]
+                        }
+                      />
+                    }
                   />
                 }
               />
@@ -150,7 +157,6 @@ export default function Hero() {
               <DropdownMenu
                 aria-label="Connect with me"
                 placement="bottom end"
-                className={styles["hero__actions-connect--menu"]}
                 offset={10}
               >
                 {SOCIAL_LINKS.map(
@@ -164,6 +170,7 @@ export default function Hero() {
                     <DropdownMenuItem
                       key={id}
                       id={id}
+                      textValue={label}
                       href={socialHref}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}

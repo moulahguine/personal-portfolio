@@ -6,6 +6,7 @@ export { default as Modal, DialogTrigger } from "./Modal/Modal";
 export {
   default as DropdownMenu,
   DropdownMenuItem,
+  DropdownTriggerIcon,
   MenuTrigger,
 } from "./DropdownMenu/DropdownMenu";
 export { default as ThemeSelector } from "./ThemeSelector/ThemeSelector";

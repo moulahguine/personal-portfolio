@@ -5,12 +5,11 @@
   &__trigger {
     @include rac-touch;
     @include flex-center;
-    flex-direction: column;
-    align-items: end;
-    gap: rem(7);
     padding: $space-4;
     width: 30px;
     aspect-ratio: 1;
+    font-size: rem(20);
+    color: var(--text-primary);
     background-color: transparent !important;
     cursor: pointer;
 
@@ -18,12 +17,17 @@
       display: none;
     }
 
+    &__lines {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: rem(7);
+      width: 100%;
+    }
+
     &__line {
       height: 1.6px;
       background-color: var(--text-primary);
-      transition:
-        transform $duration-fast $ease-default,
-        opacity $duration-fast $ease-default;
 
       &:nth-child(1) {
         width: 100%;
@@ -37,55 +41,13 @@
         width: 50%;
       }
     }
-
-    &--active {
-      .menu__trigger__line {
-        &:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        &:nth-child(2) {
-          opacity: 0;
-        }
-
-        &:nth-child(3) {
-          transform: rotate(-45deg) translate(7.5px, -7.5px);
-          width: 100%;
-        }
-      }
-    }
   }
 
   &__dropdown {
     width: calc(100svw - clamp($space-10, 2vw, $space-12) * 2);
-    padding: $space-10;
-    background-color: var(--surface-muted);
-    border-radius: 0;
-    border: solid 1px var(--border);
 
     @include up(md) {
       display: none;
-    }
-  }
-
-  &__item {
-    justify-content: center;
-    width: 100%;
-    padding-block: $space-16;
-    color: var(--text-secondary);
-    font-size: clamp($font-size-16, 1.5vw, $font-size-18);
-    font-weight: $fw-semibold;
-    font-family: $font-primary;
-
-    &--active,
-    &:has(&--active):is(:hover) {
-      background-color: var(--background-inverse) !important;
-      color: var(--text-inverse) !important;
-      font-weight: $fw-bold !important;
-    }
-
-    &:not(&--active):is(:hover, [data-focus-visible]) {
-      background-color: alpha(var(--background-inverse), 30) !important;
     }
   }
 }

@@ -1,5 +1,6 @@
 @use "../../../assets/styles" as *;
 
+// ---- popover ----
 .popover {
   z-index: $z-dropdown;
   min-width: rem(190);
@@ -8,15 +9,45 @@
   border-radius: $radius-md;
   background-color: var(--surface-elevated);
   box-shadow: 0 20px 45px var(--shadow-color);
+  transform-origin: var(--trigger-anchor-point, top right);
   outline: none;
+
+  &__body {
+    position: relative;
+    isolation: isolate;
+  }
 }
 
+// ---- trigger icon ----
+.triggerIcon {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+
+  // optically match filled icons
+  &__close {
+    font-size: 1.3em;
+  }
+}
+
+// ---- hover indicator ----
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: $radius-sm;
+  background-color: var(--surface-muted);
+  pointer-events: none;
+}
+
+// ---- menu ----
 .menu {
   display: flex;
   outline: none;
   margin: 0;
   padding: $space-8;
-  gap: $space-8;
+  gap: $space-4;
 
   &--vertical {
     flex-direction: column;
@@ -28,10 +59,10 @@
   }
 }
 
+// ---- item ----
 .item {
   @include rac-touch;
   display: flex;
-  gap: $space-10;
   padding: $space-8 $space-10;
   border-radius: $radius-sm;
   color: var(--text-secondary);
@@ -40,16 +71,48 @@
   text-decoration: none;
   outline: none;
   cursor: pointer;
-  transition:
-    background-color $duration-fast $ease-default,
-    color $duration-fast $ease-default;
+  transition: color $duration-fast $ease-default;
 
-  @include button-hover {
-    background-color: var(--surface-muted);
+  &[data-hovered] {
     color: var(--text-primary);
   }
 
-  &[data-pressed] {
-    background-color: var(--surface);
+  &[data-focus-visible] {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+  }
+
+  // ---- content ----
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: $space-10;
+    width: 100%;
+
+    &::after {
+      content: "";
+      flex-shrink: 0;
+      width: rem(6);
+      aspect-ratio: 1;
+      margin-left: auto;
+      border-radius: 50%;
+      background-color: var(--primary);
+      opacity: 0;
+      transform: scale(0);
+      transition:
+        opacity $duration-fast $ease-default,
+        transform $duration-base $ease-spring;
+    }
+  }
+
+  // ---- active ----
+  &[data-active] {
+    color: var(--text-primary);
+    font-weight: $fw-bold;
+
+    .item__content::after {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }

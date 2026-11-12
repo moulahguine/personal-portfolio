@@ -5,6 +5,7 @@ import {
   Button,
   DropdownMenu,
   DropdownMenuItem,
+  DropdownTriggerIcon,
   MenuTrigger,
 } from "@/components";
 import { NAV_ITEMS } from "@/data";
@@ -25,14 +26,6 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // ---- trigger class names ----
-  const triggerClassNames = [
-    styles.menu__trigger,
-    isOpen ? styles["menu__trigger--active"] : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   const handleNavigate = () => {
     onOpenChange(false);
   };
@@ -44,14 +37,20 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
           type="button"
           variant="ghost"
           size="sm"
-          className={triggerClassNames}
+          className={styles.menu__trigger}
           aria-expanded={isOpen}
           aria-controls={id}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-          <span className={styles.menu__trigger__line} aria-hidden="true" />
-          <span className={styles.menu__trigger__line} aria-hidden="true" />
-          <span className={styles.menu__trigger__line} aria-hidden="true" />
+          <DropdownTriggerIcon
+            icon={
+              <span className={styles.menu__trigger__lines}>
+                <span className={styles.menu__trigger__line} />
+                <span className={styles.menu__trigger__line} />
+                <span className={styles.menu__trigger__line} />
+              </span>
+            }
+          />
         </Button>
 
         <DropdownMenu
@@ -66,12 +65,7 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
               key={item.href}
               id={item.href}
               href={item.href}
-              className={[
-                styles.menu__item,
-                isActive(item.href) ? styles["menu__item--active"] : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
+              isActive={isActive(item.href)}
               onAction={handleNavigate}
             >
               {item.label}

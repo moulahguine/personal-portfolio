@@ -38,42 +38,31 @@ export default function Header() {
   }
 
   return (
-    <>
-      <motion.header
-        className={styles.header}
-        animate={{
-          y: hidden ? -150 : 0,
-        }}
-        transition={{ duration: 0.7, ease: "easeInOut" }}
-      >
-        {/* ---- container ---- */}
-        <div className={styles.header__container}>
-          {/* ---- logo ---- */}
-          <Logo />
+    <motion.header
+      className={styles.header}
+      animate={{
+        y: hidden ? -150 : 0,
+      }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
+    >
+      {/* ---- container ---- */}
+      <div className={styles.header__container}>
+        {/* ---- logo ---- */}
+        <Logo />
 
-          {/* ---- desktop navigation ---- */}
-          <Navigation className={styles.header__navigation} />
+        {/* ---- desktop navigation ---- */}
+        <Navigation className={styles.header__navigation} />
 
-          {/* ---- theme selector ---- */}
-          <ThemeSelector />
+        {/* ---- theme selector ---- */}
+        <ThemeSelector />
 
-          {/* ---- mobile menu ---- */}
-          <Menu
-            isOpen={isMenuOpen}
-            onOpenChange={setIsMenuOpen}
-            id={MOBILE_NAV_ID}
-          />
-        </div>
-      </motion.header>
-
-      {/* ---- mobile menu overlay ---- */}
-      {isMenuOpen ? (
-        <div
-          className={styles.header__overlay}
-          onPointerDown={() => setIsMenuOpen(false)}
-          aria-hidden="true"
+        {/* ---- mobile menu ---- */}
+        <Menu
+          isOpen={isMenuOpen}
+          onOpenChange={setIsMenuOpen}
+          id={MOBILE_NAV_ID}
         />
-      ) : null}
-    </>
+      </div>
+    </motion.header>
   );
 }
