@@ -86,6 +86,7 @@
       margin-block: -0.2em;
       overflow: hidden;
       border-radius: 50%;
+      padding: 2px;
       background-color: currentColor;
       opacity: 0;
       transform: scale(0.6);
@@ -96,13 +97,16 @@
         transform $duration-base $ease-default;
 
       svg {
-        width: 0.8em;
-        height: 0.8em;
+        font-size: rem(16);
         color: var(--badge-fg, var(--background));
       }
     }
 
     @media (hover: none) {
+      @include icon-revealed;
+    }
+
+    @include down(md) {
       @include icon-revealed;
     }
 
@@ -195,6 +199,13 @@
     }
   }
 
+  // ---- icon only: square box with its own icon size ----
+  &--kind-icon {
+    .actions__icon svg {
+      font-size: clamp(rem(15), 2vw, rem(18));
+    }
+  }
+
   &--variant {
     &-plain {
       color: inherit;
@@ -216,6 +227,7 @@
       background-color: var(--primary);
       border: 1px solid var(--border);
       color: var(--primary-on);
+      overflow: hidden;
 
       @include button-hover {
         background-color: var(--primary-hover);
@@ -290,7 +302,6 @@
     @include flex-center;
     color: inherit;
     flex-shrink: 0;
-    line-height: 1;
   }
   &__label {
     color: inherit;

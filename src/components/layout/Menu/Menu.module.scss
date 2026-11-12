@@ -3,49 +3,14 @@
 // ---- mobile menu trigger ----
 .menu {
   &__trigger {
-    @include rac-touch;
-    @include flex-center;
-    padding: $space-4;
-    width: 30px;
-    aspect-ratio: 1;
-    font-size: rem(20);
-    color: var(--text-primary);
-    background-color: transparent !important;
-    cursor: pointer;
+    margin-left: $space-4;
 
     @include up(md) {
       display: none;
     }
-
-    &__lines {
-      display: flex;
-      flex-direction: column;
-      align-items: end;
-      gap: rem(7);
-      width: 100%;
-    }
-
-    &__line {
-      height: 1.6px;
-      background-color: var(--text-primary);
-
-      &:nth-child(1) {
-        width: 100%;
-      }
-
-      &:nth-child(2) {
-        width: 70%;
-      }
-
-      &:nth-child(3) {
-        width: 50%;
-      }
-    }
   }
 
   &__dropdown {
-    width: calc(100svw - clamp($space-10, 2vw, $space-12) * 2);
-
     @include up(md) {
       display: none;
     }

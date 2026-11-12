@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  createContext,
+  Children,
   useContext,
   useRef,
-  useState,
+  type PointerEvent,
   type ReactNode,
 } from "react";
 import { HiXMark } from "react-icons/hi2";
@@ -34,49 +34,58 @@ const MotionPopover = motion.create(Popover);
 
 // ---- motion transitions ----
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
-const INDICATOR_TRANSITION = {
-  type: "spring",
-  stiffness: 500,
-  damping: 40,
-  mass: 0.8,
-} as const;
+// same motion as before — only these timings are shorter
+const ITEM_STAGGER = 0.06;
+const ITEM_STAGGER_START = 0.06;
+const ITEM_DURATION = 0.22;
+const POPOVER_DURATION = 0.22;
 
+const getRevealDuration = (itemCount: number) =>
+  ITEM_STAGGER_START +
+  Math.max(itemCount - 1, 0) * ITEM_STAGGER +
+  ITEM_DURATION;
+
+// ---- popover variants ----
 const POPOVER_VARIANTS: Variants = {
-  hidden: { opacity: 0, y: -6, scale: 0.98 },
-  visible: {
+  hidden: { opacity: 0, y: -6, scale: 0.98, height: 0 },
+  visible: (itemCount: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
+    height: "auto",
     transition: {
-      duration: 0.3,
+      duration: POPOVER_DURATION,
       ease: EASE_OUT_EXPO,
-      delayChildren: stagger(0.05, { startDelay: 0.06 }),
+      height: { duration: getRevealDuration(itemCount), ease: "linear" },
+      delayChildren: stagger(ITEM_STAGGER, { startDelay: ITEM_STAGGER_START }),
     },
-  },
+  }),
 };
 
+// ---- popover exit variants ----
 const POPOVER_EXIT = {
   opacity: 0,
   y: -4,
   scale: 0.98,
-  transition: { duration: 0.15, ease: "easeIn" },
+  transition: { duration: 0.12, ease: "easeIn" },
 } as const;
 
+// ---- item variants ----
 const ITEM_VARIANTS: Variants = {
-  hidden: { opacity: 0, x: -12, y: -8 },
+  hidden: { opacity: 0, y: -15 },
   visible: {
     opacity: 1,
-    x: 0,
     y: 0,
-    transition: { duration: 0.45, ease: EASE_OUT_EXPO },
+    transition: { duration: ITEM_DURATION, ease: EASE_OUT_EXPO },
   },
 };
 
+// ---- trigger icon motion variants ----
 const TRIGGER_ICON_MOTION = {
-  initial: { opacity: 0, rotate: -90, scale: 0.6 },
+  initial: { opacity: 0, rotate: -90, scale: 0.3 },
   animate: { opacity: 1, rotate: 0, scale: 1 },
-  exit: { opacity: 0, rotate: 90, scale: 0.6 },
-  transition: { duration: 0.2, ease: EASE_OUT_EXPO },
+  exit: { opacity: 0, rotate: 90, scale: 0.3 },
+  transition: { duration: 0.3, ease: EASE_OUT_EXPO },
 } as const;
 
 // ---- trigger icon: swaps to a close icon while the menu is open ----
@@ -98,19 +107,6 @@ export function DropdownTriggerIcon({ icon }: { icon: ReactNode }) {
     </MotionConfig>
   );
 }
-
-// ---- hover indicator context ----
-type IndicatorRect = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  shouldSlide: boolean;
-};
-
-const DropdownHoverContext = createContext<(item: HTMLElement) => void>(
-  () => {},
-);
 
 // ---- dropdown menu ----
 export default function DropdownMenu(props: DropdownMenuProps) {
@@ -138,36 +134,36 @@ function DropdownMenuContent({
   ...menuProps
 }: DropdownMenuProps & { onClose: () => void }) {
   const isPresent = useIsPresent();
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const [indicator, setIndicator] = useState<IndicatorRect | null>(null);
+  const itemCount = Children.count(children);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
 
-  const popoverClassName = [styles.popover, className]
-    .filter(Boolean)
-    .join(" ");
-  const menuClassName = [styles.menu, styles[`menu--${orientation}`]].join(" ");
+  // ---- hover indicator ----
+  const moveIndicator = (event: PointerEvent<HTMLDivElement>) => {
+    const indicator = indicatorRef.current;
+    const item = (event.target as HTMLElement).closest<HTMLElement>(
+      '[role="menuitem"]',
+    );
+    if (!indicator || !item) return;
 
-  // ---- move the indicator onto the hovered item ----
-  const showIndicator = (item: HTMLElement) => {
-    const body = bodyRef.current;
-    if (!body) return;
+    if (item.hasAttribute("data-active")) {
+      delete indicator.dataset.visible;
+      return;
+    }
 
-    const bodyRect = body.getBoundingClientRect();
-    const itemRect = item.getBoundingClientRect();
-    setIndicator((previous) => ({
-      x: itemRect.left - bodyRect.left,
-      y: itemRect.top - bodyRect.top,
-      width: itemRect.width,
-      height: itemRect.height,
-      shouldSlide: previous !== null,
-    }));
+    const wasHidden = !indicator.dataset.visible;
+    indicator.style.transform = `translate(${item.offsetLeft}px, ${item.offsetTop}px)`;
+    indicator.style.width = `${item.offsetWidth}px`;
+    indicator.style.height = `${item.offsetHeight}px`;
+
+    if (wasHidden) {
+      void indicator.offsetWidth;
+      indicator.dataset.visible = "true";
+    }
   };
 
-  // slide between items, but jump into place when appearing from hidden
-  const { shouldSlide = false, ...indicatorRect } = indicator ?? {};
-  const isVisible = indicator !== null;
-  const positionTransition = shouldSlide
-    ? INDICATOR_TRANSITION
-    : { duration: 0 };
+  const hideIndicator = () => {
+    if (indicatorRef.current) delete indicatorRef.current.dataset.visible;
+  };
 
   return (
     <MotionPopover
@@ -178,40 +174,26 @@ function DropdownMenuContent({
       }}
       placement={placement}
       offset={offset}
-      className={popoverClassName}
+      className={`${styles.popover} ${className}`}
       variants={POPOVER_VARIANTS}
+      custom={itemCount}
       initial="hidden"
       animate="visible"
       exit={POPOVER_EXIT}
     >
-      <div
-        ref={bodyRef}
-        className={styles.popover__body}
-        onPointerLeave={() => setIndicator(null)}
+      <span
+        ref={indicatorRef}
+        className={styles.indicator}
+        aria-hidden="true"
+      />
+      <Menu
+        {...menuProps}
+        className={`${styles.menu} ${styles[`menu--${orientation}`]}`}
+        onPointerMove={moveIndicator}
+        onPointerLeave={hideIndicator}
       >
-        <motion.span
-          className={styles.indicator}
-          aria-hidden="true"
-          initial={false}
-          animate={{
-            opacity: isVisible ? 1 : 0,
-            ...indicatorRect,
-          }}
-          transition={{
-            opacity: { duration: 0.2 },
-            x: positionTransition,
-            y: positionTransition,
-            width: positionTransition,
-            height: positionTransition,
-          }}
-        />
-
-        <DropdownHoverContext.Provider value={showIndicator}>
-          <Menu {...menuProps} className={menuClassName}>
-            {children}
-          </Menu>
-        </DropdownHoverContext.Provider>
-      </div>
+        {children}
+      </Menu>
     </MotionPopover>
   );
 }
@@ -222,23 +204,39 @@ export function DropdownMenuItem({
   className = "",
   isActive = false,
   textValue,
+  icon,
+  label,
   ...rest
 }: DropdownMenuItemProps) {
-  const showIndicator = useContext(DropdownHoverContext);
-  const classNames = [styles.item, className].filter(Boolean).join(" ");
+  const content = children ?? (
+    <>
+      {icon != null ? (
+        <span className={styles.item__icon} aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
+      {label != null ? (
+        <span className={styles.item__label}>{label}</span>
+      ) : null}
+    </>
+  );
 
   return (
     <MenuItem
       {...rest}
-      className={classNames}
+      className={`${styles.item} ${className}`}
       textValue={
-        textValue ?? (typeof children === "string" ? children : undefined)
+        textValue ??
+        (typeof label === "string"
+          ? label
+          : typeof children === "string"
+            ? children
+            : undefined)
       }
       data-active={isActive || undefined}
-      onHoverStart={(event) => showIndicator(event.target as HTMLElement)}
     >
       <motion.span className={styles.item__content} variants={ITEM_VARIANTS}>
-        {children}
+        {content}
       </motion.span>
     </MenuItem>
   );

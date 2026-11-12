@@ -49,15 +49,13 @@
 
 // ---- lazy loading ----
 @mixin lazy-loading {
-  //   content-visibility: auto;
-  //   contain-intrinsic-size: auto 800px;
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 800px;
 }
 
 // ---- section ----
 @mixin section {
-  width: 100vw;
-  width: 100svw;
-  padding-inline: clamp($space-4, 1vw, $space-8);
+  min-width: 100%;
   @include lazy-loading;
 }
 
@@ -71,7 +69,6 @@
   max-width: $container-width;
   margin: clamp($space-10, 1.5vw, $space-16) auto;
   border: 1px solid var(--border);
-  // border-bottom: 0;
 }
 
 // ---- responsive grid ----

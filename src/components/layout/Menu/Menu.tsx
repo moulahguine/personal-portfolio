@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { TbMenu } from "react-icons/tb";
 import {
   Button,
   DropdownMenu,
@@ -35,29 +36,20 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
       <MenuTrigger isOpen={isOpen} onOpenChange={onOpenChange}>
         <Button
           type="button"
-          variant="ghost"
-          size="sm"
+          size="md"
+          variant="secondary"
           className={styles.menu__trigger}
           aria-expanded={isOpen}
           aria-controls={id}
           aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          <DropdownTriggerIcon
-            icon={
-              <span className={styles.menu__trigger__lines}>
-                <span className={styles.menu__trigger__line} />
-                <span className={styles.menu__trigger__line} />
-                <span className={styles.menu__trigger__line} />
-              </span>
-            }
-          />
-        </Button>
+          icon={<DropdownTriggerIcon icon={<TbMenu aria-hidden />} />}
+        />
 
         <DropdownMenu
           id={id}
           aria-label="Primary"
           placement="bottom end"
-          offset={14}
+          offset={10}
           className={styles.menu__dropdown}
         >
           {NAV_ITEMS.map((item) => (
@@ -65,11 +57,10 @@ export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
               key={item.href}
               id={item.href}
               href={item.href}
+              label={item.label}
               isActive={isActive(item.href)}
               onAction={handleNavigate}
-            >
-              {item.label}
-            </DropdownMenuItem>
+            />
           ))}
         </DropdownMenu>
       </MenuTrigger>

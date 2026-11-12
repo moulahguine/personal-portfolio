@@ -140,22 +140,12 @@ export default function Hero() {
                 variant="secondary"
                 size="md"
                 className={styles["hero__actions-connect--trigger"]}
-                aria-label="Connect with me"
-                icon={
-                  <DropdownTriggerIcon
-                    icon={
-                      <ConnectIcon
-                        className={
-                          styles["hero__actions-connect--trigger---icon"]
-                        }
-                      />
-                    }
-                  />
-                }
+                aria-label="Find me online"
+                icon={<DropdownTriggerIcon icon={<ConnectIcon />} />}
               />
 
               <DropdownMenu
-                aria-label="Connect with me"
+                aria-label="Find me online"
                 placement="bottom end"
                 offset={10}
               >
@@ -170,14 +160,12 @@ export default function Hero() {
                     <DropdownMenuItem
                       key={id}
                       id={id}
-                      textValue={label}
+                      icon={<SocialLinkIcon aria-hidden="true" />}
+                      label={label}
                       href={socialHref}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                    >
-                      <SocialLinkIcon aria-hidden="true" />
-                      {label}
-                    </DropdownMenuItem>
+                    />
                   ),
                 )}
               </DropdownMenu>

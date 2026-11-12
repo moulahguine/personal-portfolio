@@ -21,7 +21,7 @@ export default function ThemeSelector() {
     <Button
       type="button"
       variant="secondary"
-      size="sm"
+      size="md"
       className={styles.themeSelector}
       aria-label="Switch theme"
       onPress={() => {
@@ -30,16 +30,8 @@ export default function ThemeSelector() {
       }}
       icon={
         <>
-          <HiSun
-            className={styles.themeSelector__iconLight}
-            fontSize={25}
-            aria-hidden
-          />
-          <HiMoon
-            className={styles.themeSelector__iconDark}
-            fontSize={25}
-            aria-hidden
-          />
+          <HiSun className={styles.themeSelector__iconLight} aria-hidden />
+          <HiMoon className={styles.themeSelector__iconDark} aria-hidden />
         </>
       }
     />
