@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const MESSAGE_MIN_LENGTH = 150;
-export const MESSAGE_MAX_LENGTH = 350;
 export const NAME_MIN_LENGTH = 2;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,10 +43,6 @@ export const contactSchema = z.object({
     .min(
       MESSAGE_MIN_LENGTH,
       `Message must be at least <strong>${MESSAGE_MIN_LENGTH}</strong> characters.`,
-    )
-    .max(
-      MESSAGE_MAX_LENGTH,
-      `Message must be no more than <strong>${MESSAGE_MAX_LENGTH}</strong> characters.`,
     ),
 });
 

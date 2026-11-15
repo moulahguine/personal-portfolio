@@ -10,7 +10,9 @@ export type ContactFieldState = "idle" | "valid" | "valid-blurred" | "invalid";
 export interface ContactFormConfig {
   checkIcon: IconType;
   submitIcon: IconType;
+  clearIcon: IconType;
   submitLabel: string;
+  clearLabel: string;
   sendingLabel: string;
   successMessage: string;
   errorMessage: string;

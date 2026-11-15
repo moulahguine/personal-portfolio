@@ -2,6 +2,12 @@ export type ToastVariant = "success" | "error";
 
 const TOAST_ID = "app-toast";
 
+// Theme-aware: inverse surface with a thin border and a status marker on the left.
+const TOAST_MARKER: Record<ToastVariant, string> = {
+  success: "var(--primary)",
+  error: "var(--danger)",
+};
+
 export function addToast(message: string, variant: ToastVariant = "success") {
   if (typeof document === "undefined") return;
 
@@ -22,9 +28,11 @@ export function addToast(message: string, variant: ToastVariant = "success") {
     fontFamily: "inherit",
     fontSize: "0.875rem",
     fontWeight: "600",
-    color: variant === "error" ? "#ffffff" : "#0d1111",
-    backgroundColor: variant === "error" ? "#ff5f57" : "#ffe023",
-    boxShadow: "0 6px 16px rgba(0, 0, 0, 0.18)",
+    lineHeight: "1.45",
+    color: "var(--text-inverse)",
+    backgroundColor: "var(--background-inverse)",
+    border: "1px solid var(--border-strong)",
+    borderLeft: `3px solid ${TOAST_MARKER[variant]}`,
   });
 
   document.body.appendChild(toast);

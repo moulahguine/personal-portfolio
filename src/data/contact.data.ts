@@ -1,12 +1,14 @@
 import { FaCheck } from "react-icons/fa";
-import { FiSend } from "react-icons/fi";
+import { FiRotateCcw, FiSend } from "react-icons/fi";
 
 import type { ContactFormConfig } from "@/features/Contact/contact.types";
 
 export const CONTACT_FORM_DATA: ContactFormConfig = {
   checkIcon: FaCheck,
   submitIcon: FiSend,
-  submitLabel: "Send message",
+  clearIcon: FiRotateCcw,
+  submitLabel: "Send",
+  clearLabel: "Clear form",
   sendingLabel: "Sending...",
   successMessage: "Thanks for reaching out. I’ll get back to you soon.",
   errorMessage: "Something went wrong while sending your message. Please try again.",

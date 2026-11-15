@@ -18,7 +18,7 @@ export interface Blog {
 
 const BLOGS = getBlogPosts();
 
-const PRIMARY_BLOGS = BLOGS.slice(0, 3);
+const PRIMARY_BLOGS = BLOGS.slice(0, 4);
 
 const REMAINING_BLOGS_COUNT = Math.max(BLOGS.length - PRIMARY_BLOGS.length, 0);
 

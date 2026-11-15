@@ -1,222 +1,283 @@
 @use "../../../assets/styles" as *;
 
-.contact {
-  &__panel {
-    @include flex-column;
-    align-items: center;
-    gap: clamp($space-24, 4vw, $space-40);
-    width: 100%;
-    padding-block: clamp($space-40, 5vw, rem(60));
+$label-size: $font-size-12;
+
+@keyframes clear-icon-spin {
+  from {
+    transform: rotate(0deg);
   }
 
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+// ---- text control (input / textarea) ----
+// Borderless: the field cell owns the border, background and focus ring.
+@mixin field-text {
+  width: 100%;
+  padding: 0;
+  font-family: $font-primary;
+  font-size: $font-size-16;
+  font-weight: $fw-medium;
+  line-height: 1.5;
+  color: var(--text-primary);
+  caret-color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+
+  &::placeholder {
+    font-weight: $fw-regular;
+    color: var(--text-subtle);
+    opacity: 1;
+    transition: color $duration-base $ease-default;
+  }
+
+  &:focus::placeholder {
+    color: var(--text-disabled);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  // keep browser autofill on the cell background in both themes
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary);
+    box-shadow: 0 0 0 100rem var(--field-bg) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.contact {
+  &__panel {
+    width: 100%;
+  }
+
+  // ---- form: cells separated by 1px lines, like the blog / skills grids ----
   &__form {
-    @include flex-column;
-    gap: clamp($space-16, 2.5vw, $space-20);
-    width: min(95%, 500px);
+    --field-pad-x: #{clamp($space-14, 2.5vw, $space-20)};
+    --field-pad-y: #{clamp($space-12, 2vw, $space-16)};
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    width: 100%;
+    background-color: var(--border);
+
+    @include down(sm) {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   &__honeypot {
     @include sr-only;
   }
 
+  // ---- field cell ----
   &__field {
-    @include flex-column;
-    gap: $space-8;
+    --field-bg: var(--background);
+    --field-ring: transparent;
+    --field-marker: var(--border-strong);
+
     position: relative;
-  }
+    display: flex;
+    min-width: 0;
+    padding: var(--field-pad-y) var(--field-pad-x);
+    background-color: var(--field-bg);
+    box-shadow: inset 0 0 0 1px var(--field-ring);
+    transition:
+      background-color $duration-base $ease-default,
+      box-shadow $duration-base $ease-default;
 
-  &__field-check {
-    @include flex-center;
-    position: absolute;
-    top: 50%;
-    right: clamp($space-12, 2vw, $space-16);
-    transform: translateY(-50%);
-    color: var(--success);
-    font-size: $font-size-14;
-    pointer-events: none;
-  }
-
-  &__field-count {
-    position: absolute;
-    right: $space-8;
-    bottom: rem(28);
-    font-size: $font-size-12;
-    font-weight: $fw-medium;
-    color: var(--text-tertiary);
-    pointer-events: none;
-  }
-
-  &__field-error {
-    display: block;
-    margin: 0;
-    padding-inline: rem(2);
-    font-size: $font-size-14;
-    font-weight: $fw-regular;
-    line-height: 1.45;
-    color: var(--danger);
-
-    strong {
-      font-weight: $fw-bold;
+    @media (hover: hover) {
+      &:hover {
+        --field-bg: var(--background-muted);
+      }
     }
+
+    &:focus-within {
+      --field-bg: var(--background-muted);
+      --field-ring: var(--focus-ring);
+      --field-marker: var(--primary);
+    }
+
+    &:has(:disabled) &-control {
+      opacity: 0.6;
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+
+  &__field[data-field="message"],
+  &__actions {
+    grid-column: 1 / -1;
   }
 
   &__field[data-field="fullName"] &__input {
     text-transform: capitalize;
   }
 
-  &__field--multiline &__field-check {
-    top: clamp($space-12, 2vw, $space-16);
-    transform: none;
+  // ---- validation states ----
+  &__field--invalid,
+  &__field--invalid:hover,
+  &__field--invalid:focus-within {
+    --field-bg: color-mix(in oklab, var(--danger) 4%, var(--background));
+    --field-ring: var(--danger-border-strong);
+    --field-marker: var(--danger);
   }
 
-  &__field--valid &__input,
-  &__field--valid &__textarea,
-  &__field--valid &__select-trigger,
-  &__field--valid-blurred &__input,
-  &__field--valid-blurred &__textarea,
-  &__field--valid-blurred &__select-trigger {
-    border-color: var(--success);
-  }
-
-  &__field--invalid &__input,
-  &__field--invalid &__textarea,
-  &__field--invalid &__select-trigger {
-    border-color: var(--danger);
-  }
-
-  &__input,
-  &__textarea,
-  &__select-trigger {
-    width: 100%;
-    padding: clamp($space-14, 2vw, $space-16);
-    font-size: clamp($font-size-14, 1.5vw, $font-size-16);
-    font-weight: $fw-medium;
-    font-family: $font-primary;
-    color: var(--text-primary);
-    background: var(--surface-muted);
-    border: 2px solid var(--border);
-    outline: none;
-    transition:
-      border-color $duration-base $ease-default,
-      box-shadow $duration-base $ease-default,
-      background-color $duration-base $ease-default;
-
-    &::placeholder {
-      font-weight: $fw-regular;
-      color: var(--text-tertiary);
-    }
-
-    @media (hover: hover) {
-      &:hover:not(:disabled) {
-        background-color: var(--background-elevated);
-      }
-    }
-
-    &:focus,
-    &:focus-visible,
-    &[data-focus-visible] {
-      outline: solid 2px var(--accent);
-      outline-offset: 4px;
-    }
-  }
-
-  &__textarea {
-    max-height: rem(500);
-    min-height: rem(200);
-    padding-bottom: clamp(rem(28), 4vw, $space-32);
-    line-height: 1.65;
-    padding-right: clamp($space-18, 2.5vw, rem(28));
-    resize: none;
-  }
-
-  &__select-trigger {
-    @include flex-between;
-    gap: $space-12;
-    cursor: pointer;
-    text-align: left;
-    width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 4px);
-  }
-
-  &__select-trigger[data-placeholder] &__select-value {
-    color: alpha(var(--text-tertiary), 70);
-  }
-
-  &__select-value {
+  // ---- control wrapper (label + input + error) ----
+  &__field-control {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    gap: $space-10;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
-  &__select-icon {
-    @include flex-center;
-    flex-shrink: 0;
-    color: var(--text-tertiary);
-    font-size: $font-size-14;
-    transition: transform $duration-base $ease-default;
-  }
-
-  &__select[data-open] &__select-icon {
-    transform: rotate(180deg);
-  }
-
-  &__select-popover {
-    width: var(--trigger-width);
-    background: var(--surface);
-    border: 1px solid var(--border);
-
-    box-shadow: 0 rem(6) rem(16) var(--shadow-color);
-    overflow: hidden;
-
-    &[data-entering],
-    &[data-exiting] {
-      opacity: 0;
-      transform: translateY(rem(-6)) scale(0.98);
-      transition:
-        opacity $duration-base $ease-default,
-        transform $duration-quick $ease-default;
-    }
-  }
-
-  &__select-list {
-    max-height: rem(260);
-    overflow: auto;
-    outline: none;
-  }
-
-  &__select-option {
-    padding: clamp($space-12, 1.8vw, $space-14) clamp($space-14, 2vw, $space-16);
-    font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+  &__field-label {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-8;
+    width: fit-content;
+    font-family: $font-primary;
+    font-size: $label-size;
     font-weight: $fw-semibold;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border-muted);
-    cursor: pointer;
-    outline: none;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    transition: color $duration-base $ease-default;
 
-    &:last-child {
-      border-bottom: 0;
+    // signature square marker, turns yellow on focus
+    &::before {
+      content: "";
+      flex-shrink: 0;
+      width: 6px;
+      aspect-ratio: 1;
+      background-color: var(--field-marker);
+      transition: background-color $duration-base $ease-default;
     }
+  }
 
-    &[data-focused] {
-      background: var(--surface-muted);
-      color: var(--text-primary);
-    }
+  &__field:focus-within &__field-label {
+    color: var(--text-primary);
+  }
 
-    &[data-selected] {
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-weight: $fw-semibold;
-    }
+  &__field-required {
+    margin-left: -$space-4;
+    font-weight: $fw-regular;
+    color: var(--text-subtle);
+  }
+
+  // ---- trailing indicators sit on the label row ----
+  &__field-check,
+  &__field-count {
+    position: absolute;
+    top: var(--field-pad-y);
+    right: var(--field-pad-x);
+    height: $label-size;
+    pointer-events: none;
+  }
+
+  &__field-check {
+    @include flex-center;
+    font-size: $font-size-12;
+    color: color-mix(in oklab, var(--success) 70%, var(--text-primary));
+  }
+
+  &__field-count {
+    font-size: $label-size;
+    font-weight: $fw-medium;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
   }
 
   &__field[data-field="message"]:has(&__field-check) &__field-count {
-    right: clamp($space-32, 5vw, $space-40);
+    right: calc(var(--field-pad-x) + #{$space-20});
+  }
+
+  &__field-error {
+    display: block;
+    margin: 0;
+    font-size: rem(13);
+    font-weight: $fw-regular;
+    line-height: 1.45;
+    color: color-mix(in oklab, var(--danger) 75%, var(--text-primary));
+
+    strong {
+      font-weight: $fw-bold;
+    }
+  }
+
+  // ---- controls ----
+  &__input,
+  &__textarea {
+    @include field-text;
+  }
+
+  &__textarea {
+    min-height: rem(132);
+    max-height: rem(320);
+    line-height: 1.6;
+    field-sizing: content;
+    resize: none;
+  }
+
+  // ---- submit ----
+  &__actions {
+    @include flex-between;
+    gap: $space-12;
+    padding: var(--field-pad-y) var(--field-pad-x);
+    background-color: var(--background);
   }
 
   &__submit {
-    min-width: calc(100% - clamp($space-12, 2vw, $space-16) - 8px) !important;
-    margin-top: $space-8;
+    margin: 0;
+  }
+
+  &__clear {
+    margin: 0;
+    padding: $space-10 $space-4;
+    font-family: $font-primary;
+    font-size: $label-size;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+
+    &[data-hovered],
+    &[data-focus-visible],
+    &[data-pressed] {
+      color: var(--text-primary) !important;
+    }
+  }
+
+  &__clear-icon {
+    display: inline-flex;
+    font-size: $font-size-14;
+
+    &--spin {
+      animation: clear-icon-spin 0.6s $ease-default;
+    }
+
+    @include reduced-motion {
+      &--spin {
+        animation: none;
+      }
+    }
   }
 
   &__visually-hidden {

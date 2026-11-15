@@ -110,6 +110,11 @@ export function useContactForm() {
     },
   );
 
+  const clear = () => {
+    reset(INITIAL_VALUES);
+    formRef.current?.reset();
+  };
+
   return {
     formRef,
     control,
@@ -120,5 +125,6 @@ export function useContactForm() {
     isSubmitted,
     firstSubmitErrorField,
     submit,
+    clear,
   };
 }

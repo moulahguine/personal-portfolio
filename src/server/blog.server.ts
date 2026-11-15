@@ -9,6 +9,7 @@ import {
 } from "@/data/authors.data";
 
 const BLOGS_DIR = path.join(process.cwd(), "src/content/blogs");
+const BLOG_MDX_FILENAME = "index.mdx";
 const WORDS_PER_MINUTE = 200;
 
 function getContentStats(content: string): {
@@ -26,14 +27,34 @@ function getContentStats(content: string): {
   return { wordCount, readingTime };
 }
 
-function readBlogMetadata(filename: string): Blog {
-  const slug = filename.replace(/\.mdx$/, "");
-  const filePath = path.join(BLOGS_DIR, filename);
+function getBlogPostEntries(): { slug: string; filePath: string }[] {
+  return fs
+    .readdirSync(BLOGS_DIR, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => {
+      const slug = entry.name;
+      const filePath = path.join(BLOGS_DIR, slug, BLOG_MDX_FILENAME);
+
+      if (!fs.existsSync(filePath)) {
+        throw new Error(
+          `Missing ${BLOG_MDX_FILENAME} in src/content/blogs/${slug}/`,
+        );
+      }
+
+      return { slug, filePath };
+    });
+}
+
+function readBlogMetadata(
+  slug: string,
+  filePath: string,
+  relativePath: string,
+): Blog {
   const fileContent = fs.readFileSync(filePath, "utf8");
   const match = fileContent.match(/^---\r?\n([\s\S]*?)\r?\n---/);
 
   if (!match) {
-    throw new Error(`Missing frontmatter in ${filename}`);
+    throw new Error(`Missing frontmatter in ${relativePath}`);
   }
 
   const metadata: Record<string, string> = {};
@@ -72,13 +93,13 @@ function readBlogMetadata(filename: string): Blog {
     title: metadata.title,
     description: metadata.description,
     date: metadata.date,
-    dateTime: assertValidDate(metadata.dateTime, "dateTime", filename),
+    dateTime: assertValidDate(metadata.dateTime, "dateTime", relativePath),
     ...(metadata.updated
-      ? { updated: assertValidDate(metadata.updated, "updated", filename) }
+      ? { updated: assertValidDate(metadata.updated, "updated", relativePath) }
       : {}),
     readingTime,
     wordCount,
-    authorId: resolveAuthorId(metadata.author, filename),
+    authorId: resolveAuthorId(metadata.author, relativePath),
     ...(metadata.tags ? { tags: parseTags(metadata.tags) } : {}),
     ...(metadata.section ? { section: metadata.section } : {}),
   };
@@ -130,10 +151,10 @@ function resolveAuthorId(
   return value;
 }
 
-const BLOGS = fs
-  .readdirSync(BLOGS_DIR)
-  .filter((filename) => filename.endsWith(".mdx"))
-  .map(readBlogMetadata)
+const BLOGS = getBlogPostEntries()
+  .map(({ slug, filePath }) =>
+    readBlogMetadata(slug, filePath, `${slug}/${BLOG_MDX_FILENAME}`),
+  )
   .sort((a, b) => b.dateTime.localeCompare(a.dateTime));
 
 export function getBlogPosts() {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, type ReactNode } from "react";
 import { Button } from "@/components";
 import { CONTACT_FORM_DATA } from "@/data";
 import { Controller } from "react-hook-form";
@@ -7,6 +8,7 @@ import {
   FieldError,
   Form,
   Input,
+  Label,
   TextArea,
   TextField,
 } from "react-aria-components";
@@ -16,7 +18,7 @@ import {
   getContactFieldState,
   getVisibleFieldError,
 } from "../contact.helpers";
-import { MESSAGE_MAX_LENGTH, MESSAGE_MIN_LENGTH } from "../contact.schema";
+import { MESSAGE_MIN_LENGTH } from "../contact.schema";
 import type { ContactFieldProps } from "../contact.types";
 import { useContactForm } from "../useContactForm";
 
@@ -46,8 +48,23 @@ function ContactField({
   );
 }
 
+function ContactFieldLabel({ children }: { children: ReactNode }) {
+  return (
+    <Label className={styles["contact__field-label"]}>
+      {children}
+      <span className={styles["contact__field-required"]} aria-hidden="true">
+        *
+      </span>
+    </Label>
+  );
+}
+
 export default function ContactForm() {
-  const { checkIcon: CheckIcon, submitIcon: SubmitIcon } = CONTACT_FORM_DATA;
+  const {
+    checkIcon: CheckIcon,
+    submitIcon: SubmitIcon,
+    clearIcon: ClearIcon,
+  } = CONTACT_FORM_DATA;
 
   const {
     formRef,
@@ -59,7 +76,16 @@ export default function ContactForm() {
     isSubmitted,
     firstSubmitErrorField,
     submit,
+    clear,
   } = useContactForm();
+
+  // plays the clear icon's 360deg spin once per press
+  const [isClearSpinning, setIsClearSpinning] = useState(false);
+
+  const handleClear = () => {
+    clear();
+    setIsClearSpinning(true);
+  };
 
   const fullNameError = getVisibleFieldError(
     "fullName",
@@ -144,11 +170,12 @@ export default function ContactForm() {
               onChange={field.onChange}
               onBlur={field.onBlur}
               isInvalid={fullNameState === "invalid"}
-              aria-label="Full name"
+              className={styles["contact__field-control"]}
             >
+              <ContactFieldLabel>Full name</ContactFieldLabel>
               <Input
                 className={styles.contact__input}
-                placeholder="Your full name*"
+                placeholder="Mohamed Oulahguine"
               />
               <FieldError className={styles["contact__field-error"]}>
                 {formatErrorMessage(fullNameError)}
@@ -183,11 +210,12 @@ export default function ContactForm() {
               onChange={field.onChange}
               onBlur={field.onBlur}
               isInvalid={emailState === "invalid"}
-              aria-label="Email"
+              className={styles["contact__field-control"]}
             >
+              <ContactFieldLabel>Email</ContactFieldLabel>
               <Input
                 className={styles.contact__input}
-                placeholder="your@email.com*"
+                placeholder="mohamedoulahguine@gmail.com"
               />
               <FieldError className={styles["contact__field-error"]}>
                 {formatErrorMessage(emailError)}
@@ -212,7 +240,9 @@ export default function ContactForm() {
               </span>
             ) : null}
             <span className={styles["contact__field-count"]} aria-live="polite">
-              {values.message.length}/{MESSAGE_MAX_LENGTH}
+              {values.message.length < MESSAGE_MIN_LENGTH
+                ? `${values.message.length}/${MESSAGE_MIN_LENGTH}`
+                : values.message.length}
             </span>
           </>
         }
@@ -229,14 +259,13 @@ export default function ContactForm() {
               onChange={field.onChange}
               onBlur={field.onBlur}
               isInvalid={messageState === "invalid"}
-              aria-label="Message"
+              className={styles["contact__field-control"]}
               minLength={MESSAGE_MIN_LENGTH}
-              maxLength={MESSAGE_MAX_LENGTH}
             >
+              <ContactFieldLabel>Message</ContactFieldLabel>
               <TextArea
                 className={styles.contact__textarea}
-                maxLength={MESSAGE_MAX_LENGTH}
-                placeholder="Tell me more about the opportunity or project...*"
+                placeholder="What are you working on, and how can I help?"
               />
               <FieldError className={styles["contact__field-error"]}>
                 {formatErrorMessage(messageError)}
@@ -246,18 +275,46 @@ export default function ContactForm() {
         />
       </ContactField>
 
-      <Button
-        type="submit"
-        variant="primary"
-        className={styles.contact__submit}
-        icon={<SubmitIcon />}
-        iconPosition="left"
-        isDisabled={isSubmitting}
-      >
-        {isSubmitting
-          ? CONTACT_FORM_DATA.sendingLabel
-          : CONTACT_FORM_DATA.submitLabel}
-      </Button>
+      <div className={styles.contact__actions}>
+        <Button
+          type="submit"
+          variant="primary"
+          size="md"
+          className={styles.contact__submit}
+          icon={<SubmitIcon />}
+          iconPosition="right"
+          label={
+            isSubmitting
+              ? CONTACT_FORM_DATA.sendingLabel
+              : CONTACT_FORM_DATA.submitLabel
+          }
+          isDisabled={isSubmitting}
+        />
+
+        <Button
+          type="button"
+          variant="plain"
+          className={styles.contact__clear}
+          icon={
+            <span
+              className={[
+                styles["contact__clear-icon"],
+                isClearSpinning ? styles["contact__clear-icon--spin"] : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              onAnimationEnd={() => setIsClearSpinning(false)}
+            >
+              <ClearIcon />
+            </span>
+          }
+          iconPosition="left"
+          label={CONTACT_FORM_DATA.clearLabel}
+          isDisabled={isSubmitting}
+          preventFocusOnPress
+          onPress={handleClear}
+        />
+      </div>
     </Form>
   );
 }

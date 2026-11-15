@@ -6,6 +6,7 @@
   @include section;
   @include flex-column;
   position: relative;
+  margin-top: clamp($space-16, 2vw, $space-24);
 
   @include down(xl) {
     @include container;

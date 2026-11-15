@@ -3,159 +3,100 @@
 // ---- projects grid ----
 .projects {
   @include flex-column;
-  gap: clamp($space-12, 1.5vw, $space-16);
+  gap: 1px;
+  background-color: var(--border);
 
-  // ---- project card ----
-  &__card {
-    max-width: 450px;
-    padding: clamp($space-12, 1.5vw, $space-14);
-    background-color: var(--background-muted);
-    border: 1px solid var(--border);
-    position: relative;
-    isolation: isolate;
+  // ---- project item ----
+  &__item {
+    @include flex-center;
+    gap: clamp($space-8, 1.5vw, $space-12);
+    overflow: hidden;
+    background-color: var(--background);
+    padding: clamp($space-12, 2vw, $space-16);
 
-    @include down(md) {
-      margin-inline: auto;
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      background-color: var(--surface-muted);
+
+      @include down(sm) {
+        flex-direction: column-reverse;
+      }
     }
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
+    @include down(sm) {
+      flex-direction: column-reverse;
       width: 100%;
-      height: 0%;
-      background: linear-gradient(
-        to bottom,
-        var(--card-color),
-        alpha(var(--card-color), 50),
-        alpha(var(--card-color), 20),
-        alpha(var(--card-color), 5),
-        transparent
-      );
-      z-index: -1;
-      transition: height $duration-base $ease-default;
+      align-items: center;
     }
 
-    @media (hover: hover) {
-      &:hover {
-        &::before {
-          height: 40%;
-        }
-
-        .projects__card-image {
-          translate: 0 -5px;
-        }
-      }
-    }
-
-    // ---- card media ----
-    &-media {
-      mask-image: linear-gradient(to bottom, black 70%, transparent);
-      width: 100%;
-      aspect-ratio: 1.7;
-    }
-
-    // ---- card image ----
-    &-image {
-      @include cover-image;
-      object-position: top;
-      transition: translate $duration-base $ease-default;
-      scale: 1.1;
-
-      &--light {
-        display: block;
-      }
-
-      &--dark {
-        display: none;
-      }
-    }
-
-    :global(html[data-theme="dark"]) &-image--light {
-      display: none;
-    }
-
-    :global(html[data-theme="dark"]) &-image--dark {
-      display: block;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :global(html:not([data-theme="light"])) &-image--light {
-        display: none;
-      }
-
-      :global(html:not([data-theme="light"])) &-image--dark {
-        display: block;
-      }
-    }
-
-    // ---- card body ----
-    &-body {
-      @include flex-column;
+    // ---- content ----
+    &-content {
       flex: 1;
-      gap: clamp($space-8, 1.5vw, $space-12);
+      @include flex-column;
+      row-gap: clamp($space-8, 2vw, $space-10);
+
+      &--title {
+        font-family: $font-primary;
+        font-size: clamp($font-size-28, 3.6vw, $font-size-32);
+        font-weight: $fw-bold;
+        line-height: $line-height-tight;
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+        text-transform: capitalize;
+      }
+
+      &--description {
+        font-family: $font-primary;
+        font-weight: $fw-regular;
+        line-height: 1.6;
+        font-size: clamp($font-size-14, 2vw, $font-size-16);
+        color: var(--text-secondary);
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        max-width: 50ch;
+      }
+
+      &--tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-4;
+      }
+
+      &--tag {
+        padding: $space-4 $space-12;
+        font-family: $font-secondary;
+        font-size: clamp($font-size-12, 2vw, $font-size-14);
+        font-weight: $fw-semibold;
+        color: var(--text-secondary);
+        background-color: var(--surface-muted);
+        border: 1px solid var(--border-muted);
+        text-transform: capitalize;
+      }
+
+      &--actions {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: $space-8;
+        margin-top: clamp($space-16, 2vw, $space-24);
+      }
     }
 
-    // ---- card title ----
-    &-title {
-      font-family: $font-primary;
-      font-size: clamp($font-size-24, 4vw, $font-size-28);
-      font-weight: $fw-bold;
-      color: var(--text-primary);
-      text-transform: capitalize;
-    }
+    &-media {
+      flex: 1;
+      max-width: clamp(270px, 40vw, 400px);
+      aspect-ratio: 1.3;
 
-    // ---- card description ----
-    &-description {
-      font-family: $font-primary;
-      font-size: clamp($font-size-12, 2vw, $font-size-14);
-      font-weight: $fw-regular;
-      color: var(--text-secondary);
-      line-height: $line-height-relaxed;
-      max-width: 50ch;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      line-clamp: 4;
-      box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+      &--preview {
+        width: 100%;
+        height: 100%;
+      }
 
-    // ---- card tags ----
-    &-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: clamp($space-4, 1vw, $space-8);
-    }
-
-    // ---- card tag ----
-    &-tag {
-      padding: $space-4 $space-8;
-      font-family: $font-secondary;
-      font-size: clamp(rem(13), 2vw, rem(15));
-      font-weight: $fw-semibold;
-      color: var(--text-primary);
-      background-color: var(--background-elevated);
-      border: 1px solid var(--border);
-      text-transform: capitalize;
-    }
-
-    // ---- card actions ----
-    &-actions {
-      @include flex-center;
-      justify-content: flex-end;
-      gap: $space-8;
-      margin-top: clamp($space-12, 2vw, $space-18);
-    }
-
-    // ---- card action ----
-    &-action {
-      &--github {
-        background-color: var(--background-inverse);
-        color: var(--text-inverse);
-        border-color: var(--background-inverse);
+      &--image {
+        object-fit: contain;
+        object-position: top center;
       }
     }
   }

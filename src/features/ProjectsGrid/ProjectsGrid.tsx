@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GoArrowUpRight } from "react-icons/go";
 import { Link } from "@/components";
 import {
   PROJECTS_PAGE_DATA,
@@ -30,80 +31,96 @@ export default function ProjectsGrid({
 
   return (
     <ul className={styles.projects}>
-      {projects.map((project) => (
-        <li
-          key={project.id}
-          className={styles.projects__card}
-          style={{ "--card-color": project.color } as React.CSSProperties}
-        >
-          <figure className={styles["projects__card-media"]}>
-            <Image
-              src={project.images.light}
-              alt={`Screenshot of ${project.title}`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
-              className={`${styles["projects__card-image"]} ${styles["projects__card-image--light"]}`}
-            />
-            <Image
-              src={project.images.dark}
-              alt={`Screenshot of ${project.title}`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
-              className={`${styles["projects__card-image"]} ${styles["projects__card-image--dark"]}`}
-            />
-          </figure>
-          <div className={styles["projects__card-body"]}>
-            <h3 className={styles["projects__card-title"]}>{project.title}</h3>
-            <p className={styles["projects__card-description"]}>
-              {project.description}
-            </p>
+      {projects.map((project) => {
+        const githubAction = getProjectActions(project).find(
+          (action) => action.id === "github",
+        );
+        const demoAction = getProjectActions(project).find(
+          (action) => action.id === "demo",
+        );
 
-            <ul
-              className={styles["projects__card-tags"]}
-              aria-label="Technologies used"
-            >
-              {project.tagIds.map((tag) => (
-                <li key={tag} className={styles["projects__card-tag"]}>
-                  {tag}
-                </li>
-              ))}
-            </ul>
+        return (
+          <li
+            key={project.id}
+            className={styles.projects__item}
+            style={{ "--project-color": project.color } as React.CSSProperties}
+          >
+            <div className={styles["projects__item-content"]}>
+              <h3 className={styles["projects__item-content--title"]}>
+                {project.title}
+              </h3>
+              <p className={styles["projects__item-content--description"]}>
+                {project.description}
+              </p>
 
-            <div className={styles["projects__card-actions"]}>
-              {getProjectActions(project).map(
-                ({ id, href, label, icon: Icon, external }) => (
+              <ol
+                className={styles["projects__item-content--tags"]}
+                aria-label="Technologies used"
+              >
+                {project.tagIds.map((tag) => (
+                  <li
+                    key={tag}
+                    className={styles["projects__item-content--tag"]}
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ol>
+
+              <div className={styles["projects__item-content--actions"]}>
+                <Link
+                  href={project.details}
+                  size="sm"
+                  variant="primary"
+                  label="View Details"
+                  icon={<GoArrowUpRight aria-hidden="true" />}
+                  iconPosition="right"
+                />
+
+                {githubAction ? (
                   <Link
-                    key={id}
-                    href={href}
+                    href={githubAction.href}
                     size="sm"
-                    isDisabled={href === "/"}
-                    variant={label === "GitHub" ? "primary" : "secondary"}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    className={`${styles["projects__card-action"]} ${
-                      label === "GitHub"
-                        ? styles["projects__card-action--github"]
-                        : styles["projects__card-action--demo"]
-                    }`}
-                    aria-label={
-                      label === "GitHub"
-                        ? `link to ${project.title} project on GitHub`
-                        : label === "Demo"
-                          ? `link to ${project.title} project demo`
-                          : ""
-                    }
-                    icon={
-                      <Icon
-                        className={styles["projects__card-action--icon"]}
-                        aria-hidden="true"
-                      />
-                    }
-                    label={label}
+                    variant="secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.title} on GitHub`}
+                    icon={<githubAction.icon aria-hidden="true" />}
                   />
-                ),
-              )}
+                ) : null}
+
+                {demoAction ? (
+                  <Link
+                    href={demoAction.href}
+                    size="sm"
+                    variant="secondary"
+                    isDisabled={demoAction.href === "/"}
+                    target={demoAction.external ? "_blank" : undefined}
+                    rel={
+                      demoAction.external ? "noopener noreferrer" : undefined
+                    }
+                    aria-label={`${project.title} live demo`}
+                    icon={<demoAction.icon aria-hidden="true" />}
+                  />
+                ) : null}
+              </div>
             </div>
-          </div>
-        </li>
-      ))}
+
+            <figure className={styles["projects__item-media"]}>
+              <div className={styles["projects__item-media--preview"]}>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`Screenshot of ${project.title}`}
+                    sizes="(max-width: 570px) 100vw, 400px"
+                    className={styles["projects__item-media--image"]}
+                  />
+                ) : null}
+              </div>
+            </figure>
+          </li>
+        );
+      })}
     </ul>
   );
 }

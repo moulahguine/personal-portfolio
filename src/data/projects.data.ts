@@ -3,20 +3,17 @@ import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 
-import portfolioDarkImage from "@/assets/images/projects/portfolio/dark.png";
-import portfolioLightImage from "@/assets/images/projects/portfolio/light.png";
+import PortfolioThumbnail from "@/assets/images/projects/thumbnail.png";
 
 // ---- project ----
 export interface Project {
   id: string;
   title: string;
   description: string;
-  images: {
-    light: StaticImageData;
-    dark: StaticImageData;
-  };
+  image: StaticImageData;
   color: string;
   tagIds: string[];
+  details: string;
   demo: string;
   github: string;
   primary: boolean;
@@ -33,7 +30,7 @@ export interface ProjectAction {
 const PROJECT_ACTIONS = [
   {
     id: "demo",
-    label: "Demo",
+    label: "Live Demo",
     icon: GoLinkExternal,
     hrefKey: "demo",
   },
@@ -67,12 +64,10 @@ const PROJECTS: Project[] = [
     title: "My portfolio",
     description:
       "It's my website that represents my work as a frontend developer, including the projects I build and the things I learn along the way.",
-    images: {
-      light: portfolioLightImage,
-      dark: portfolioDarkImage,
-    },
+    image: PortfolioThumbnail,
     color: "#ffe023",
     tagIds: ["nextjs", "typescript", "sass", "motion", "mdx"],
+    details: "/projects",
     demo: "/",
     github: "https://github.com/moulahguine/personal-portfolio",
     primary: true,
@@ -81,7 +76,7 @@ const PROJECTS: Project[] = [
 
 const PRIMARY_PROJECTS = PROJECTS.filter((project) => project.primary).slice(
   0,
-  4,
+  3,
 );
 const REMAINING_PROJECTS_COUNT = PROJECTS.length - PRIMARY_PROJECTS.length;
 
