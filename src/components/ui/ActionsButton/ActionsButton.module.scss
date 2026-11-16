@@ -2,10 +2,10 @@
 
 @mixin icon-revealed {
   .actions--kind-both .actions__icon {
-    max-width: 2em;
+    width: 1.2em;
+    scale: 1;
     margin-inline: 0 $space-8;
     opacity: 1;
-    transform: none;
   }
 
   .actions--kind-both.actions--icon-right .actions__icon {
@@ -67,6 +67,7 @@
 
       font-weight: $fw-semibold;
       text-transform: uppercase;
+      text-box: trim-both cap alphabetic;
 
       &.shell--variant-ghost {
         border-color: var(--border);
@@ -76,27 +77,26 @@
     .actions--kind-both {
       width: 100%;
       justify-content: space-between;
+
       gap: 0;
     }
 
     .actions--kind-both .actions__icon {
-      width: 1.4em;
-      height: 1.4em;
-      max-width: 0;
-      margin-block: -0.2em;
+      width: 0;
+      height: 1.2em;
       overflow: hidden;
       border-radius: 50%;
-      padding: 2px;
       background-color: currentColor;
       opacity: 0;
-      transform: scale(0.6);
+      scale: 0;
       transition:
-        max-width $duration-base $ease-default,
+        width $duration-base $ease-default,
         margin $duration-base $ease-default,
         opacity $duration-base $ease-default,
-        transform $duration-base $ease-default;
+        scale $duration-base $ease-default;
 
       svg {
+        padding: 1.5px;
         font-size: rem(16);
         color: var(--badge-fg, var(--background));
       }

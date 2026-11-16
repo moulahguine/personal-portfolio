@@ -10,6 +10,8 @@
 
   @include down(xl) {
     @include container;
+    width: fit-content !important;
+    max-width: fit-content !important;
     padding-block: 0;
   }
 

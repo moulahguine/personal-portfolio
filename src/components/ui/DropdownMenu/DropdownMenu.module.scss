@@ -7,6 +7,7 @@
   border: 1px solid var(--border);
   background-color: var(--surface);
   transform-origin: var(--trigger-anchor-point, top right);
+  overflow: hidden;
 }
 
 // ---- trigger icon ----

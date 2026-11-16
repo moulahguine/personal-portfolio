@@ -1,16 +1,20 @@
-import type { StaticImageData } from "next/image";
 import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 
-import PortfolioThumbnail from "@/assets/images/projects/thumbnail.png";
+// Video files live in /public — Turbopack does not bundle .mp4 imports.
+const PORTFOLIO_PREVIEW_VIDEO = "/projects/portfolio.mp4";
+
+const FEATURED_PROJECTS_LIMIT = 4;
 
 // ---- project ----
 export interface Project {
   id: string;
   title: string;
+  category: string;
+  year: string;
   description: string;
-  image: StaticImageData;
+  video: string;
   color: string;
   tagIds: string[];
   details: string;
@@ -62,21 +66,23 @@ const PROJECTS: Project[] = [
   {
     id: "portfolio",
     title: "My portfolio",
+    category: "Portfolio Website",
+    year: "2026",
     description:
       "It's my website that represents my work as a frontend developer, including the projects I build and the things I learn along the way.",
-    image: PortfolioThumbnail,
+    video: PORTFOLIO_PREVIEW_VIDEO,
     color: "#ffe023",
     tagIds: ["nextjs", "typescript", "sass", "motion", "mdx"],
     details: "/projects",
     demo: "/",
-    github: "https://github.com/moulahguine/personal-portfolio",
+    github: "https://github.com/mohamedoulahguine/personal-portfolio",
     primary: true,
   },
 ];
 
 const PRIMARY_PROJECTS = PROJECTS.filter((project) => project.primary).slice(
   0,
-  3,
+  FEATURED_PROJECTS_LIMIT,
 );
 const REMAINING_PROJECTS_COUNT = PROJECTS.length - PRIMARY_PROJECTS.length;
 

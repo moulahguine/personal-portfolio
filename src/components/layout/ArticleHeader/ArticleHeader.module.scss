@@ -5,12 +5,8 @@
   @include flex-column;
   gap: clamp($space-24, 2.5vw, $space-32);
   width: 100%;
-  padding-bottom: $space-10;
+  padding: $space-8 $space-10 $space-10;
   border: 0;
-
-  @include down(md) {
-    padding-top: $space-8;
-  }
 
   // ---- breadcrumb ----
   &__breadcrumb {

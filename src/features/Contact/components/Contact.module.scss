@@ -69,9 +69,8 @@ $label-size: $font-size-12;
 
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
     width: 100%;
-    background-color: var(--border);
+    @include hairline-cell-grid;
 
     @include down(sm) {
       grid-template-columns: minmax(0, 1fr);

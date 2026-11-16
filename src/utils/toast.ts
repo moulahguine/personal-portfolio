@@ -2,9 +2,8 @@ export type ToastVariant = "success" | "error";
 
 const TOAST_ID = "app-toast";
 
-// Theme-aware: inverse surface with a thin border and a status marker on the left.
 const TOAST_MARKER: Record<ToastVariant, string> = {
-  success: "var(--primary)",
+  success: "var(--background-inverse)",
   error: "var(--danger)",
 };
 

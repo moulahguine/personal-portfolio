@@ -2,16 +2,19 @@
 
 .blogs {
   &__grid {
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
-    gap: 1px;
-    background-color: var(--border);
+    @include responsive-grid(
+      repeat(2, minmax(0, 1fr)),
+      1px,
+      (
+        md: minmax(0, 1fr),
+      )
+    );
+    @include hairline-cell-grid;
   }
 
   &__card {
-    flex: 1 1 calc(50% - 1px);
-    min-width: min(100%, 18rem);
+    min-width: 0;
     background-color: var(--background);
     transition: background-color $duration-base $ease-default;
 
