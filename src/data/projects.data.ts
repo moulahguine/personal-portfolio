@@ -2,8 +2,10 @@ import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 
-// Video files live in /public — Turbopack does not bundle .mp4 imports.
-const PORTFOLIO_PREVIEW_VIDEO = "/projects/portfolio.mp4";
+const PROJECT_CARD_PREVIEW_VIDEO_WIDTH = 800;
+const PROJECT_CARD_PREVIEW_VIDEO_HEIGHT = 500;
+
+const PORTFOLIO_PREVIEW_VIDEO = `https://ik.imagekit.io/moulahguine/myportfolio/projectMedia/myportfolio.mp4?updatedAt=1794910963344&tr=w-${PROJECT_CARD_PREVIEW_VIDEO_WIDTH},h-${PROJECT_CARD_PREVIEW_VIDEO_HEIGHT},fo-top`;
 
 const FEATURED_PROJECTS_LIMIT = 4;
 
