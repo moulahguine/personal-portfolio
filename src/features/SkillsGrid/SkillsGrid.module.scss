@@ -58,7 +58,7 @@
     &-overview {
       font-family: $font-primary;
       font-weight: $fw-regular;
-      max-width: 80ch;
+      min-width: 100%;
       font-size: clamp($font-size-14, 1.6vw, $font-size-16);
       line-height: $line-height-relaxed;
       color: var(--text-secondary);

@@ -9,6 +9,10 @@
     z-index: $z-overlay;
     background-color: var(--background-overlay);
     backdrop-filter: blur(3px);
+
+    @include down(md) {
+      padding: $space-8;
+    }
   }
 
   // ---- modal shell ----
@@ -26,6 +30,10 @@
     @include flex-column;
     width: 100%;
     max-height: min(85svh, rem(720));
+
+    @include down(md) {
+      max-height: min($modal-max-height-mobile, calc(100dvh - #{$space-32}));
+    }
     border: 1px solid var(--border);
     background-color: var(--surface);
     outline: none;

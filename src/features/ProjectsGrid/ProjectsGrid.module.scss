@@ -15,7 +15,7 @@
   &__card {
     @include flex-column;
     min-width: 0;
-    background-color: var(--background);
+    background-color: transparent;
 
     &-meta {
       @include flex-between;
@@ -67,10 +67,10 @@
       margin: 0;
       padding: clamp($space-12, 2vw, $space-18);
       padding-bottom: 0;
-      background-color: var(--background);
+      background-color: transparent;
       background-image: radial-gradient(
         ellipse 100% 100% at 52% 18%,
-        color-mix(in oklab, var(--project-color) 50%, var(--background)),
+        color-mix(in oklab, var(--project-color) 50%, transparent),
         transparent 62%
       );
     }
@@ -136,7 +136,7 @@
       font-size: clamp($font-size-12, 1.6vw, $font-size-14);
       font-weight: $fw-semibold;
       color: var(--text-secondary);
-      background-color: var(--surface);
+      background-color: var(--background-muted);
       text-transform: capitalize;
     }
 
