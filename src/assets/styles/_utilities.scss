@@ -50,7 +50,7 @@
 // ---- lazy loading ----
 @mixin lazy-loading {
   content-visibility: auto;
-  contain-intrinsic-block-size: auto 800px;
+  contain-intrinsic-block-size: auto 500px;
 }
 
 // ---- section ----

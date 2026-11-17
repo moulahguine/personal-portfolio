@@ -197,8 +197,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
               }}
               style={{
                 color: "var(--primary-on)",
-                fontFamily:
-                  'var(--font-quaternary), "Playfair Display", serif',
+                fontFamily: 'var(--font-quaternary), "Playfair Display", serif',
                 fontSize: "clamp(3rem, 10vw, 8rem)",
                 fontWeight: 700,
                 letterSpacing: "0.08em",
