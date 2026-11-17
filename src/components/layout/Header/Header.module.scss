@@ -13,7 +13,6 @@
     @include flex-between;
     background-color: var(--background-overlay);
     backdrop-filter: blur(7px);
-    border: 1px solid var(--border);
     padding: clamp(rem(2), 1vw, $space-8);
     margin-top: clamp($space-8, 1.5vw, $space-12);
     margin-bottom: 0;

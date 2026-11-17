@@ -3,7 +3,7 @@
 .headerSection {
   @include flex-between;
   width: 100%;
-  border-bottom: 1px solid var(--border);
+  @include hairline-border-bottom;
 
   &__title {
     flex: 1;

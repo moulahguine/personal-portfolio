@@ -128,7 +128,7 @@
       font-weight: $fw-regular;
       font-size: clamp(rem(13), 3vw, rem(15));
       color: var(--text-secondary);
-      text-box: trim-both cap alphabetic;
+      text-box: trim-end cap alphabetic;
 
       @include down(md) {
         text-align: center;

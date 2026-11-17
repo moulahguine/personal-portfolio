@@ -49,8 +49,8 @@
 
 // ---- lazy loading ----
 @mixin lazy-loading {
-  // content-visibility: auto;
-  // contain-intrinsic-block-size: auto 800px;
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 800px;
 }
 
 // ---- section ----
@@ -64,24 +64,31 @@
   width: 100%;
 }
 
+// ---- border color ----
+$border-color: var(--border-strong);
+
 // ---- site chrome ----
 @mixin surface-border {
-  border: 1px solid var(--border);
+  border: 1px solid $border-color;
 }
 
 // ---- hairline gap ----
 @mixin hairline-gap {
   gap: 1px;
-  background-color: var(--border);
+  background-color: $border-color;
 }
 
 // ---- hairline grid rules ----
 @mixin hairline-grid-rules {
-  @supports (row-rule: 1px solid var(--border)) {
+  @supports (row-rule: 1px solid $border-color) {
     background-color: transparent;
-    column-rule: 1px solid var(--border);
-    row-rule: 1px solid var(--border);
+    column-rule: 1px solid $border-color;
+    row-rule: 1px solid $border-color;
   }
+}
+
+@mixin hairline-border-bottom {
+  border-bottom: 1px solid $border-color;
 }
 
 // ---- hairline cell grid ----

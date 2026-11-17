@@ -67,7 +67,7 @@
       margin: 0;
       padding: clamp($space-12, 2vw, $space-18);
       padding-bottom: 0;
-      background-color: var(--image-background);
+      background-color: var(--background);
       background-image: radial-gradient(
         ellipse 100% 100% at 52% 18%,
         color-mix(in oklab, var(--project-color) 50%, var(--background)),
