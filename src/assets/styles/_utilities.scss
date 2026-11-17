@@ -100,7 +100,7 @@ $border-color: var(--border-strong);
 // ---- container ----
 @mixin container {
   max-width: $container-width;
-  margin: clamp($space-24, 3vw, $space-32) auto;
+  margin: $space-16 auto;
   @include surface-border;
 }
 
